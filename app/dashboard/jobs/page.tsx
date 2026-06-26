@@ -5,11 +5,13 @@ import { PRIORITY_BADGE } from "@/services/constants";
 import { Building2, MapPin, TrendingUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { HeaderCard } from "../components/HeaderCard";
+import JobViewModal from "../components/JobViewModel";
 
 export default function Jobs() {
     const [jobs, setJobs] = useState([])
     const [loading, setLoading] = useState(true)
-
+    const [selectedJobId, setSelectedJobId] = useState("");
+    const [jobOpen, setJobOpen] = useState(false);
 
     const loadJobs = async () => {
         try {
@@ -45,6 +47,10 @@ export default function Jobs() {
                         {jobs.map((job: any) => (
                             <Card
                                 key={job.id}
+                                onClick={() => {
+                                    setSelectedJobId(job?.id);
+                                    setJobOpen(true);
+                                }}
                                 className="border-slate-200 shadow-none hover:border-blue-200 hover:shadow-md transition-all cursor-pointer group rounded-sm"
                             >
                                 <CardContent className="p-5">
@@ -57,7 +63,7 @@ export default function Jobs() {
                                             <p className="text-xs text-slate-400">{job.department}</p>
                                         </div>
                                         <span
-                                            className={`text-xs px-2 py-0.5 rounded-full font-medium shrink-0 ${PRIORITY_BADGE[job.priority] ?? "bg-slate-50 text-slate-500 border border-slate-100"
+                                            className={`text-xs px-2 py-0.5 rounded-xs font-medium shrink-0 ${PRIORITY_BADGE[job.priority] ?? "bg-slate-50 text-slate-500 border border-slate-100"
                                                 }`}
                                         >
                                             {job.priority}
@@ -87,7 +93,7 @@ export default function Jobs() {
                                         {job.skills.slice(0, 3).map((skill: any) => (
                                             <span
                                                 key={skill}
-                                                className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-md font-medium"
+                                                className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-xs font-medium"
                                             >
                                                 {skill}
                                             </span>
@@ -103,6 +109,12 @@ export default function Jobs() {
                         ))}
                     </div>
                 )}
+
+            <JobViewModal
+                id={selectedJobId}
+                open={jobOpen}
+                onOpenChange={setJobOpen}
+            />
         </section>
     )
 }

@@ -11,29 +11,20 @@ import {
     DialogTitle,
 } from "@/components/ui/dialog";
 
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Loader2, Star } from "lucide-react";
-
-interface Candidate {
-    id: string;
-    name: string;
-    email: string;
-    phone?: string;
-    location?: string;
-    headline?: string;
-    stage: string;
-    rating?: number;
-    experience?: string;
-    skills?: string[];
-    // ...existing code...
-    // changed code:
-    notes?: { body: string }[];
-    // ...existing code...
-    job?: {
-        title: string;
-    };
-}
+import { Candidate } from "@/types/api";
+import AddNoteModal from "./AddNoteModel";
 
 interface CandidateViewModalProps {
     id: string;
@@ -48,6 +39,10 @@ export default function CandidateViewModal({
 }: CandidateViewModalProps) {
     const [candidate, setCandidate] = useState<Candidate | null>(null);
     const [loading, setLoading] = useState(false);
+    const [stage, setStage] = useState("");
+    const [updatingStage, setUpdatingStage] = useState(false);
+    const [openNote, setOpenNote] = useState(false);
+    const [selectedId, setSelectedId] = useState("");
 
     useEffect(() => {
         if (open && id) {
@@ -59,12 +54,33 @@ export default function CandidateViewModal({
         try {
             setLoading(true);
             const res = await api.getCandidate(id);
-            // assuming response => { candidate: {...} }
-            setCandidate(res?.candidate as any);
+            const candidateData = res?.candidate as any;
+            setCandidate(candidateData);
+            setStage(candidateData?.stage || "");
         } catch (err) {
             console.error(err);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleStageChange = async (value: string) => {
+        const previousStage = stage;
+        setStage(value); // Optimistic update
+        try {
+            setUpdatingStage(true);
+            await api.updateCandidate(id, {
+                stage: value,
+            });
+            setCandidate((prev) =>
+                prev ? { ...prev, stage: value } : prev
+            );
+        } catch (err) {
+            console.error(err);
+            // Rollback if API fails
+            setStage(previousStage);
+        } finally {
+            setUpdatingStage(false);
         }
     };
 
@@ -86,7 +102,7 @@ export default function CandidateViewModal({
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="md:max-w-3xl w-full rounded-sm">
+            <DialogContent className="md:max-w-3xl w-full rounded-sm ">
                 <DialogHeader>
                     <DialogTitle>Candidate Details</DialogTitle>
                     <DialogDescription>
@@ -142,7 +158,7 @@ export default function CandidateViewModal({
                                     Experience
                                 </p>
 
-                                <p>{candidate.experience || "-"}</p>
+                                <p>{candidate?.experience || "-"}</p>
                             </div>
 
                             <div>
@@ -150,7 +166,26 @@ export default function CandidateViewModal({
                                     Stage
                                 </p>
 
-                                <div className={``}>{candidate.stage === "Screen" ? "Screening" : candidate.stage}</div>
+                                <Select
+                                    value={stage}
+                                    onValueChange={handleStageChange}
+                                    disabled={updatingStage}
+                                >
+                                    <SelectTrigger className="md:max-w-30 rounded-sm">
+                                        <SelectValue placeholder="Select Stage" />
+                                    </SelectTrigger>
+
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            <SelectItem value="Applied">Applied</SelectItem>
+                                            <SelectItem value="Screen">Screening</SelectItem>
+                                            <SelectItem value="Interview">Interview</SelectItem>
+                                            <SelectItem value="Offer">Offer</SelectItem>
+                                            <SelectItem value="Hired">Hired</SelectItem>
+                                            <SelectItem value="Rejected">Rejected</SelectItem>
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
                             </div>
 
                             <div>
@@ -169,6 +204,14 @@ export default function CandidateViewModal({
                                 </p>
 
                                 <p>{candidate.job?.title ?? "N/A"}</p>
+                            </div>
+
+                            <div>
+                                <p className="text-sm text-muted-foreground">
+                                    Source
+                                </p>
+
+                                <p>{candidate.source ?? "Other"}</p>
                             </div>
                         </div>
 
@@ -194,7 +237,7 @@ export default function CandidateViewModal({
                             </div>
                         </div>
 
-                        {candidate.notes && candidate.notes.length > 0 && (
+                        {candidate.notes && (
                             <>
                                 <Separator />
 
@@ -205,9 +248,18 @@ export default function CandidateViewModal({
 
                                     <div className="text-muted-foreground flex flex-wrap gap-2">
                                         {candidate.notes.map((note, idx) => (
-                                            <Badge className="bg-muted text-slate-500" key={idx}>{note?.body}</Badge>
+                                            <Badge className="bg-muted text-slate-400" key={idx}>{note?.body}</Badge>
                                         ))}
                                     </div>
+                                    <Badge className='mt-3 cursor-pointer' onClick={() => {
+                                        setSelectedId(candidate?.id);
+                                        setOpenNote(true);
+                                    }}>+ Notes</Badge>
+                                    <AddNoteModal
+                                        id={selectedId}
+                                        open={openNote}
+                                        onOpenChange={setOpenNote}
+                                    />
                                 </div>
                             </>
                         )}

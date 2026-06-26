@@ -115,6 +115,16 @@ export default function Candidates() {
         {
             accessorKey: 'name',
             header: "Name",
+            cell: ({ row }) => {
+                return (
+                    <div className={`cursor-pointer hover:underline`} onClick={() => {
+                        setSelectedId(row.original.id);
+                        setOpen(true);
+                    }}>
+                        {row.original.name}
+                    </div>
+                )
+            }
         },
         {
             accessorKey: 'email',
@@ -195,25 +205,24 @@ export default function Candidates() {
             <HeaderCard
                 title="Candidates"
                 description="Manage all candidates and track their hiring pipeline."
-                buttontitle="Create Job"
-                link="/dashboard/jobs/create"
+                buttontitle="Create Candidate"
+                link="/dashboard/candidate/create"
             />
             <CandidateViewModal
                 id={selectedId}
                 open={open}
                 onOpenChange={setOpen}
             />
-            {loading ? "Loading..." : (
-                <DataTable
-                    columns={columns}
-                    data={candidates}
-                    pageCount={pageCount}
-                    currentPage={page}
-                    onPageChange={setPage}
-                    onSearch={handleSearch}
-                    isLoading={loading}
-                />
-            )}
+
+            <DataTable
+                columns={columns}
+                data={candidates}
+                pageCount={pageCount}
+                currentPage={page}
+                onPageChange={setPage}
+                onSearch={handleSearch}
+                isLoading={loading}
+            />
         </div>
     )
 }

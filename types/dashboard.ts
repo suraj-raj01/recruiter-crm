@@ -36,6 +36,7 @@ export interface Candidate {
     headline: string;
     source: string;
     stage: string;
+    experience: string;
     rating: number;
     owner: string;
     skills: string[];
@@ -51,7 +52,7 @@ export interface Candidate {
 }
 
 export interface Job {
-    _id: string;
+    id: string;
     title: string;
     department: string;
     location: string;

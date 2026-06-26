@@ -9,15 +9,18 @@ import { Stage } from "@/services/constants";
 
 export default function PipelinePage() {
     const [candidates, setCandidates] = useState<Candidate[]>([]);
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         loadCandidates();
     }, []);
 
     async function loadCandidates() {
+        setLoading(true)
         const res = await api.getCandidates();
         setCandidates(res?.candidates);
-        console.log(res)
+        setLoading(false);
+        // console.log(res)
     }
 
     async function moveCandidate(
@@ -26,6 +29,7 @@ export default function PipelinePage() {
     ) {
         try {
             // console.log(candidateId,'id')
+            setLoading(true)
             await api.moveCandidate(candidateId, stage);
             setCandidates((prev) =>
                 prev.map((candidate) =>
@@ -34,19 +38,23 @@ export default function PipelinePage() {
                         : candidate
                 )
             );
-
             toast.success("Candidate moved successfully");
         } catch {
             toast.error("Unable to move candidate");
+        } finally{
+            setLoading(false);
         }
     }
 
     return (
         <div className="p-5 min-h-screen">
-            <PipelineBoard
-                candidates={candidates}
-                onMove={moveCandidate}
-            />
+            {loading?("Loading..."):(
+                <PipelineBoard
+                    candidates={candidates}
+                    onMove={moveCandidate}
+                />
+            )}
+            
         </div>
     );
 }

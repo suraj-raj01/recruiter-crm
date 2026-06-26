@@ -18,7 +18,8 @@ export interface User {
 }
 
 export interface Job {
-    _id: string;
+    jobs: any;
+    id: string;
     title: string;
     department: string;
     location: string;
@@ -30,21 +31,55 @@ export interface Job {
     skills: string[];
     description: string;
     createdAt: string;
-
-
 }
 
 export interface JobPayload {
     title: string;
     description: string;
 }
-
-export interface Candidate {
-    candidate(candidate: any): unknown;
+export interface Note {
+    body: string;
+    author: string;
     _id: string;
+    createdAt: string;
+}
+
+export interface JobRef {
+    id: string;
+    title: string;
+    department: string;
+    location: string;
+    employmentType: string;
+    status: string;
+    hiringManager: string;
+    salaryRange: string;
+    priority: string;
+    skills: string[];
+    description: string;
+}
+export interface Candidate {
+    candidate: never[];
+    id: string;
     name: string;
     email: string;
+    phone: string;
+    location: string;
+    headline: string;
+    source: string;
     stage: string;
+    rating: number;
+    experience: string;
+    owner: string;
+    skills: string[];
+    salaryExpectation: string;
+    noticePeriod: string;
+    resumeUrl: string;
+    nextStep: string;
+    nextStepDueDate: string;
+    notes: Note[];
+    jobId: string;
+    job: JobRef;
+    createdAt: string;
 }
 
 export interface CandidatePayload {
@@ -69,13 +104,13 @@ export interface RecentActivity {
 
 export interface MetricsResponse {
     totalCandidates: number;
-        activeCandidates: number;
-        openJobs: number;
-        hired: number;
-        conversionRate: number;
-        averageRating: number;
-        stageCounts: StageCount[];
-        sourceCounts: Record<string, number>;
-        dueSoon: Candidate[];
-        recentActivity: RecentActivity[];
+    activeCandidates: number;
+    openJobs: number;
+    hired: number;
+    conversionRate: number;
+    averageRating: number;
+    stageCounts: StageCount[];
+    sourceCounts: Record<string, number>;
+    dueSoon: Candidate[];
+    recentActivity: RecentActivity[];
 }

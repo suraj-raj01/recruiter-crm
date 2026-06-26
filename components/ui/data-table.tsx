@@ -181,7 +181,7 @@ export function DataTable<TData, TValue>({
                                     {row.getVisibleCells().map((cell) => (
                                         <TableCell
                                             key={cell.id}
-                                            className="whitespace-normal text-sm wrap-break-word max-w-xs" // ensures text wraps
+                                            className="text-sm" // ensures text wraps
                                         >
                                             {(() => {
                                                 const cellValue = cell.getValue();

@@ -36,7 +36,7 @@ export default function Home() {
             process.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+        <div className="flex gap-4 text-base font-medium flex-row">
           <Link
             className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-39.5"
             href="/auth/login"

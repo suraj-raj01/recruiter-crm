@@ -44,7 +44,7 @@ export default function RootLayout({
             {children}
           </ThemeProvider>
         </TooltipProvider>
-        <Toaster position="top-center" />
+        <Toaster position="top-center" theme="system" />
       </body>
     </html>
   );

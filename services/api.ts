@@ -69,6 +69,9 @@ export const api = {
 
     getJobs: () => request<any>("/api/jobs"),
 
+    getJob: (id: string) =>
+        request<Job>(`/api/jobs/${id}`),
+
     createJob: (body: JobPayload) =>
         request<Job>("/api/jobs", {
             method: "POST",

@@ -60,7 +60,7 @@ export default function DashboardLayout({
                             <Breadcrumb>
                                 <BreadcrumbList>
                                     <BreadcrumbItem className="hidden md:block text-sm">
-                                        <BreadcrumbLink href="#">
+                                        <BreadcrumbLink href="/dashboard">
                                             Dashboard
                                         </BreadcrumbLink>
                                     </BreadcrumbItem>

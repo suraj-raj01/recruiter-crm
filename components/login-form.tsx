@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { api, setAuthToken } from "@/services/api"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
 import Link from "next/link"
@@ -30,17 +30,22 @@ export function LoginForm({
     email: "suraj@talentdeck.dev",
     password: "suraj123",
   })
-
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = React.useState({
     email: "",
     password: "",
   })
 
   const navigate = useRouter();
+  useEffect(()=>{
+    const token = localStorage.getItem("ats_token");
+    if(token) navigate.push("/dashboard")
+  })
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     try {
+      setLoading(true)
       if(formData.email === ""){
         setErrors({
           email: "Email is required",
@@ -64,9 +69,10 @@ export function LoginForm({
       toast.success("Login successful")
     } catch (error) {
       console.log(error)
+    } finally{
+      setLoading(false);
     }
   }
-
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -101,7 +107,7 @@ export function LoginForm({
               <Field>
                 {errors.email && <p className="text-red-500">{errors.email}</p>}
               </Field>
-              <Field>
+              <Field className="-mt-5">
                 <div className="flex items-center">
                   <FieldLabel htmlFor="password">Password</FieldLabel>
                   <Link
@@ -129,8 +135,10 @@ export function LoginForm({
                 {errors.password && <p className="text-red-500">{errors.password}</p>}
               </Field>
               <Field>
-                <Button type="submit" className="rounded-full px-4 py-5">Login</Button>
-                <Button variant="outline" type="button" className="rounded-full px-4 py-5">
+                <Button type="submit" className="rounded-full px-4 py-5 text-sm">
+                  {loading?"Logging in...":"Login"}
+                </Button>
+                <Button variant="outline" type="button" className="rounded-full px-4 py-5 text-sm">
                   Login with Google
                 </Button>
                 <FieldDescription className="text-center">

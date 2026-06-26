@@ -16,6 +16,8 @@ export const STAGES = [
     "Rejected",
 ] as const;
 
+export const SOURCES = ["LinkedIn", "Referral", "Naukri", "Indeed", "Portfolio", "Inbound", "Apna", "WorkIndia", "Other"];
+
 export type Stage = (typeof STAGES)[number];
 
 export const STAGE_BAR: Record<string, string> = {

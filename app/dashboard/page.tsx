@@ -19,6 +19,7 @@ import { getInitials } from "@/services/initials";
 import { formatDate } from "@/services/formatdate";
 import Link from "next/link";
 import CandidateViewModal from "./components/CandidateViewModel";
+import JobViewModal from "./components/JobViewModel";
 
 
 function timeAgo(dateStr: string): string {
@@ -82,7 +83,7 @@ function MetricCard({
 }) {
   return (
     <Card className="border-slate-200 shadow-none rounded-sm">
-      <CardContent className="p-5">
+      <CardContent className="px-5">
         <div className="flex items-start justify-between">
           <div>
             <p className="text-xs font-medium text-slate-400 uppercase tracking-wider mb-2">
@@ -114,6 +115,8 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [selectedId, setSelectedId] = useState("");
   const [open, setOpen] = useState(false);
+  const [selectedJobId, setSelectedJobId] = useState("");
+  const [jobOpen, setJobOpen] = useState(false);
 
   const loadDashboard = async () => {
     try {
@@ -322,7 +325,7 @@ export default function Dashboard() {
                   return (
                     <div
                       key={c.id}
-                      className="flex items-start gap-3 p-3 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-slate-200 hover:shadow-sm transition-all cursor-pointer"
+                      className="flex items-start gap-3 p-3 rounded-sm border border-gray-200 dark:border-gray-700 hover:border-slate-200 hover:shadow-sm transition-all cursor-pointer"
                       onClick={() => {
                         setSelectedId(c.id);
                         setOpen(true);
@@ -340,7 +343,7 @@ export default function Dashboard() {
                           <StageBadge stage={c.stage} />
                         </div>
                         <p className="text-xs text-slate-500 truncate">{c.nextStep}</p>
-                        <div className="flex items-center gap-1 mt-1.5">
+                        <div className="flex items-center gap-1">
                           <CalendarDays className={`w-3 h-3 ${overdue ? "text-red-400" : "text-orange-400"}`} />
                           <span className={`text-xs font-medium ${overdue ? "text-red-500" : "text-orange-500"}`}>
                             {overdue ? "Overdue · " : "Due "}
@@ -441,7 +444,7 @@ export default function Dashboard() {
                         setSelectedId(c?.id);
                         setOpen(true);
                       }}
-                      className="hover:bg-slate-50/70 transition-colors cursor-pointer group"
+                      className="hover:bg-accent-foreground transition-colors cursor-pointer group"
                     >
                       {/* Candidate */}
                       <td className="px-6 py-3.5">
@@ -520,7 +523,11 @@ export default function Dashboard() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {jobs.map((job: any) => (
               <Card
-                key={job.id}
+                key={job?.id}
+                onClick={() => {
+                  setSelectedJobId(job?.id);
+                  setJobOpen(true);
+                }}
                 className="border-slate-200 shadow-none hover:border-blue-200 hover:shadow-md transition-all cursor-pointer group rounded-sm"
               >
                 <CardContent className="p-5">
@@ -584,6 +591,11 @@ export default function Dashboard() {
           id={selectedId}
           open={open}
           onOpenChange={setOpen}
+        />
+        <JobViewModal
+          id={selectedJobId}
+          open={jobOpen}
+          onOpenChange={setJobOpen}
         />
       </div>
     </div>
