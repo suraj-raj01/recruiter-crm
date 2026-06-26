@@ -28,18 +28,18 @@ const data = {
   },
   teams: [
     {
-      name: "Acme Inc",
-      logo: <BuildingsIcon />,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: <BuildingsIcon />,
+      name: "RECRUITER CRM",
+      logo: <BuildingsIcon fill="green"/>,
       plan: "Startup",
     },
     {
+      name: "COMPANY CRM",
+      logo: <BuildingsIcon fill="blue"/>,
+      plan: "Enterprise",
+    },
+    {
       name: "Evil Corp.",
-      logo: <BuildingsIcon />,
+      logo: <BuildingsIcon fill="red"/>,
       plan: "Free",
     },
   ],

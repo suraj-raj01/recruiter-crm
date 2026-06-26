@@ -74,16 +74,16 @@ export default function DashboardLayout({
 
                         {/* profile */}
                         {profile && (
-                            <div className="flex items-center gap-3 md:mr-6">
+                            <div className="flex items-center gap-3 md:mr-6 mr-4">
                                 <ModeToggle />
                                 <div className="text-right hidden sm:block">
                                     <p className="text-sm font-semibold text-slate-400">{profile.name}</p>
                                     <p className="text-xs text-slate-400 capitalize">{profile?.role}</p>
                                 </div>
-                                <Avatar className="h-10 w-10 ring-1 ring-slate-500 shadow-sm">
+                                <Avatar className="md:h-10 md:w-10 h-9 w-9 ring-1 ring-slate-500 shadow-sm">
                                     <AvatarFallback
                                         className="text-white text-sm font-bold"
-                                        style={{ backgroundColor: profile.avatarColor ?? "#3B63F6" }}
+                                        style={{ backgroundColor: profile?.avatarColor ?? "#3B63F6" }}
                                     >
                                         {getInitials(profile.name)}
                                     </AvatarFallback>

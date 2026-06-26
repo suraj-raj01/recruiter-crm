@@ -173,7 +173,7 @@ export default function Dashboard() {
         {/* ── Header ── */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-slate-600 tracking-tight">
+            <h1 className="text-2xl font-bold text-orange-500 tracking-tight">
               {greeting}, {firstName} 👋
             </h1>
             <p className="text-sm text-slate-400 mt-0.5">
@@ -450,12 +450,12 @@ export default function Dashboard() {
                       <td className="px-6 py-3.5">
                         <div className="flex items-center gap-3">
                           <Avatar className="h-8 w-8 shrink-0">
-                            <AvatarFallback className="text-white text-xs font-bold bg-slate-600">
+                            <AvatarFallback className="text-white text-xs font-bold bg-slate-500">
                               {getInitials(c.name)}
                             </AvatarFallback>
                           </Avatar>
                           <div className="min-w-0">
-                            <p className="font-semibold text-slate-800 text-sm leading-none mb-0.5">
+                            <p className="font-semibold text-slate-500 text-sm leading-none mb-0.5">
                               {c.name}
                             </p>
                             <p className="text-xs text-slate-400 truncate max-w-50">
@@ -472,7 +472,7 @@ export default function Dashboard() {
 
                       {/* Role */}
                       <td className="px-4 py-3.5 hidden md:table-cell">
-                        <p className="text-sm font-medium text-slate-700 leading-none mb-0.5">
+                        <p className="text-sm font-medium text-slate-500 leading-none mb-0.5">
                           {c.job?.title}
                         </p>
                         <p className="text-xs text-slate-400">{c.job?.department}</p>
@@ -528,7 +528,7 @@ export default function Dashboard() {
                   setSelectedJobId(job?.id);
                   setJobOpen(true);
                 }}
-                className="border-slate-200 shadow-none hover:border-blue-200 hover:shadow-md transition-all cursor-pointer group rounded-sm"
+                className="border-slate-200 shadow-none hover:border-blue-200 hover:shadow-md transition-all hover:bg-slate-50 cursor-pointer group rounded-sm"
               >
                 <CardContent className="p-5">
                   {/* Top row */}
@@ -540,7 +540,7 @@ export default function Dashboard() {
                       <p className="text-xs text-slate-400">{job.department}</p>
                     </div>
                     <span
-                      className={`text-xs px-2 py-0.5 rounded-full font-medium shrink-0 ${PRIORITY_BADGE[job.priority] ?? "bg-slate-50 text-slate-500 border border-slate-100"
+                      className={`text-xs px-2 py-0.5 rounded-xs font-medium shrink-0 ${PRIORITY_BADGE[job.priority] ?? "bg-slate-50 text-slate-500 border border-slate-100"
                         }`}
                     >
                       {job.priority}

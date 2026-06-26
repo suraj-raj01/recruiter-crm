@@ -28,10 +28,10 @@ export default function PipelineColumn({
             }}
         >
             <div className="flex justify-between mb-4">
-                <h2 className={`font-semibold px-3 ${STAGE_BADGE[stage] ?? "bg-slate-50 text-slate-600 border border-slate-100"
+                <h2 className={`font-semibold text-sm rounded-xs px-3 ${STAGE_BADGE[stage] ?? "bg-slate-50 text-slate-600 border border-slate-100"
         }`}>{stage}</h2>
 
-                <span>{candidates.length}</span>
+                <span className={`rounded-full h-5 w-5 flex items-center justify-center font-bold text-sm ${STAGE_BADGE[stage] ?? "bg-slate-50 text-slate-600 border border-slate-100"}`}>{candidates.length}</span>
             </div>
 
             <div className="space-y-3">

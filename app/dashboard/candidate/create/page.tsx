@@ -99,9 +99,9 @@ export default function CreateCandidate() {
                 <form className="grid grid-cols-1 md:grid-cols-2 gap-5" onSubmit={submit}>
                     <div>
                         <Label>Name</Label>
-
                         <Input
                             value={form.name}
+                            placeholder="Candidate name"
                             onChange={(e) =>
                                 update("name", e.target.value)
                             }
@@ -112,6 +112,7 @@ export default function CreateCandidate() {
                         <Input
                             type="email"
                             value={form.email}
+                            placeholder="Email"
                             onChange={(e) =>
                                 update("email", e.target.value)
                             }
@@ -122,6 +123,7 @@ export default function CreateCandidate() {
                         <Input
                             type="number"
                             value={form.phone}
+                            placeholder="Phone"
                             onChange={(e) =>
                                 update("phone", e.target.value)
                             }
@@ -132,6 +134,7 @@ export default function CreateCandidate() {
                         <Input
                             type="string"
                             value={form.location}
+                            placeholder="Location"
                             onChange={(e) =>
                                 update("location", e.target.value)
                             }
@@ -142,6 +145,7 @@ export default function CreateCandidate() {
                         <Input
                             type="string"
                             value={form.headline}
+                            placeholder="Headline"
                             onChange={(e) =>
                                 update("headline", e.target.value)
                             }
@@ -244,6 +248,7 @@ export default function CreateCandidate() {
                         <Input
                             type="number"
                             value={form.salaryExpectation}
+                            placeholder="Salary"
                             onChange={(e) =>
                                 update("salaryExpectation", e.target.value)
                             }
@@ -254,6 +259,7 @@ export default function CreateCandidate() {
                         <Input
                             type="number"
                             value={form.noticePeriod}
+                            placeholder="Notice period"
                             onChange={(e) =>
                                 update("noticePeriod", e.target.value)
                             }
@@ -282,9 +288,10 @@ export default function CreateCandidate() {
                     </div>
 
                     <div className="md:col-span-2">
-                        <Label>Resume URL</Label>
+                        <Label>Resume or Portfolio URL</Label>
                         <Input
                             value={form.resumeUrl}
+                            placeholder="Paste your resume url or portfolio url"
                             onChange={(e) =>
                                 update("resumeUrl", e.target.value)
                             }

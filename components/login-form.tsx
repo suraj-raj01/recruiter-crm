@@ -78,8 +78,8 @@ export function LoginForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="rounded-sm md:p-10">
         <CardHeader>
-          <CardTitle>Login to your account</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-xl">Login to your account</CardTitle>
+          <CardDescription className="text-sm">
             Enter your email below to login to your account
           </CardDescription>
         </CardHeader>
@@ -135,14 +135,14 @@ export function LoginForm({
                 {errors.password && <p className="text-red-500">{errors.password}</p>}
               </Field>
               <Field>
-                <Button type="submit" className="rounded-full px-4 py-5 text-sm">
+                <Button type="submit" className="rounded-full cursor-pointer px-4 py-5 text-sm">
                   {loading?"Logging in...":"Login"}
                 </Button>
                 <Button variant="outline" type="button" className="rounded-full px-4 py-5 text-sm">
                   Login with Google
                 </Button>
                 <FieldDescription className="text-center">
-                  Don&apos;t have an account? <Link href="#" >Sign up</Link>
+                  Don&apos;t have an account? <Link href="/auth/register" >Sign up</Link>
                 </FieldDescription>
               </Field>
             </FieldGroup>

@@ -80,7 +80,7 @@ export function NavUser({
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <Avatar className="h-10 w-10 ring-2 ring-white shadow-sm">
+              <Avatar className="h-10 w-10 ring-1 ring-slate-500 shadow-sm">
                 <AvatarFallback
                   className="text-white text-sm font-bold"
                   style={{ backgroundColor: profile?.avatarColor ?? "#3B63F6" }}
