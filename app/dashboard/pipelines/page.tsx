@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import PipelineBoard from "./components/PipelineBoard";
 import { Stage } from "@/services/constants";
+import PipelineSkeleton from "../components/skeleton/Pipeline";
 
 export default function PipelinePage() {
     const [candidates, setCandidates] = useState<Candidate[]>([]);
@@ -48,7 +49,7 @@ export default function PipelinePage() {
 
     return (
         <div className="p-5 min-h-screen">
-            {loading?("Loading..."):(
+            {loading ? (<PipelineSkeleton/>):(
                 <PipelineBoard
                     candidates={candidates}
                     onMove={moveCandidate}

@@ -6,6 +6,7 @@ import { Building2, MapPin, TrendingUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { HeaderCard } from "../components/HeaderCard";
 import JobViewModal from "../components/JobViewModel";
+import JobsSkeleton from "../components/skeleton/Jobs";
 
 export default function Jobs() {
     const [jobs, setJobs] = useState([])
@@ -41,7 +42,7 @@ export default function Jobs() {
                 link="/dashboard/jobs/create"
             />
             {loading ?
-                (<h1>Loading ...</h1>)
+                (<JobsSkeleton/>)
                 : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {jobs.map((job: any) => (

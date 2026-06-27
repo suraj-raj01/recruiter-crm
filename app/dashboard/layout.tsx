@@ -20,6 +20,7 @@ import { getInitials } from "@/services/initials"
 import { User } from "@/types/api"
 import { Roboto } from "next/font/google"
 import { useEffect, useState } from "react"
+import { useRouter } from 'next/navigation';
 
 const roboto = Roboto({
     subsets: ["latin"],
@@ -32,7 +33,6 @@ export default function DashboardLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-
 
     const [profile, setProfile] = useState<User | null>(null);
     useEffect(() => {

@@ -18,6 +18,7 @@ import {
   BriefcaseIcon,
   UserListIcon,
 } from "@phosphor-icons/react";
+import { TrendingUpDown } from "lucide-react"
 
 // This is sample data.
 const data = {
@@ -54,6 +55,14 @@ const data = {
           title: "Analytics",
           url: "/dashboard",
         },
+      ],
+    },
+    {
+      title: "Pipelines",
+      url: "#",
+      icon: <TrendingUpDown />,
+      isActive: true,
+      items: [
         {
           title: "Pipelines",
           url: "/dashboard/pipelines",
