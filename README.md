@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Recruiter CRM / ATS Platform
 
-## Getting Started
+A portfolio-grade MERN application for recruiters to manage jobs, candidates, pipeline stages, notes, and hiring analytics.
 
-First, run the development server:
+## Why this project stands out
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Recruiter-facing product, so hiring teams immediately understand the use case.
+- Full-stack architecture with NEXTJS, Express, Node, and MongoDB/Mongoose.
+- Demo mode runs without MongoDB, while production mode supports MongoDB Atlas through `MONGODB_URI`.
+- JWT login, role-ready user model, candidate pipeline, notes, filters, and analytics.
+
+## Demo login
+
+```txt
+Email: suraj@talentdeck.dev
+Password: suraj123
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Run locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The frontend runs on `http://localhost:3000` and the API runs on `http://localhost:8800`.
 
-## Learn More
+## MongoDB setup
 
-To learn more about Next.js, take a look at the following resources:
+The app works in seeded demo mode without MongoDB. To use a real database:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Set `server/.env`.
+2. Set `MONGODB_URI` to your MongoDB Atlas connection string.
+3. Run `npm run seed` to create demo data.
+4. Run `npm run dev`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Portfolio talking points
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Built a recruiter workflow around candidate lifecycle, not generic CRUD.
+- Designed API resources for jobs, candidates, notes, timeline activity, and metrics.
+- Added Mongo/in-memory data abstraction so the product is demoable anywhere.
+- Implemented responsive, recruiter-focused UI with searchable tables and a pipeline board.
