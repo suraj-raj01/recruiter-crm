@@ -61,7 +61,6 @@ const data = {
       title: "Pipelines",
       url: "#",
       icon: <TrendingUpDown />,
-      isActive: true,
       items: [
         {
           title: "Pipelines",

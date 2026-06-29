@@ -12,10 +12,6 @@ export default function PipelinePage() {
     const [candidates, setCandidates] = useState<Candidate[]>([]);
     const [loading, setLoading] = useState(false)
 
-    useEffect(() => {
-        loadCandidates();
-    }, []);
-
     async function loadCandidates() {
         setLoading(true)
         const res = await api.getCandidates();
@@ -23,6 +19,11 @@ export default function PipelinePage() {
         setLoading(false);
         // console.log(res)
     }
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        loadCandidates();
+    }, []);
 
     async function moveCandidate(
         candidateId: string,

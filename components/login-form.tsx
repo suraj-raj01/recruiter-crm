@@ -91,6 +91,7 @@ export function LoginForm({
                 <Input
                   id="email"
                   type="email"
+                  disabled={loading}
                   placeholder="m@example.com"
                   value={formData.email}
                   onChange={(event) =>
@@ -119,6 +120,7 @@ export function LoginForm({
                 </div>
                 <Input id="password"
                   type="password"
+                  disabled={loading}
                   value={formData.password}
                   onChange={(event) =>
                     setFormData({
@@ -128,7 +130,7 @@ export function LoginForm({
                   }
                   placeholder="••••••••"
                   autoComplete="current-password" 
-                  className="rounded-full px-4 py-5"
+                  className="rounded-full px-4 py-5 "
                   />
               </Field>
               <Field>

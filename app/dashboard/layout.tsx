@@ -49,7 +49,7 @@ export default function DashboardLayout({
         <SidebarProvider>
             <AppSidebar />
             <SidebarInset>
-                <header className="flex sticky z-50 top-0 bg-background shadow-xs h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+                <header className="flex sticky z-50 top-0 bg-background border-slate-200 dark:border-slate-600 border-b h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
                     <section className="flex w-full items-center justify-between">
                         <div className="flex items-center gap-2 px-4">
                             <SidebarTrigger className="-ml-1" />

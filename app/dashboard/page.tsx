@@ -248,9 +248,9 @@ export default function Dashboard() {
                     <StageBadge stage={stage} />
                   </div>
                   {/* bar */}
-                  <div className="flex-1 rounded-full h-2 overflow-hidden">
+                  <div className="flex-1 rounded-xs h-3 overflow-hidden">
                     <div
-                      className={`h-full rounded-full transition-all duration-500 ${STAGE_BAR[stage] ?? "bg-slate-400"}`}
+                      className={`h-full rounded-xs transition-all duration-500 ${STAGE_BAR[stage] ?? "bg-slate-400"}`}
                       style={{ width: `${(count / maxStage) * 100}%` }}
                     />
                   </div>
@@ -278,9 +278,9 @@ export default function Dashboard() {
                     } text-right text-xs font-medium text-slate-100`}>
                     {source}
                   </Badge>
-                  <div className="flex-1 bg-slate-100 rounded-full h-2 overflow-hidden">
+                  <div className="flex-1 bg-slate-100 rounded-xs h-3 overflow-hidden">
                     <div
-                      className={`h-full rounded-full transition-all duration-500 ${SOURCE_COLOR[source] ?? "bg-slate-400"
+                      className={`h-full rounded-xs transition-all duration-500 ${SOURCE_COLOR[source] ?? "bg-slate-400"
                         }`}
                       style={{ width: `${(count / maxSource) * 100}%` }}
                     />
@@ -436,7 +436,7 @@ export default function Dashboard() {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-50">
+                <tbody className="divide-y divide-slate-50 dark:divide-slate-600">
                   {candidates.map((c: any) => (
                     <tr
                       key={c?.id}

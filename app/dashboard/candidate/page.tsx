@@ -18,6 +18,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import Link from "next/link";
 import CandidateViewModal from "../components/CandidateViewModel";
+import { useRouter } from "next/navigation";
 
 export default function Candidates() {
     const [candidates, setCandidates] = useState([])
@@ -88,6 +89,7 @@ export default function Candidates() {
             duration: 10000, // Optional: keep toast visible for 10 seconds
         });
     };
+
 
     const columns: ColumnDef<Candidate>[] = [
         {
@@ -185,9 +187,11 @@ export default function Candidates() {
                                 <Eye className="mr-2 h-4 w-4" />
                                 View
                             </DropdownMenuItem>
-                            <DropdownMenuItem>
-                                <Edit className="mr-2 h-4 w-4" />
-                                Edit
+                            <DropdownMenuItem >
+                                <Link href={`/dashboard/candidate/${candidate.id}`} className="flex items-center gap-3">
+                                    <Edit className="mr-2 h-4 w-4" />
+                                    Edit
+                                </Link>
                             </DropdownMenuItem>
                             <DropdownMenuItem onClick={() => { candidateDelete(candidate.id) }}>
                                 <Trash className="mr-2 h-4 w-4" />
