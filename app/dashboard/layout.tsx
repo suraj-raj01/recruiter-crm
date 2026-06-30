@@ -20,7 +20,6 @@ import { getInitials } from "@/services/initials"
 import { User } from "@/types/api"
 import { Roboto } from "next/font/google"
 import { useEffect, useState } from "react"
-import { useRouter } from 'next/navigation';
 
 const roboto = Roboto({
     subsets: ["latin"],

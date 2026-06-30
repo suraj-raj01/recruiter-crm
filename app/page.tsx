@@ -1,60 +1,121 @@
-import { LogIn, UserPlus } from "lucide-react";
-import Image from "next/image";
+import {
+  LogIn,
+  UserPlus,
+  Users,
+  Briefcase,
+  ClipboardCheck,
+} from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/navbar";
 
 export default function Home() {
   return (
-      <div className="flex flex-col flex-1 p-5 md:p-0 items-center justify-center font-sans dark:bg-black">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50 dark:from-black dark:via-zinc-950 dark:to-zinc-900">
       <Navbar />
-        <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 md:px-10 bg-white dark:bg-black sm:items-start">
-          <Image
-            className="dark:invert"
-            src="/talentdesk.png"
-            alt="Next.js logo"
-            width={150}
-            height={20}
-            priority
-          />
-          <div className="flex flex-col -mt-20 items-center gap-6 text-center sm:items-start sm:text-left">
-            <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-              Recruiters CRM Management System
-            </h1>
-            <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-              Recruiters can manage and update of their candidates {" "}
-              <Link
-                href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                className="font-medium text-zinc-950 dark:text-zinc-50"
-              >
-                Applied
-              </Link>{" "}
-              or the{" "}
-              <Link
-                href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                className="font-medium text-zinc-950 dark:text-zinc-50"
-              >
-                Hiring
-              </Link>{" "}
-              process.
-            </p>
-          </div>
-          <div className="flex items-center justify-between gap-4 text-base font-medium">
+
+      <main className="mx-auto flex w-full max-w-7xl flex-col items-center px-4 py-20">
+        {/* Hero */}
+        <section className="flex min-h-130 flex-col items-center justify-center text-center">
+          <h1 className="mt-9 md:mb-0 mb-3 max-w-3xl font-extrabold leading-tight text-zinc-900 dark:text-white md:text-4xl text-2xl">
+            Recruiters <span className='text-orange-600'>CRM</span>
+          </h1>
+          <span className="block bg-gradient-to-r from-orange-600 to-indigo-600 bg-clip-text text-transparent md:text-6xl md:leading-17 font-extrabold text-4xl">
+            Manage Talent Smarter
+          </span>
+
+          <p className="mt-6 max-w-full text-center text-lg leading-6 text-zinc-600 dark:text-zinc-400">
+            Manage candidates, monitor hiring progress, organize interviews,
+            and collaborate with your recruitment team from one centralized
+            platform.
+          </p>
+
+          <div className="mt-10 flex flex-wrap justify-between gap-5">
             <Link
-              className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-39.5"
               href="/auth/login"
+              className="flex items-center gap-2 rounded-md bg-orange-600 px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-orange-700 hover:shadow-xl"
             >
-              <LogIn />
+              <LogIn size={20} />
               Login
             </Link>
+
             <Link
-              className="flex h-12 w-full items-center justify-center gap-2 rounded-full border border-solid border-black/8 px-5 transition-colors hover:border-transparent hover:bg-black/4 dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-39.5"
-              href="/auth/register"
+              href="/auth/login"
+              className="flex items-center gap-2 rounded-md border border-zinc-300 bg-white px-8 py-3 font-semibold text-zinc-800 shadow transition-all duration-300 hover:-translate-y-1 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white dark:hover:bg-zinc-800"
             >
-              <UserPlus />
-              Registration
+              <UserPlus size={20} />
+              Get Started
             </Link>
           </div>
-        </main>
-      </div>
+        </section>
+
+        {/* Features */}
+        <section className="mt-24 grid w-full gap-8 md:grid-cols-3">
+          <div className="rounded-md border border-zinc-200 bg-white p-8 shadow-md transition hover:-translate-y-2 hover:shadow-xl dark:border-zinc-800 dark:bg-zinc-900">
+            <div className="mb-5 w-fit rounded-xl bg-orange-100 p-3 dark:bg-orange-900/40">
+              <Users className="text-orange-600" size={30} />
+            </div>
+
+            <h3 className="mb-3 text-xl font-bold">
+              Candidate Management
+            </h3>
+
+            <p className="text-zinc-600 dark:text-zinc-400">
+              Store, search, and organize candidates with complete recruitment
+              history.
+            </p>
+          </div>
+
+          <div className="rounded-md border border-zinc-200 bg-white p-8 shadow-md transition hover:-translate-y-2 hover:shadow-xl dark:border-zinc-800 dark:bg-zinc-900">
+            <div className="mb-5 w-fit rounded-xl bg-green-100 p-3 dark:bg-green-900/40">
+              <Briefcase className="text-green-600" size={30} />
+            </div>
+
+            <h3 className="mb-3 text-xl font-bold">
+              Job Tracking
+            </h3>
+
+            <p className="text-zinc-600 dark:text-zinc-400">
+              Manage open positions and monitor candidate pipelines from one
+              dashboard.
+            </p>
+          </div>
+
+          <div className="rounded-md border border-zinc-200 bg-white p-8 shadow-md transition hover:-translate-y-2 hover:shadow-xl dark:border-zinc-800 dark:bg-zinc-900">
+            <div className="mb-5 w-fit rounded-xl bg-purple-100 p-3 dark:bg-purple-900/40">
+              <ClipboardCheck className="text-purple-600" size={30} />
+            </div>
+
+            <h3 className="mb-3 text-xl font-bold">
+              Hiring Workflow
+            </h3>
+
+            <p className="text-zinc-600 dark:text-zinc-400">
+              Track interviews, offers, feedback, and final hiring decisions
+              efficiently.
+            </p>
+          </div>
+        </section>
+
+        {/* Bottom CTA */}
+        <section className="mt-24 w-full rounded-md bg-gradient-to-r from-orange-600 to-indigo-600 px-10 py-14 text-center text-white shadow-2xl">
+          <h2 className="text-3xl font-bold">
+            Start Managing Recruitment Better
+          </h2>
+
+          <p className="mx-auto mt-4 max-w-2xl text-orange-100">
+            TalentDesk simplifies candidate tracking, recruitment workflow, and
+            recruiter collaboration—all in one place.
+          </p>
+
+          <Link
+            href="/auth/login"
+            className="mt-8 inline-flex items-center gap-2 rounded-md bg-white/90 px-8 py-4 font-semibold text-orange-600 transition hover:scale-105"
+          >
+            <UserPlus size={20} />
+            Get Started
+          </Link>
+        </section>
+      </main>
+    </div>
   );
 }

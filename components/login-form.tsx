@@ -137,7 +137,7 @@ export function LoginForm({
                 {errors.password && <p className="text-red-500">{errors.password}</p>}
               </Field>
               <Field>
-                <Button type="submit" className="rounded-full cursor-pointer px-4 py-5 text-sm">
+                <Button disabled={loading} type="submit" className="rounded-full cursor-pointer px-4 py-5 text-sm">
                   {loading?"Logging in...":"Login"}
                 </Button>
                 <Button variant="outline" type="button" className="rounded-full px-4 py-5 text-sm">
