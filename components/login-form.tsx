@@ -101,7 +101,7 @@ export function LoginForm({
                     })
                   }
                   autoComplete="current-email"
-                  className="rounded-full px-4 py-5"
+                  className="rounded-md text-xl px-4 py-5"
                   // required
                 />
               </Field>
@@ -130,17 +130,17 @@ export function LoginForm({
                   }
                   placeholder="••••••••"
                   autoComplete="current-password" 
-                  className="rounded-full px-4 py-5 "
+                  className="rounded-md px-4 py-5 "
                   />
               </Field>
               <Field>
                 {errors.password && <p className="text-red-500">{errors.password}</p>}
               </Field>
               <Field>
-                <Button disabled={loading} type="submit" className="rounded-full cursor-pointer px-4 py-5 text-sm">
+                <Button disabled={loading} type="submit" className="rounded-md bg-orange-600 hover:bg-orange-700 text-white cursor-pointer px-4 py-5 text-sm">
                   {loading?"Logging in...":"Login"}
                 </Button>
-                <Button variant="outline" type="button" className="rounded-full px-4 py-5 text-sm">
+                <Button variant="outline" type="button" className="rounded-md px-4 py-5 text-sm cursor-not-allowed">
                   Login with Google
                 </Button>
                 <FieldDescription className="text-center">

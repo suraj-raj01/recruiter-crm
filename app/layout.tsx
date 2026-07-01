@@ -41,7 +41,9 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            {/* <Navbar/> */}
             {children}
+            {/* <Footer/> */}
           </ThemeProvider>
         </TooltipProvider>
         <Toaster position="top-center" theme="system" />

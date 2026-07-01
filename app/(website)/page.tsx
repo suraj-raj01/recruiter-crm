@@ -6,24 +6,23 @@ import {
   ClipboardCheck,
 } from "lucide-react";
 import Link from "next/link";
-import Navbar from "@/components/navbar";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50 dark:from-black dark:via-zinc-950 dark:to-zinc-900">
-      <Navbar />
+    <div className="min-h-screen -mt-17 bg-linear-to-br from-slate-50 via-white to-orange-50 dark:from-black dark:via-zinc-950 dark:to-zinc-900">
+      {/* <Navbar /> */}
 
-      <main className="mx-auto flex w-full max-w-7xl flex-col items-center px-4 py-20">
+      <main className="mx-auto flex w-full max-w-6xl flex-col items-center px-4 py-20">
         {/* Hero */}
         <section className="flex min-h-130 flex-col items-center justify-center text-center">
           <h1 className="mt-9 md:mb-0 mb-3 max-w-3xl font-extrabold leading-tight text-zinc-900 dark:text-white md:text-4xl text-2xl">
             Recruiters <span className='text-orange-600'>CRM</span>
           </h1>
-          <span className="block bg-gradient-to-r from-orange-600 to-indigo-600 bg-clip-text text-transparent md:text-6xl md:leading-17 font-extrabold text-4xl">
+          <span className="block bg-linear-to-r from-orange-600 to-indigo-600 bg-clip-text text-transparent md:text-6xl md:leading-17 font-extrabold text-4xl">
             Manage Talent Smarter
           </span>
 
-          <p className="mt-6 max-w-full text-center text-lg leading-6 text-zinc-600 dark:text-zinc-400">
+          <p className="mt-6 max-w-4xl text-center text-lg leading-6 text-zinc-600 dark:text-zinc-400">
             Manage candidates, monitor hiring progress, organize interviews,
             and collaborate with your recruitment team from one centralized
             platform.
@@ -97,7 +96,7 @@ export default function Home() {
         </section>
 
         {/* Bottom CTA */}
-        <section className="mt-24 w-full rounded-md bg-gradient-to-r from-orange-600 to-indigo-600 px-10 py-14 text-center text-white shadow-2xl">
+        <section className="mt-24 w-full rounded-md bg-linear-to-r from-orange-600 to-indigo-600 px-10 py-14 text-center text-white shadow-2xl">
           <h2 className="text-3xl font-bold">
             Start Managing Recruitment Better
           </h2>
@@ -116,6 +115,7 @@ export default function Home() {
           </Link>
         </section>
       </main>
+      {/* <Footer/> */}
     </div>
   );
 }

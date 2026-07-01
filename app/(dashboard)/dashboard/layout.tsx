@@ -29,8 +29,8 @@ const roboto = Roboto({
 
 export default function DashboardLayout({
     children,
-}: Readonly<{
-    children: React.ReactNode;
+}: Readonly <{
+    children: React.ReactNode
 }>) {
 
     const [profile, setProfile] = useState<User | null>(null);
@@ -45,6 +45,7 @@ export default function DashboardLayout({
 
 
     return (
+        <div className={`flex min-h-screen bg-background text-foreground font-sans antialiased ${roboto.variable}`}>
         <SidebarProvider>
             <AppSidebar />
             <SidebarInset>
@@ -96,5 +97,6 @@ export default function DashboardLayout({
                 </main>
             </SidebarInset>
         </SidebarProvider>
+        </div>
     )
 }
