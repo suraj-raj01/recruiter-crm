@@ -32,9 +32,13 @@ export default function Candidates() {
     const loadCandidates = async () => {
         try {
             setLoading(true);
-            const candidates = await api.getCandidates();
+            const query: Record<string, number> = {
+                page,
+                limit: 6
+            }
+            const candidates = await api.getCandidates(query);
             setCandidates(candidates?.candidates ?? []);
-            setPageCount(candidates?.pageCount ?? 1);
+            setPageCount(candidates?.totalPages ?? 1);
             setPage(candidates?.page ?? 1)
             console.log(candidates);
         } catch (err) {
@@ -49,7 +53,7 @@ export default function Candidates() {
         const token = localStorage.getItem("ats_token");
         if (token) loadCandidates();
         else setLoading(false);
-    }, []);
+    }, [page, searchQuery]);
 
     const handleSearch = (query: string) => {
         setSearchQuery(query)

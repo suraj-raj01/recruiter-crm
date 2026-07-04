@@ -31,7 +31,7 @@ export default function Home() {
           <div className="mt-10 flex flex-wrap justify-between gap-5">
             <Link
               href="/auth/login"
-              className="flex items-center gap-2 rounded-md bg-orange-600 px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-orange-700 hover:shadow-xl"
+              className="flex items-center gap-2 rounded-md bg-orange-600 md:px-8 px-5 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-orange-700 hover:shadow-xl"
             >
               <LogIn size={20} />
               Login
@@ -39,7 +39,7 @@ export default function Home() {
 
             <Link
               href="/auth/login"
-              className="flex items-center gap-2 rounded-md border border-zinc-300 bg-white px-8 py-3 font-semibold text-zinc-800 shadow transition-all duration-300 hover:-translate-y-1 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white dark:hover:bg-zinc-800"
+              className="flex items-center gap-2 rounded-md border border-zinc-300 bg-white md:px-8 px-4 py-3 font-semibold text-zinc-800 shadow transition-all duration-300 hover:-translate-y-1 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white dark:hover:bg-zinc-800"
             >
               <UserPlus size={20} />
               Get Started
@@ -108,7 +108,7 @@ export default function Home() {
 
           <Link
             href="/auth/login"
-            className="mt-8 inline-flex items-center gap-2 rounded-md bg-white/90 px-8 py-4 font-semibold text-orange-600 transition hover:scale-105"
+            className="mt-8 inline-flex items-center gap-2 rounded-md bg-white/90 px-8 py-4 font-semibold text-orange-600 transition-all duration-300 hover:-translate-y-1  hover:shadow-xl"
           >
             <UserPlus size={20} />
             Get Started

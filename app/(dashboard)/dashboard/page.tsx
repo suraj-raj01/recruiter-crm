@@ -122,9 +122,13 @@ export default function Dashboard() {
   const loadDashboard = async () => {
     try {
       setLoading(true);
+      const query: Record<string, number> = {
+        page: 1,
+        limit: 8
+      }
       const [me, candidatesRes, jobsRes, metricsRes] = await Promise.all([
         api.me(),
-        api.getCandidates(),
+        api.getCandidates(query),
         api.getJobs(),
         api.getMetrics(),
       ]);
@@ -132,6 +136,7 @@ export default function Dashboard() {
       // handle both wrapped {user}/{candidates}/{jobs}/{metrics} and direct responses
       setProfile(me?.user ?? me ?? null);
       setCandidates(candidatesRes?.candidates ?? candidatesRes ?? []);
+      console.log(candidatesRes.totalPages, "data candidate")
       setJobs(jobsRes?.jobs ?? jobsRes ?? []);
       setMetrics(metricsRes?.metrics ?? metricsRes ?? null);
     } catch (err) {
@@ -411,7 +416,7 @@ export default function Dashboard() {
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-semibold text-slate-500 flex items-center justify-center gap-2">
                 <Users className="w-4 h-4 text-blue-500" />
-                All Candidates
+                Recently Added Candidates
                 <span className="text-xs bg-orange-100/50 text-accent-foreground rounded-full h-5 w-5 flex items-center justify-center font-bold">{candidates.length}</span>
               </CardTitle>
               <Link href="/dashboard/candidate" className="text-sm text-slate-400">View all</Link>
@@ -419,109 +424,109 @@ export default function Dashboard() {
           </CardHeader>
           <CardContent className="p-0">
             {(candidates.length ?? 0) === 0 ? (
-                <div className="text-center mx-auto py-8">
-                  <p className="text-2xl mb-1 flex flex-col items-center justify-center"><UserPlus className="w-4 h-4 text-orange-500" /></p>
-                  <p className="text-sm text-slate-400">No Candidates Founds! — you're on top of it.</p>
-                </div>
-              ):(
-                <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="bg-slate-50 border-y border-slate-100">
-                        <th className="text-left text-[11px] font-semibold text-slate-400 px-6 py-3 uppercase tracking-wider">
-                          Candidate
-                        </th>
-                        <th className="text-left text-[11px] font-semibold text-slate-400 px-4 py-3 uppercase tracking-wider">
-                          Stage
-                        </th>
-                        <th className="text-left text-[11px] font-semibold text-slate-400 px-4 py-3 uppercase tracking-wider hidden md:table-cell">
-                          Role
-                        </th>
-                        <th className="text-left text-[11px] font-semibold text-slate-400 px-4 py-3 uppercase tracking-wider hidden lg:table-cell">
-                          Location
-                        </th>
-                        <th className="text-left text-[11px] font-semibold text-slate-400 px-4 py-3 uppercase tracking-wider hidden lg:table-cell">
-                          Rating
-                        </th>
-                        <th className="text-left text-[11px] font-semibold text-slate-400 px-4 py-3 uppercase tracking-wider hidden xl:table-cell">
-                          Source
-                        </th>
+              <div className="text-center mx-auto py-8">
+                <p className="text-2xl mb-1 flex flex-col items-center justify-center"><UserPlus className="w-4 h-4 text-orange-500" /></p>
+                <p className="text-sm text-slate-400">No Candidates Founds! — you're on top of it.</p>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-slate-50 border-y border-slate-100">
+                      <th className="text-left text-[11px] font-semibold text-slate-400 px-6 py-3 uppercase tracking-wider">
+                        Candidate
+                      </th>
+                      <th className="text-left text-[11px] font-semibold text-slate-400 px-4 py-3 uppercase tracking-wider">
+                        Stage
+                      </th>
+                      <th className="text-left text-[11px] font-semibold text-slate-400 px-4 py-3 uppercase tracking-wider hidden md:table-cell">
+                        Role
+                      </th>
+                      <th className="text-left text-[11px] font-semibold text-slate-400 px-4 py-3 uppercase tracking-wider hidden lg:table-cell">
+                        Location
+                      </th>
+                      <th className="text-left text-[11px] font-semibold text-slate-400 px-4 py-3 uppercase tracking-wider hidden lg:table-cell">
+                        Rating
+                      </th>
+                      <th className="text-left text-[11px] font-semibold text-slate-400 px-4 py-3 uppercase tracking-wider hidden xl:table-cell">
+                        Source
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-50 dark:divide-slate-600">
+                    {candidates.map((c: any) => (
+                      <tr
+                        key={c?.id}
+                        onClick={() => {
+                          setSelectedId(c?.id);
+                          setOpen(true);
+                        }}
+                        className="hover:bg-accent-foreground transition-colors cursor-pointer group"
+                      >
+                        {/* Candidate */}
+                        <td className="px-6 py-3.5">
+                          <div className="flex items-center gap-3">
+                            <Avatar className="h-8 w-8 shrink-0">
+                              <AvatarFallback className="text-white text-xs font-bold bg-slate-500">
+                                {getInitials(c.name)}
+                              </AvatarFallback>
+                            </Avatar>
+                            <div className="min-w-0">
+                              <p className="font-semibold text-slate-500 text-sm leading-none mb-0.5">
+                                {c.name}
+                              </p>
+                              <p className="text-xs text-slate-400 truncate max-w-50">
+                                {c.headline}
+                              </p>
+                            </div>
+                          </div>
+                        </td>
+
+                        {/* Stage */}
+                        <td className="px-4 py-3.5">
+                          <StageBadge stage={c.stage} />
+                        </td>
+
+                        {/* Role */}
+                        <td className="px-4 py-3.5 hidden md:table-cell">
+                          <p className="text-sm font-medium text-slate-500 leading-none mb-0.5">
+                            {c.job?.title}
+                          </p>
+                          <p className="text-xs text-slate-400">{c.job?.department}</p>
+                        </td>
+
+                        {/* Location */}
+                        <td className="px-4 py-3.5 hidden lg:table-cell">
+                          <div className="flex items-center gap-1 text-slate-500">
+                            <MapPin className="w-3 h-3 shrink-0" />
+                            <span className="text-xs">{c.location}</span>
+                          </div>
+                        </td>
+
+                        {/* Rating */}
+                        <td className="px-4 py-3.5 hidden lg:table-cell">
+                          <StarRating rating={c.rating} />
+                        </td>
+
+                        {/* Source */}
+                        <td className="px-4 py-3.5 hidden xl:table-cell">
+                          <span
+                            className={`text-xs px-3 py-1.5 rounded-full font-medium ${SOURCE_COLOR[c.source]
+                              ? "text-white " + SOURCE_COLOR[c.source]
+                              : "bg-slate-100 text-slate-500"
+                              }`}
+                          >
+                            {c.source}
+                          </span>
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-50 dark:divide-slate-600">
-                      {candidates.map((c: any) => (
-                        <tr
-                          key={c?.id}
-                          onClick={() => {
-                            setSelectedId(c?.id);
-                            setOpen(true);
-                          }}
-                          className="hover:bg-accent-foreground transition-colors cursor-pointer group"
-                        >
-                          {/* Candidate */}
-                          <td className="px-6 py-3.5">
-                            <div className="flex items-center gap-3">
-                              <Avatar className="h-8 w-8 shrink-0">
-                                <AvatarFallback className="text-white text-xs font-bold bg-slate-500">
-                                  {getInitials(c.name)}
-                                </AvatarFallback>
-                              </Avatar>
-                              <div className="min-w-0">
-                                <p className="font-semibold text-slate-500 text-sm leading-none mb-0.5">
-                                  {c.name}
-                                </p>
-                                <p className="text-xs text-slate-400 truncate max-w-50">
-                                  {c.headline}
-                                </p>
-                              </div>
-                            </div>
-                          </td>
-
-                          {/* Stage */}
-                          <td className="px-4 py-3.5">
-                            <StageBadge stage={c.stage} />
-                          </td>
-
-                          {/* Role */}
-                          <td className="px-4 py-3.5 hidden md:table-cell">
-                            <p className="text-sm font-medium text-slate-500 leading-none mb-0.5">
-                              {c.job?.title}
-                            </p>
-                            <p className="text-xs text-slate-400">{c.job?.department}</p>
-                          </td>
-
-                          {/* Location */}
-                          <td className="px-4 py-3.5 hidden lg:table-cell">
-                            <div className="flex items-center gap-1 text-slate-500">
-                              <MapPin className="w-3 h-3 shrink-0" />
-                              <span className="text-xs">{c.location}</span>
-                            </div>
-                          </td>
-
-                          {/* Rating */}
-                          <td className="px-4 py-3.5 hidden lg:table-cell">
-                            <StarRating rating={c.rating} />
-                          </td>
-
-                          {/* Source */}
-                          <td className="px-4 py-3.5 hidden xl:table-cell">
-                            <span
-                              className={`text-xs px-3 py-1.5 rounded-full font-medium ${SOURCE_COLOR[c.source]
-                                ? "text-white " + SOURCE_COLOR[c.source]
-                                : "bg-slate-100 text-slate-500"
-                                }`}
-                            >
-                              {c.source}
-                            </span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )
             }
-           
+
           </CardContent>
         </Card>
 

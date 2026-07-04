@@ -98,8 +98,8 @@ export default function CreateJobs() {
                 <HeaderCard
                     title="JOBS"
                     description="Manage all jobs and track their hiring pipeline."
-                    buttontitle="Create Job"
-                    link="/dashboard/jobs/create"
+                    buttontitle="See Jobs"
+                    link="/dashboard/jobs"
                 />
 
                 <form onSubmit={submit}>

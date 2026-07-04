@@ -84,7 +84,7 @@ export const api = {
             body,
         }),
 
-    getCandidates: (query?: Record<string, string>) =>
+    getCandidates: (query?: Record<string, number>) =>
         request<any>("/api/candidates", {
             query,
         }),
