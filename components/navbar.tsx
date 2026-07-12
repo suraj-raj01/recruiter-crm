@@ -51,7 +51,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="sticky top-2 z-50 md:max-w-6xl mx-auto w-full h-17 bg-background/50 backdrop-blur-md border shadow-md md:rounded-full md:px-10 px-5 flex items-center justify-between">
+            <nav className="sticky top-2 z-50 max-w-7xl mx-auto w-full h-17 bg-background/50 backdrop-blur-md border shadow-md md:rounded-full md:px-15 px-5 flex items-center justify-between">
                 {/* Logo */}
                 <div
                     onClick={() => router.push("/")}
