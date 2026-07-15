@@ -22,7 +22,7 @@ export default function HeroSection() {
         <section className='w-full'>
             <section className="flex min-h-screen relative h-screen w-full overflow-hidden flex-col items-center justify-center text-center">
                 <LightRays />
-                <Badge className="mt-10 rounded-full h-7 px-6 shadow-sm border-orange-600/50 text-orange-600 bg-orange-500/20">
+                <Badge className="mt-10 rounded-full h-7 lg:px-6 px-4 shadow-sm border-orange-600/50 text-orange-600 bg-orange-500/20">
                     <span className="relative mr-2 flex h-2.5 w-2.5">
                         {/* Ping animation */}
                         <span className="absolute z-2 inline-flex h-full w-full animate-ping rounded-full bg-orange-600 opacity-75" />
@@ -38,7 +38,7 @@ export default function HeroSection() {
                     Manage Talent Smarter
                 </span>
 
-                <p className="mt-6 max-w-4xl text-center text-lg leading-6 text-zinc-600 dark:text-zinc-400">
+                <p className="mt-6 max-w-4xl px-3 text-center text-lg leading-6 text-zinc-600 dark:text-zinc-400">
                     Manage candidates, monitor hiring progress, organize interviews,
                     and collaborate with your recruitment team from one centralized
                     platform.
@@ -47,7 +47,7 @@ export default function HeroSection() {
                 <div className="mt-10 flex w-full gap-3 px-3 items-center lg:justify-center justify-between lg:gap-5">
                     <Link
                         href="/auth/login"
-                        className="flex items-center gap-2 rounded-full bg-orange-600 md:px-12 px-5 py-3 text-white font-bold w-full lg:w-fit shadow-lg shadow-orange-600/30 transition-all duration-300 hover:-translate-y-1 hover:bg-orange-700 hover:shadow-xl"
+                        className="flex items-center justify-center gap-2 rounded-full bg-orange-600 md:px-12 px-5 py-3 text-white font-bold w-full lg:w-fit shadow-lg shadow-orange-600/30 transition-all duration-300 hover:-translate-y-1 hover:bg-orange-700 hover:shadow-xl"
                     >
                         <LogIn size={20} />
                         Login
