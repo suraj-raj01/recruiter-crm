@@ -1,9 +1,15 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
 import {
+    Loader2,
+    CheckCircle2,
     Upload,
     FileText,
-    CheckCircle2,
     AlertTriangle,
     BarChart3,
     Search,
@@ -11,9 +17,16 @@ import {
     GraduationCap,
     FileBadge,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
+
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog";
+
+import { toast } from "sonner";
 
 const analysis = [
     {
@@ -48,7 +61,109 @@ const analysis = [
     },
 ];
 
+const steps = [
+    "Uploading Resume...",
+    "Extracting Text...",
+    "Parsing Resume...",
+    "Checking ATS Formatting...",
+    "Analyzing Keywords...",
+    "Calculating ATS Score...",
+];
+
+type ATSResult = {
+    score: number;
+    message: string;
+};
+
 export default function ResumeAtsChecker() {
+    const [file, setFile] = useState<File | null>(null);
+    const [loading, setLoading] = useState(false);
+    const [progress, setProgress] = useState(0);
+    const [currentStep, setCurrentStep] = useState("");
+    const [result, setResult] = useState<ATSResult | null>(null);
+    const [dialogOpen, setDialogOpen] = useState(false);
+    const [pdfUrl, setPdfUrl] = useState<string | null>(null);
+
+    const checkATS = async (resume: File) => {
+        try {
+            setDialogOpen(true);
+            setLoading(true);
+            setProgress(0);
+            setCurrentStep("");
+
+            for (let i = 0; i < steps.length; i++) {
+                setCurrentStep(steps[i]);
+                await new Promise((resolve) => setTimeout(resolve, 900));
+                setProgress(Math.round(((i + 1) / steps.length) * 100));
+            }
+
+            /**
+             * Replace this section with your API call.
+             *
+             * Example:
+             *
+             * const formData = new FormData();
+             * formData.append("resume", resume);
+             *
+             * const response = await fetch("/api/ats", {
+             *   method: "POST",
+             *   body: formData,
+             * });
+             *
+             * const data = await response.json();
+             */
+
+            const fakeScore = Math.floor(Math.random() * 21) + 75;
+
+            setResult({
+                score: fakeScore,
+                message:
+                    fakeScore >= 90
+                        ? "Excellent Resume!"
+                        : fakeScore >= 80
+                            ? "Great Resume!"
+                            : fakeScore >= 70
+                                ? "Good Resume!"
+                                : "Needs Improvement",
+            });
+
+            toast.success("ATS Analysis Completed");
+        } catch (error) {
+            toast.error("Unable to analyze resume.");
+            console.error(error);
+        } finally {
+            setLoading(false);
+            setDialogOpen(false);
+        }
+    };
+
+    const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const selected = e.target.files?.[0];
+
+        if (!selected) return;
+
+        if (
+            ![
+                "application/pdf",
+                "application/msword",
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            ].includes(selected.type)
+        ) {
+            toast.error("Only PDF or DOC files are supported.");
+            return;
+        }
+
+        if (selected.size > 5 * 1024 * 1024) {
+            toast.error("Maximum file size is 5MB.");
+            return;
+        }
+
+        setFile(selected);
+        const url = URL.createObjectURL(selected)
+        setPdfUrl(url);
+        await checkATS(selected);
+    };
+
     return (
         <main className="bg-background">
             {/* Hero */}
@@ -73,10 +188,10 @@ export default function ResumeAtsChecker() {
 
             {/* Upload + Score */}
 
-            <section className="mx-auto grid max-w-6xl gap-8 px-3 py-16 lg:grid-cols-2">
-
-                <Card className="rounded-2xl border-2 border-dashed p-10">
-                    <div className="flex flex-col items-center text-center">
+            <section className="mx-auto max-w-6xl px-3 py-16">
+                <div className="grid gap-8 lg:grid-cols-2">
+                    {/* Upload Card */}
+                    <Card className="border-2 border-dashed rounded-2xl p-10 flex flex-col items-center justify-center text-center">
                         <Upload className="h-14 w-14 text-orange-600" />
 
                         <h2 className="mt-5 text-2xl font-bold">
@@ -84,37 +199,115 @@ export default function ResumeAtsChecker() {
                         </h2>
 
                         <p className="mt-3 text-muted-foreground">
-                            Drag & drop your resume here or click below.
+                            Upload your PDF or DOCX resume for ATS analysis.
                         </p>
 
-                        <Button className="mt-8">
-                            <Upload className="mr-2 h-4 w-4" />
-                            Choose Resume
+                        <Input
+                            id="resume-upload"
+                            type="file"
+                            className="hidden"
+                            accept=".pdf,.doc,.docx"
+                            onChange={handleFileChange}
+                        />
+
+                        <Button
+                            asChild
+                            className="mt-8"
+                            disabled={loading}
+                        >
+                            <label
+                                htmlFor="resume-upload"
+                                className="cursor-pointer"
+                            >
+                                {loading ? (
+                                    <>
+                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                        Checking...
+                                    </>
+                                ) : (
+                                    <>
+                                        <Upload className="mr-2 h-4 w-4" />
+                                        {file ? "Change Resume" : "Choose Resume"}
+                                    </>
+                                )}
+                            </label>
                         </Button>
 
-                        <p className="mt-4 text-sm text-muted-foreground">
-                            PDF • DOC • DOCX • Max 5 MB
-                        </p>
-                    </div>
-                </Card>
+                        {file && (
+                            <p className="mt-4 text-sm text-muted-foreground truncate max-w-xs">
+                                {file.name}
+                            </p>
+                        )}
+                    </Card>
 
-                <Card className="flex flex-col items-center justify-center rounded-2xl p-10">
-                    <div className="relative flex h-44 w-44 items-center justify-center rounded-full border-[14px] border-orange-600">
-                        <div className="text-center">
-                            <p className="text-5xl font-bold">84</p>
-                            <p className="text-muted-foreground">ATS Score</p>
+                    {/* Score Card */}
+                    <Card className="rounded-2xl p-10 flex flex-col items-center justify-center">
+                        <div className="relative flex h-44 w-44 items-center justify-center rounded-full border-[14px] border-orange-500">
+                            <div className="text-center">
+                                <h2 className="text-5xl font-bold">
+                                    {result?.score ?? "--"}
+                                </h2>
+
+                                <p className="text-muted-foreground">
+                                    ATS Score
+                                </p>
+                            </div>
                         </div>
-                    </div>
 
-                    <p className="mt-6 text-lg font-semibold text-green-600">
-                        Great Resume!
-                    </p>
+                        <p className="mt-6 text-lg font-semibold text-green-600">
+                            {result?.message ?? "Upload Resume"}
+                        </p>
 
-                    <p className="mt-2 text-center text-muted-foreground">
-                        Your resume is ATS-friendly but can still be optimized for better
-                        keyword matching.
-                    </p>
-                </Card>
+                        <p className="mt-2 text-center text-muted-foreground">
+                            {result
+                                ? "Your resume has been successfully analyzed."
+                                : "Upload your resume to generate an ATS compatibility report."}
+                        </p>
+                    </Card>
+                </div>
+
+                {/* Preview */}
+                {pdfUrl && (
+                    <Card className="mt-8 overflow-hidden rounded-2xl">
+                        <div className="flex flex-col gap-4 border-b p-5 md:flex-row md:items-center md:justify-between">
+                            <div>
+                                <h3 className="text-lg font-semibold">
+                                    Resume Preview
+                                </h3>
+
+                                <p className="text-sm text-muted-foreground">
+                                    {file?.name}
+                                </p>
+                            </div>
+
+                            <div className="flex gap-3">
+                                <Button
+                                    onClick={() => window.open(pdfUrl, "_blank")}
+                                >
+                                    Preview Full Screen
+                                </Button>
+
+                                <Button
+                                    variant="destructive"
+                                    onClick={() => {
+                                        setPdfUrl(null);
+                                        setFile(null);
+                                        setResult(null);
+                                        toast.success("Resume removed");
+                                    }}
+                                >
+                                    Remove
+                                </Button>
+                            </div>
+                        </div>
+
+                        <iframe
+                            src={pdfUrl}
+                            title="Resume Preview"
+                            className="h-[750px] w-full"
+                        />
+                    </Card>
+                )}
             </section>
 
             {/* Analysis */}
@@ -137,12 +330,9 @@ export default function ResumeAtsChecker() {
                             const Icon = item.icon;
 
                             return (
-                                <Card key={item.title} className="p-6">
-
+                                <Card key={item.title} className="p-6 rounded-lg">
                                     <div className="flex items-center justify-between">
-
                                         <div className="flex items-center gap-3">
-
                                             <div className="rounded-lg bg-orange-600/10 p-3 text-orange-600">
                                                 <Icon className="h-5 w-5" />
                                             </div>
@@ -234,6 +424,33 @@ export default function ResumeAtsChecker() {
 
                 </div>
             </section>
+            <Dialog open={dialogOpen}>
+                <DialogContent className="sm:max-w-md">
+                    <DialogHeader>
+                        <DialogTitle>Analyzing Resume</DialogTitle>
+
+                        <DialogDescription>
+                            Please wait while our AI evaluates your resume.
+                        </DialogDescription>
+                    </DialogHeader>
+
+                    <div className="space-y-6">
+                        <Progress value={progress} />
+
+                        <div className="flex items-center gap-3">
+                            <Loader2 className="h-5 w-5 animate-spin text-orange-600" />
+
+                            <span className="font-medium">
+                                {currentStep}
+                            </span>
+                        </div>
+
+                        <p className="text-sm text-muted-foreground">
+                            {progress}% Completed
+                        </p>
+                    </div>
+                </DialogContent>
+            </Dialog>
         </main>
     );
 }

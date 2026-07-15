@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
     ChevronDown,
     LogIn,
@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
 import { Button } from "./ui/button";
+import { api } from "@/services/api";
 
 const navItems = [
     {
@@ -54,6 +55,18 @@ export default function Navbar() {
 
     const [mobileMenu, setMobileMenu] = useState(false);
     const [toolMenu, setToolMenu] = useState(false);
+
+    const loadCandidates = async () => {
+        try {
+            await api.awake();
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    useEffect(() => {
+        loadCandidates();
+    }, []);
 
     return (
         <>
@@ -140,19 +153,19 @@ export default function Navbar() {
 
             {/* Mobile Menu */}
             {mobileMenu && (
-                <div className="lg:hidden z-5 h-full fixed w-full mt-17 border rounded-b-md bg-background shadow-lg py-5">
+                <div className="lg:hidden z-10 h-full pt-25 fixed w-full border rounded-b-md bg-background shadow-lg">
                     <section className="flex flex-col items-start h-full justify-between">
-                        <div className="flex flex-col gap-2  px-6 ">
+                        <div className="flex flex-col gap-2 px-6 ">
                             <Link
                                 href="#about"
-                                className="py-2"
+                                className="py-1"
                                 onClick={() => setMobileMenu(false)}
                             >
                                 Home
                             </Link>
                             <Link
                                 href="/aboutus"
-                                className="py-2"
+                                className="py-1"
                                 onClick={() => setMobileMenu(false)}
                             >
                                 About
@@ -160,14 +173,14 @@ export default function Navbar() {
 
                             <Link
                                 href="/services"
-                                className="py-2"
+                                className="py-1"
                                 onClick={() => setMobileMenu(false)}
                             >
                                 Services
                             </Link>
 
                             <details className="group">
-                                <summary className="cursor-pointer w-fit py-2 list-none flex items-center justify-between">
+                                <summary className="cursor-pointer w-fit py-1 list-none flex items-center justify-between">
                                     Tools
                                     <ChevronDown
                                         size={18}
@@ -178,7 +191,7 @@ export default function Navbar() {
                                 <div className="ml-4 mt-2 flex flex-col">
                                     <Link
                                         href="/resume-builder"
-                                        className="py-2"
+                                        className="py-1"
                                         onClick={() => setMobileMenu(false)}
                                     >
                                         Resume Builder
@@ -186,7 +199,7 @@ export default function Navbar() {
 
                                     <Link
                                         href="/resume-ats-checker"
-                                        className="py-2"
+                                        className="py-1"
                                         onClick={() => setMobileMenu(false)}
                                     >
                                         Resume ATS Checker
@@ -194,14 +207,14 @@ export default function Navbar() {
 
                                     <Link
                                         href="/job-description-analyzer"
-                                        className="py-2"
+                                        className="py-1"
                                         onClick={() => setMobileMenu(false)}
                                     >
                                         Job Description Analyzer
                                     </Link>
                                     <Link
                                         href="/bg-remover"
-                                        className="py-2"
+                                        className="py-1"
                                         onClick={() => setMobileMenu(false)}
                                     >
                                         Background Remover
@@ -211,13 +224,13 @@ export default function Navbar() {
 
                             <Link
                                 href="/contact"
-                                className="py-2"
+                                className="py-1"
                                 onClick={() => setMobileMenu(false)}
                             >
                                 Contact
                             </Link>
                         </div>
-                        <div className="mb-17 bg-accent/20 px-6 py-5 w-full flex items-center justify-between gap-3">
+                        <div className="bg-accent/20 px-6 py-5 w-full flex items-center justify-between gap-3">
                             <Link
                                 href="/auth/login"
                                 className="flex items-center justify-center gap-2 rounded-md bg-orange-600 md:px-8 px-3 py-2 text-white w-full lg:w-fit shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-orange-700 hover:shadow-xl text-sm"

@@ -75,7 +75,7 @@ export default function Features() {
                     return (
                         <div
                             key={index}
-                            className="rounded-md border border-zinc-200 bg-background p-8 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl dark:border-zinc-800 dark:bg-zinc-900"
+                            className="rounded-lg border border-zinc-200 bg-background p-8 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl dark:border-zinc-800 dark:bg-zinc-900"
                         >
                             <div
                                 className={`mb-5 w-fit rounded-xl p-3 ${feature.iconBg}`}

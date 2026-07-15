@@ -1,3 +1,5 @@
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 import {
     BriefcaseBusiness,
     Users,
@@ -6,6 +8,7 @@ import {
     BarChart3,
     ShieldCheck,
     ArrowRight,
+    CheckCircle,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -61,17 +64,17 @@ export default function Services() {
     return (
         <main className="bg-background">
             {/* Hero */}
-            <section className="border-b -mt-18 bg-accent h-screen flex items-center">
+            <section className="border-b -mt-18 h-screen flex items-center">
                 <div className="mx-auto max-w-6xl px-3 py-24 text-center">
                     <span className="rounded-full bg-orange-600/20 px-4 py-2 text-sm font-medium text-orange-600">
-                       🚀 Our Services
+                        🚀 Our Services
                     </span>
 
-                    <h1 className="mt-6 text-4xl font-bold tracking-tight md:text-6xl">
+                    <h1 className="mt-6 text-3xl font-bold tracking-tight md:text-6xl">
                         Everything You Need to Manage Recruitment
                     </h1>
 
-                    <p className="mx-auto mt-6 max-w-3xl text-lg lg:leading-8 text-muted-foreground">
+                    <p className="mx-auto mt-6 max-w-3xl text-justify lg:text-center text-lg lg:leading-6 text-muted-foreground">
                         TalentDesk provides a complete recruitment platform that helps HR
                         teams streamline hiring, collaborate efficiently, and make faster
                         hiring decisions.
@@ -80,28 +83,35 @@ export default function Services() {
             </section>
 
             {/* Services */}
-            <section className="mx-auto max-w-6xl px-3 py-20">
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {services.map((service) => {
-                        const Icon = service.icon;
+            <section className='bg-accent'>
+                <div className="mx-auto max-w-6xl px-3 py-20">
+                    <div className="flex flex-col items-center justify-center mb-10">
+                        <Badge className='uppercase py-3 px-4 font-bold rounded-full bg-orange-500/20 text-orange-500 h-8'><CheckCircle className="fill-accent" /> Why Teams Trust Us</Badge>
+                        <h1 className="mt-3 font-bold text-center text-3xl lg:text-5xl max-w-3xl">Built for recruiters who need proof, not promises.</h1>
+                        <p className="mt-3 text-center text-zinc-600 dark:text-zinc-400 text-semibold">Every engagement ships with measurable lift, transparent process, and handover you actually own.</p>
+                    </div>
+                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        {services.map((service) => {
+                            const Icon = service.icon;
 
-                        return (
-                            <div
-                                key={service.title}
-                                className="rounded-2xl border bg-accent p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-                            >
-                                <div className="mb-5 inline-flex rounded-xl bg-orange-600/20 p-3 text-orange-600">
-                                    <Icon className="h-6 w-6" />
+                            return (
+                                <div
+                                    key={service.title}
+                                    className="rounded-2xl border bg-card/10 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                                >
+                                    <div className="mb-3 inline-flex rounded-xl bg-orange-600/20 p-3 text-orange-600">
+                                        <Icon className="h-6 w-6" />
+                                    </div>
+
+                                    <h3 className="text-xl font-semibold">{service.title}</h3>
+
+                                    <p className="mt-2 lg:leading-6 text-muted-foreground">
+                                        {service.description}
+                                    </p>
                                 </div>
-
-                                <h3 className="text-xl font-semibold">{service.title}</h3>
-
-                                <p className="mt-3 leading-7 text-muted-foreground">
-                                    {service.description}
-                                </p>
-                            </div>
-                        );
-                    })}
+                            );
+                        })}
+                    </div>
                 </div>
             </section>
 
@@ -109,22 +119,22 @@ export default function Services() {
             <section className="bg-accent py-20">
                 <div className="mx-auto max-w-6xl px-3">
                     <div className="text-center">
-                        <h2 className="text-3xl font-bold">
+                        <h2 className="lg:text-5xl text-3xl font-bold">
                             Simple Recruitment Workflow
                         </h2>
 
-                        <p className="mt-4 text-muted-foreground">
+                        <p className="mt-3 text-muted-foreground">
                             Manage every stage of hiring from one centralized dashboard.
                         </p>
                     </div>
 
-                    <div className="mt-16 grid lg:gap-6 gap-3 md:grid-cols-2 lg:grid-cols-3">
+                    <div className="mt-16 grid md:grid-cols-2 rounded-xl overflow-hidden lg:grid-cols-3">
                         {process.map((step, index) => (
                             <div
                                 key={step}
-                                className="rounded-xl border bg-card p-6 text-center"
+                                className="border bg-accent-foreground/2 p-6 text-center hover:bg-background/70"
                             >
-                                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-orange-600 text-orange-600-foreground font-bold">
+                                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-orange-600 text-white font-bold">
                                     {index + 1}
                                 </div>
 
@@ -143,14 +153,14 @@ export default function Services() {
                             Why Choose TalentDesk?
                         </h2>
 
-                        <p className="mt-5 leading-8 text-muted-foreground">
+                        <p className="mt-3 lg:leading-6 text-justify lg:text-start text-muted-foreground">
                             Our platform is designed to reduce manual work, improve recruiter
                             collaboration, and simplify hiring with powerful yet intuitive
                             tools.
                         </p>
                     </div>
 
-                    <div className="space-y-4">
+                    <Card className="rounded-lg p-4">
                         {[
                             "Centralized recruitment management",
                             "Custom hiring pipelines",
@@ -158,26 +168,27 @@ export default function Services() {
                             "Secure recruiter collaboration",
                             "Data-driven hiring decisions",
                             "Scalable for startups and enterprises",
-                        ].map((item) => (
+                        ].map((item,index) => (
                             <div
                                 key={item}
-                                className="rounded-lg border bg-card px-5 py-4"
+                                className="flex -mt-1 items-center text-card-foreground justify-start text-sm gap-2 lg:text-lg"
                             >
+                                <span className='h-8 w-8 border rounded-full flex items-center justify-center bg-orange-600/20 text-orange-600'>{index+1}</span>
                                 {item}
                             </div>
                         ))}
-                    </div>
+                    </Card>
                 </div>
             </section>
 
             {/* CTA */}
             <section className="px-3 pb-20">
-                <div className="mx-auto max-w-6xl rounded-3xl bg-linear-to-r from-orange-600 to-indigo-600 px-8 py-16 text-center text-white shadow-2xl">
-                    <h2 className="text-3xl font-bold md:text-4xl">
+                <div className="mx-auto max-w-6xl rounded-2xl bg-linear-to-r from-orange-600 to-indigo-600 px-3 py-16 text-center text-white shadow-2xl">
+                    <h2 className="text-3xl font-bold md:text-5xl">
                         Ready to Transform Your Hiring Process?
                     </h2>
 
-                    <p className="mx-auto mt-5 max-w-2xl text-orange-100">
+                    <p className="mx-auto mt-5 lg:text-lg max-w-2xl text-orange-100">
                         Join recruiters and HR teams using TalentDesk to streamline
                         recruitment, improve collaboration, and hire top talent faster.
                     </p>

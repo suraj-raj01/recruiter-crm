@@ -262,7 +262,7 @@ export default function EnqureSection() {
                                     <Button
                                         type="button"
                                         onClick={nextStep}
-                                        className="w-full bg-orange-600 hover:bg-orange-600/90 shadow-orange-500/20 shadow-xl hover:transition-all duration-300 hover:scale-102 cursor-pointer text-sm text-white font-bold rounded-lg h-11 mt-2"
+                                        className="w-full bg-orange-600 hover:bg-orange-600/90 shadow-orange-500/20 shadow-xl hover:transition-all duration-300 hover:scale-102 cursor-pointer text-sm text-white font-bold rounded-full h-11 mt-2"
                                     >
                                         {loading ? "Submitting..." : "Submit"}
                                         <ArrowRight className="h-4 w-4" />
@@ -325,7 +325,7 @@ export default function EnqureSection() {
                                     </Card>
 
                                     <div className="flex gap-4">
-                                        <Button type="submit" disabled={loading} className="flex-1 py-5 bg-orange-500 text-white font-bold">
+                                        <Button type="submit" disabled={loading} className="flex-1 py-5 rounded-full bg-orange-500 text-white font-bold">
                                             {loading ? (
                                                 <>
                                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />

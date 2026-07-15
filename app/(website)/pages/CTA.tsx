@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function CTA() {
     return (
         <section className="w-full">
-            <div className="mx-auto py-20 max-w-full overflow-hidden bg-linear-to-r from-orange-600/60 via-orange-500 to-indigo-600/60 shadow-sm">
+            <div className="mx-auto py-20 max-w-full overflow-hidden bg-linear-to-b lg:bg-linear-to-r from-orange-600/60 via-orange-500 to-indigo-600/70 shadow-sm">
                 <div className="relative py-16 text-center px-3 lg:px-16">
                     {/* Background Blur */}
                     <div className="absolute -top-20 -left-20 h-72 w-72 rounded-full bg-white/10 blur-3xl" />

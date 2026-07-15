@@ -37,17 +37,17 @@ export default function AboutPage() {
     return (
         <main className="min-h-screen bg-background">
             {/* Hero */}
-            <section className="border-b h-150 flex items-center">
+            <section className="h-150 flex items-center">
                 <div className="mx-auto max-w-6xl px-3 py-24 text-center">
                     <span className="rounded-full bg-orange-600/20 px-4 py-2 text-sm font-medium text-orange-600">
                        ✨ About TalentDesk
                     </span>
 
-                    <h1 className="mt-6 text-4xl max-w-2xl font-bold tracking-tight md:text-6xl">
+                    <h1 className="mt-6 text-4xl max-w-2xl lg:text-center text-start font-bold tracking-tight md:text-6xl">
                         Simplifying Modern Recruitment
                     </h1>
 
-                    <p className="mx-auto mt-6 max-w-3xl text-lg text-muted-foreground lg:leading-7">
+                    <p className="mx-auto mt-6 max-w-3xl text-lg lg:text-center text-justify text-muted-foreground lg:leading-7">
                         TalentDesk is a modern Applicant Tracking System (ATS) built to help
                         recruiters, HR teams, and organizations manage the complete hiring
                         process—from creating job openings to onboarding top talent.
@@ -56,20 +56,20 @@ export default function AboutPage() {
             </section>
 
             {/* Story */}
-            <section className="mx-auto max-w-6xl px-3 py-20">
+            <section className="mx-auto max-w-6xl px-3 py-20 mb-10">
                 <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
                     <div>
-                        <h2 className="text-3xl font-bold">
+                        <h2 className="text-4xl font-bold text-start">
                             Built for Recruiters, Designed for Teams
                         </h2>
 
-                        <p className="mt-6 text-muted-foreground leading-8">
+                        <p className="mt-6 text-muted-foreground text-justify lg:text-start lg:leading-6">
                             Hiring the right talent shouldn't be complicated. Traditional
                             recruitment often involves scattered spreadsheets, endless email
                             threads, and manual candidate tracking.
                         </p>
 
-                        <p className="mt-4 text-muted-foreground leading-8">
+                        <p className="mt-4 text-muted-foreground text-justify lg:text-start lg:leading-6">
                             TalentDesk centralizes every stage of recruitment into a single
                             platform, enabling recruiters to collaborate, organize candidates,
                             monitor hiring progress, and make faster, data-driven decisions.
@@ -81,7 +81,7 @@ export default function AboutPage() {
                             Why Teams Choose TalentDesk
                         </h3>
 
-                        <div className="mt-8 space-y-5">
+                        <div className="mt-4 space-y-2">
                             {[
                                 "Centralized candidate management",
                                 "Custom hiring pipeline",
@@ -104,7 +104,7 @@ export default function AboutPage() {
             <section className="bg-muted/40 py-20">
                 <div className="mx-auto max-w-6xl px-3">
                     <div className="text-center">
-                        <h2 className="text-3xl font-bold">
+                        <h2 className="text-4xl font-bold">
                             Everything You Need to Hire Better
                         </h2>
 
@@ -129,7 +129,7 @@ export default function AboutPage() {
 
                                     <h3 className="font-semibold">{feature.title}</h3>
 
-                                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                                    <p className="mt-2 text-sm lg:leading-5 text-muted-foreground">
                                         {feature.description}
                                     </p>
                                 </div>
@@ -141,10 +141,10 @@ export default function AboutPage() {
 
             {/* Mission */}
             <section className="mx-auto max-w-6xl px-3 py-20">
-                <div className="rounded-2xl border bg-card p-10 md:p-16">
+                <div className="rounded-lg border bg-card px-5 py-8 md:p-16">
                     <h2 className="text-center text-3xl font-bold">Our Mission</h2>
 
-                    <p className="mx-auto mt-6 max-w-3xl text-center lg:leading-7 text-muted-foreground">
+                    <p className="mx-auto mt-4 max-w-3xl lg:text-center text-justify lg:leading-6 text-muted-foreground">
                         Our mission is to make recruitment faster, smarter, and more
                         collaborative by providing recruiters with intuitive tools that
                         reduce administrative work and improve hiring decisions.
