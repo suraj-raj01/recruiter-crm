@@ -45,27 +45,27 @@ const faqs = [
 export default function FaqSection() {
     return (
         <section className="bg-card py-24" id="faq">
-            <div className="lg:max-w-7xl w-full mx-auto px-3">
+            <div className="lg:max-w-6xl w-full mx-auto px-3">
                 <div className="grid items-start gap-16 lg:grid-cols-2">
                     {/* Left */}
 
                     <div>
-                        <span className="inline-flex rounded-full border border-primary/30 px-4 py-1 text-xs font-extrabold bg-primary-deep/10 uppercase tracking-[4px] text-primary-deep">
-                            FAQ
+                        <span className="inline-flex rounded-full border border-orange-600/30 px-4 py-1 text-xs font-extrabold bg-orange-700/20 uppercase tracking-[2px] text-orange-500">
+                           🚀 Frequently Asked Questions
                         </span>
 
-                        <h2 className="mt-8 text-3xl lg:font-extrabold font-bold lg:leading-12 text-blue lg:text-5xl">
-                            Answers before you book.
+                        <h2 className="lg:mt-8 mt-4 text-3xl lg:font-extrabold font-bold lg:leading-12 text-blue lg:text-5xl">
+                            Answers before your Queries.
                         </h2>
 
-                        <p className="mt-4 lg:text-xl lg:leading-9 text-slate-600">
+                        <p className="mt-4 lg:text-xl lg:leading-7 text-zinc-500">
                             Still on the fence? Skim the questions we get on almost every
                             intro call — or reach out and we'll answer yours in 24 hours.
                         </p>
 
                         <Button
                             size="lg"
-                            className="mt-6 rounded-full bg-primary px-5 py-5 text-md  shadow-primary/20 shadow-xl hover:transition-all duration-300 hover:scale-102 cursor-pointer"
+                            className="mt-6 rounded-full text-white bg-orange-600 hover:bg-orange-600/90 px-5 py-5 text-md  shadow-orange-500/20 shadow-xl hover:transition-all duration-300 hover:scale-102 cursor-pointer"
                         >
                             <Link href="/contact">Send Enquiries</Link>
                             <ArrowRight className="ml-2 h-5 w-5" />
@@ -90,7 +90,7 @@ export default function FaqSection() {
                                         {faq.question}
                                     </AccordionTrigger>
 
-                                    <AccordionContent className="pb-2 lg:text-lg lg:leading-7 text-sm text-slate-600">
+                                    <AccordionContent className="pb-2 lg:text-lg lg:leading-7 text-sm text-zinc-500">
                                         {faq.answer}
                                     </AccordionContent>
                                 </AccordionItem>

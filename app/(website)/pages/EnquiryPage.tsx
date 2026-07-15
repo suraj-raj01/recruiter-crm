@@ -66,7 +66,7 @@ export default function EnqureSection() {
             form.append("file", file);
         }
 
-        const response = await fetch("https://formspree.io/f/mbdnrrez", {
+        const response = await fetch("https://formspree.io/f/xxxxxxx", {
             method: "POST",
             body: form,
             headers: {
@@ -262,7 +262,7 @@ export default function EnqureSection() {
                                     <Button
                                         type="button"
                                         onClick={nextStep}
-                                        className="w-full bg-orange-600 hover:bg-orange-700 cursor-pointer text-sm text-white font-bold rounded-lg h-11 mt-2"
+                                        className="w-full bg-orange-600 hover:bg-orange-600/90 shadow-orange-500/20 shadow-xl hover:transition-all duration-300 hover:scale-102 cursor-pointer text-sm text-white font-bold rounded-lg h-11 mt-2"
                                     >
                                         {loading ? "Submitting..." : "Submit"}
                                         <ArrowRight className="h-4 w-4" />

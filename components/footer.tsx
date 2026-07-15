@@ -1,24 +1,26 @@
+'use client'
 import Link from "next/link";
-import { BriefcaseBusiness, Mail, ExternalLink } from "lucide-react";
+import { BriefcaseBusiness, Mail, ExternalLink, Link2Icon } from "lucide-react";
 import { GithubLogoIcon } from "@phosphor-icons/react/dist/ssr";
+import { LinkedinLogoIcon } from "@phosphor-icons/react";
 
 export default function Footer() {
     return (
-        <footer className="border-t bg-background">
+        <footer className="border-t bg-accent">
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-3 py-10">
-                <div className="grid gap-8 md:grid-cols-3">
+                <div className="grid gap-8 md:grid-cols-3 lg:text-start text-center">
                     {/* Brand */}
                     <div className="space-y-3">
                         <div className="flex items-center gap-2">
                             <BriefcaseBusiness className="h-6 w-6 text-primary" />
                             <h3 className="text-lg font-semibold">
-                                Recruiter CRM
+                                Talent Desk
                             </h3>
                         </div>
 
                         <p className="text-sm leading-6 text-muted-foreground">
-                            A portfolio-grade Recruiter CRM & ATS platform built
-                            with the MERN stack to streamline job postings,
+                            Recruiter CRM & ATS platform built
+                            with the Latest tech stack to streamline job postings,
                             candidate management, hiring pipelines, interview
                             tracking, notes, and recruitment analytics.
                         </p>
@@ -37,26 +39,36 @@ export default function Footer() {
                             >
                                 Home
                             </Link>
-
                             <Link
-                                href="/jobs"
+                                href="/about"
                                 className="text-muted-foreground transition hover:text-foreground"
                             >
-                                Jobs
+                                About
+                            </Link>
+                            <Link
+                                href="/services"
+                                className="text-muted-foreground transition hover:text-foreground"
+                            >
+                                Services
+                            </Link>
+                            <Link
+                                href="/resume-builder"
+                                className="text-muted-foreground transition hover:text-foreground"
+                            >
+                                Resume Builder
+                            </Link>
+                            <Link
+                                href="/bg-remover"
+                                className="text-muted-foreground transition hover:text-foreground"
+                            >
+                                Background Remover
                             </Link>
 
                             <Link
-                                href="/privacy-policy"
+                                href="/resume-ats-checker"
                                 className="text-muted-foreground transition hover:text-foreground"
                             >
-                                Privacy Policy
-                            </Link>
-
-                            <Link
-                                href="/terms-of-service"
-                                className="text-muted-foreground transition hover:text-foreground"
-                            >
-                                Terms of Service
+                                Resume ATS Checker
                             </Link>
                         </div>
                     </div>
@@ -67,49 +79,74 @@ export default function Footer() {
                             Resources
                         </h4>
 
-                        <div className="flex flex-col gap-3">
-                            <a
-                                href="https://github.com/yourusername/recruiter-crm"
+                        <div className="flex flex-col gap-3 lg:items-start items-center justify-center lg:justify-start">
+                            <Link
+                                href="https://github.com/suraj-raj01"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
                             >
                                 <GithubLogoIcon className="h-4 w-4" />
-                                GitHub Repository
-                            </a>
+                                GitHub
+                            </Link>
 
-                            <a
-                                href="mailto:suraj@talentdeck.dev"
+                             <Link
+                                href="https://www.linkedin.com/in/suraj-kumar-1965b0296/"
+                                className="flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
+                            >
+                                <LinkedinLogoIcon className="h-4 w-4" />
+                                LinkedIn
+                            </Link>
+
+                            <Link
+                                href="/auth/login"
                                 className="flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
                             >
                                 <Mail className="h-4 w-4" />
                                 Demo Account
-                            </a>
+                            </Link>
 
-                            <a
+                            <Link
                                 href="/"
                                 className="flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
                             >
                                 <ExternalLink className="h-4 w-4" />
                                 Live Demo
-                            </a>
+                            </Link>
+                           
                         </div>
                     </div>
                 </div>
 
-                <div className="flex flex-col items-center justify-between gap-3 border-t pt-6 text-sm text-muted-foreground md:flex-row">
-                    <p>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 border-t pt-6 text-sm text-muted-foreground md:flex-row">
+                    <p className="text-center lg:text-start">
                         © {new Date().getFullYear()} Recruiter CRM / ATS Platform.
-                        Built with React, Node.js, Express, MongoDB, JWT
-                        Authentication, and Tailwind CSS.
+                        Built with Latest Tech Stacks and secure JWT
+                        Authentication.
                     </p>
 
-                    <p>
+                    <div className="flex flex-col items-center justify-center">
                         Designed & Developed by{" "}
-                        <span className="font-medium text-foreground uppercase">
-                            Suraj Kumar
-                        </span>
-                    </p>
+                        <br />
+                        <Link href='https://portfolio-suraj-puce.vercel.app/' className="font-medium text-muted-foreground uppercase flex items-center gap-2 justify-center">
+                            Suraj Kumar <Link2Icon className="4-3 w-4"/>
+                        </Link>
+                    </div>
+                    <div className="flex items-center justify-center lg:justify-end gap-3">
+                        <Link
+                            href="/privacy-policy"
+                            className="text-muted-foreground transition hover:text-foreground"
+                        >
+                            Privacy Policy
+                        </Link>
+
+                        <Link
+                            href="/terms-of-service"
+                            className="text-muted-foreground transition hover:text-foreground"
+                        >
+                            Terms of Service
+                        </Link>
+                    </div>
                 </div>
             </div>
         </footer>

@@ -20,7 +20,7 @@ const navItems = [
     },
     {
         title: "About",
-        href: "/about",
+        href: "/aboutus",
     },
     {
         title: "Services",
@@ -40,6 +40,10 @@ const navItems = [
             {
                 title: "Job Description Analyzer",
                 href: "/job-description-analyzer",
+            },
+            {
+                title: "Background Remover",
+                href: "/bg-remover",
             },
         ],
     },
@@ -84,7 +88,7 @@ export default function Navbar() {
                                     className="relative"
                                     onMouseEnter={() => setToolMenu(true)}
                                     onMouseLeave={() => setToolMenu(false)}>
-                                    <button className="flex items-center gap-1 font-medium hover:text-orange-600 transition">
+                                    <button className="flex items-center gap-1 font-medium hover:text-orange-500 transition">
                                         {item.title}
                                         <ChevronDown size={16} />
                                     </button>
@@ -121,7 +125,7 @@ export default function Navbar() {
                 {/* Right */}
                 <div className="flex items-center gap-3">
                     <ModeToggle />
-                    <Button className="lg:block hidden text-sm bg-orange-600 text-white hover:bg-orange-700 transition cursor-pointer" onClick={() => router.push("/contact")}>
+                    <Button className="lg:block hidden rounded-full px-5 text-sm bg-orange-600 text-white hover:bg-orange-700 shadow-orange-500/20 shadow-xl hover:transition-all duration-300 hover:scale-102 cursor-pointer" onClick={() => router.push("/contact")}>
                         Contact Us
                     </Button>
 
@@ -147,7 +151,7 @@ export default function Navbar() {
                                 Home
                             </Link>
                             <Link
-                                href="/about"
+                                href="/aboutus"
                                 className="py-2"
                                 onClick={() => setMobileMenu(false)}
                             >
@@ -195,6 +199,13 @@ export default function Navbar() {
                                     >
                                         Job Description Analyzer
                                     </Link>
+                                    <Link
+                                        href="/bg-remover"
+                                        className="py-2"
+                                        onClick={() => setMobileMenu(false)}
+                                    >
+                                        Background Remover
+                                    </Link>
                                 </div>
                             </details>
 
@@ -216,7 +227,7 @@ export default function Navbar() {
                             </Link>
                             <Link
                                 href="/auth/login"
-                                className="flex items-center justify-center gap-2 rounded-md dark:border-zinc-700 bg-black dark:text-white dark:hover:bg-zinc-800 md:px-8 px-3 py-2 text-white w-full lg:w-fit shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-orange-700 hover:shadow-xl text-sm"
+                                className="flex items-center justify-center gap-2 rounded-md dark:border-zinc-700 bg-accent dark:text-white dark:hover:bg-zinc-800 md:px-8 px-3 py-2 text-accent-foreground border w-full lg:w-fit shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-orange-700 hover:shadow-xl text-sm"
                             >
                                 <UserPlus size={16} />
                                 Get Started

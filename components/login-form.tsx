@@ -137,12 +137,10 @@ export function LoginForm({
                 {errors.password && <p className="text-red-500">{errors.password}</p>}
               </Field>
               <Field>
-                <Button disabled={loading} type="submit" className="rounded-md bg-orange-600 hover:bg-orange-700 text-white cursor-pointer px-4 py-5 text-sm">
+                <Button disabled={loading} type="submit" className="rounded-md bg-orange-600 hover:bg-orange-600/90 text-white cursor-pointer px-4 py-5 text-sm">
                   {loading?"Logging in...":"Login"}
                 </Button>
-                <Button variant="outline" disabled type="button" className="rounded-md px-4 py-5 text-sm cursor-not-allowed">
-                  Login with Google
-                </Button>
+               
                 <FieldDescription className="text-center">
                   Don&apos;t have an account? <Link href="/auth/register" >Sign up</Link>
                 </FieldDescription>
