@@ -5,7 +5,9 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import {
     ChevronDown,
+    LogIn,
     Menu,
+    UserPlus,
     X,
 } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
@@ -63,8 +65,11 @@ export default function Navbar() {
 
                     <div>
                         <h1 className="font-bold text-lg">TalentDesk</h1>
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-xs -mt-1 hidden lg:block text-muted-foreground">
                             Recruiter CRM Management System
+                        </p>
+                        <p className="text-xs -mt-1 lg:hidden block text-muted-foreground">
+                            Recruiter CRM Management
                         </p>
                     </div>
                 </div>
@@ -131,75 +136,93 @@ export default function Navbar() {
 
             {/* Mobile Menu */}
             {mobileMenu && (
-                <div className="lg:hidden fixed w-full mt-17 px-6 border rounded-b-md bg-background shadow-lg py-5">
-                    <div className="flex flex-col gap-2">
-                        <Link
-                            href="#about"
-                            className="py-2"
-                            onClick={() => setMobileMenu(false)}
-                        >
-                            Home
-                        </Link>
-                        <Link
-                            href="/about"
-                            className="py-2"
-                            onClick={() => setMobileMenu(false)}
-                        >
-                            About
-                        </Link>
+                <div className="lg:hidden z-5 h-full fixed w-full mt-17 border rounded-b-md bg-background shadow-lg py-5">
+                    <section className="flex flex-col items-start h-full justify-between">
+                        <div className="flex flex-col gap-2  px-6 ">
+                            <Link
+                                href="#about"
+                                className="py-2"
+                                onClick={() => setMobileMenu(false)}
+                            >
+                                Home
+                            </Link>
+                            <Link
+                                href="/about"
+                                className="py-2"
+                                onClick={() => setMobileMenu(false)}
+                            >
+                                About
+                            </Link>
 
-                        <Link
-                            href="/services"
-                            className="py-2"
-                            onClick={() => setMobileMenu(false)}
-                        >
-                            Services
-                        </Link>
+                            <Link
+                                href="/services"
+                                className="py-2"
+                                onClick={() => setMobileMenu(false)}
+                            >
+                                Services
+                            </Link>
 
-                        <details className="group">
-                            <summary className="cursor-pointer py-2 list-none flex items-center justify-between">
-                                Tools
-                                <ChevronDown
-                                    size={18}
-                                    className="group-open:rotate-180 transition"
-                                />
-                            </summary>
+                            <details className="group">
+                                <summary className="cursor-pointer w-fit py-2 list-none flex items-center justify-between">
+                                    Tools
+                                    <ChevronDown
+                                        size={18}
+                                        className="group-open:rotate-180 ml-2 transition"
+                                    />
+                                </summary>
 
-                            <div className="ml-4 mt-2 flex flex-col">
-                                <Link
-                                    href="/resume-builder"
-                                    className="py-2"
-                                    onClick={() => setMobileMenu(false)}
-                                >
-                                    Resume Builder
-                                </Link>
+                                <div className="ml-4 mt-2 flex flex-col">
+                                    <Link
+                                        href="/resume-builder"
+                                        className="py-2"
+                                        onClick={() => setMobileMenu(false)}
+                                    >
+                                        Resume Builder
+                                    </Link>
 
-                                <Link
-                                    href="/resume-ats-checker"
-                                    className="py-2"
-                                    onClick={() => setMobileMenu(false)}
-                                >
-                                    Resume ATS Checker
-                                </Link>
+                                    <Link
+                                        href="/resume-ats-checker"
+                                        className="py-2"
+                                        onClick={() => setMobileMenu(false)}
+                                    >
+                                        Resume ATS Checker
+                                    </Link>
 
-                                <Link
-                                    href="/job-description-analyzer"
-                                    className="py-2"
-                                    onClick={() => setMobileMenu(false)}
-                                >
-                                    Job Description Analyzer
-                                </Link>
-                            </div>
-                        </details>
+                                    <Link
+                                        href="/job-description-analyzer"
+                                        className="py-2"
+                                        onClick={() => setMobileMenu(false)}
+                                    >
+                                        Job Description Analyzer
+                                    </Link>
+                                </div>
+                            </details>
 
-                        <Link
-                            href="/contact"
-                            className="py-2"
-                            onClick={() => setMobileMenu(false)}
-                        >
-                            Contact
-                        </Link>
-                    </div>
+                            <Link
+                                href="/contact"
+                                className="py-2"
+                                onClick={() => setMobileMenu(false)}
+                            >
+                                Contact
+                            </Link>
+                        </div>
+                        <div className="mb-17 bg-accent/20 px-6 py-5 w-full flex items-center justify-between gap-3">
+                            <Link
+                                href="/auth/login"
+                                className="flex items-center justify-center gap-2 rounded-md bg-orange-600 md:px-8 px-3 py-2 text-white w-full lg:w-fit shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-orange-700 hover:shadow-xl text-sm"
+                            >
+                                <LogIn size={16} />
+                                Login
+                            </Link>
+                            <Link
+                                href="/auth/login"
+                                className="flex items-center justify-center gap-2 rounded-md dark:border-zinc-700 bg-black dark:text-white dark:hover:bg-zinc-800 md:px-8 px-3 py-2 text-white w-full lg:w-fit shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-orange-700 hover:shadow-xl text-sm"
+                            >
+                                <UserPlus size={16} />
+                                Get Started
+                            </Link>
+                        </div>
+                    </section>
                 </div>
             )}
         </>

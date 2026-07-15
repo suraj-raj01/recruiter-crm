@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -13,11 +13,10 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { Save, Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HeaderCard } from "../../components/HeaderCard";
 import { api } from "@/services/api";
-import { Job } from "@/types/api";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 const EMPLOYMENT_TYPES = [
@@ -54,9 +53,28 @@ const emptyForm = {
 };
 
 
-export default function CreateJobs() {
+export default function UpdateJobs() {
     const [form, setForm] = useState(emptyForm);
     const [saving, setSaving] = useState(false);
+    const params = useParams();
+    const id = params?.id as string;
+
+
+    const fetchJobById = async () => {
+        try {
+            const res = await api.getJob(id);
+            setForm({
+                ...res.jobs,
+                skills: res.jobs.skills.join(", "),
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    useEffect(()=>{
+        fetchJobById();
+    },[id])
 
     const update = (
         key: keyof typeof form,
@@ -68,23 +86,14 @@ export default function CreateJobs() {
         }));
     };
 
-    const submit = async (
-        e: React.FormEvent<HTMLFormElement>
-    ) => {
+    const router = useRouter();
+    const submit = async (e: React.FormEvent<HTMLFormElement> ) => {
         e.preventDefault();
         try {
             setSaving(true);
-
-            await api.createJob({
-                ...form,
-                skills: form.skills
-                    .split(",")
-                    .map((skill) => skill.trim())
-                    .filter(Boolean),
-            } as Job);
-            setForm(emptyForm);
-            toast.success("Job created successfully")
-            useRouter().push("/dashboard/jobs")
+            await api.updateJob(id,form);
+            toast.success("Job updated successfully")
+            router.push("/dashboard/jobs")
         } catch (error) {
             console.error(error);
         } finally {
@@ -103,7 +112,7 @@ export default function CreateJobs() {
                 />
 
                 <form onSubmit={submit}>
-                    <Card className="max-w-full mx-auto rounded-sm md:px-10 md:py-10 py-5 px-0">
+                    <Card className="max-w-full mx-auto rounded-sm lg:px-10 px-0 lg:py-10 py-5">
                         <CardContent className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <div className="space-y-2">
@@ -258,12 +267,12 @@ export default function CreateJobs() {
                                     {saving ? (
                                         <>
                                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                            Saving...
+                                            {id ? "Updating...":"Saving..."}
                                         </>
                                     ) : (
                                         <>
                                             <Save className="mr-2 h-4 w-4" />
-                                            Save Job
+                                                {id ? "Update Job" :"Save Job"}
                                         </>
                                     )}
                                 </Button>

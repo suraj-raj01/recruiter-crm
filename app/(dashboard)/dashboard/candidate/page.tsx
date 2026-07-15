@@ -18,7 +18,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import Link from "next/link";
 import CandidateViewModal from "../components/CandidateViewModel";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 export default function Candidates() {
     const [candidates, setCandidates] = useState([])

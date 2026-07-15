@@ -62,13 +62,13 @@ const features = [
 
 export default function Features() {
     return (
-        <section className='mx-auto w-full max-w-6xl px-3'>
-            <div className="py-8 flex flex-col items-center justify-center">
-                <Badge className='uppercase py-3 px-4 font-bold rounded-full bg-accent-foreground/10 text-orange-500 h-8'><CheckCircle className="fill-accent"/> Why Teams Trust Us</Badge>
+        <section className='mx-auto w-full max-w-6xl px-3 py-10'>
+            <div className="flex flex-col items-center justify-center">
+                <Badge className='uppercase py-3 px-4 font-bold rounded-full bg-orange-500/20 text-orange-500 h-8'><CheckCircle className="fill-accent"/> Why Teams Trust Us</Badge>
                 <h1 className="mt-3 font-bold text-center text-3xl lg:text-5xl max-w-3xl">Built for recruiters who need proof, not promises.</h1>
                 <p className="mt-3 text-center text-zinc-600 dark:text-zinc-400 text-semibold">Every engagement ships with measurable lift, transparent process, and handover you actually own.</p>
             </div>
-            <section className="grid lg:gap-6 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <section className="grid lg:gap-6 gap-4 md:grid-cols-2 pt-10 lg:grid-cols-3">
                 {features.map((feature, index) => {
                     const Icon = feature.icon;
 

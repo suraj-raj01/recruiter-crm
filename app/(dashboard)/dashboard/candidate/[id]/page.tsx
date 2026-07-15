@@ -54,6 +54,7 @@ export default function UpdateCandidate() {
             console.log(err);
         }
     };
+    
     const fetchJobs = async () => {
         try {
             const res = await api.getJobs();

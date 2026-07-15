@@ -101,7 +101,7 @@ export function LoginForm({
                     })
                   }
                   autoComplete="current-email"
-                  className="rounded-md text-xl px-4 py-5"
+                  className="rounded-md px-4 py-5"
                   // required
                 />
               </Field>

@@ -5,7 +5,7 @@ A portfolio-grade MERN application for recruiters to manage jobs, candidates, pi
 ## Why this project stands out
 
 - Recruiter-facing product, so hiring teams immediately understand the use case.
-- Full-stack architecture with NEXTJS, Express, Node, and MongoDB/Mongoose.
+- Full-stack MERN architecture with React, Express, Node, and MongoDB/Mongoose.
 - Demo mode runs without MongoDB, while production mode supports MongoDB Atlas through `MONGODB_URI`.
 - JWT login, role-ready user model, candidate pipeline, notes, filters, and analytics.
 
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-The frontend runs on `http://localhost:3000` and the API runs on `http://localhost:8800`.
+The frontend runs on `http://localhost:5173` and the API runs on `http://localhost:5000`.
 
 ## MongoDB setup
 

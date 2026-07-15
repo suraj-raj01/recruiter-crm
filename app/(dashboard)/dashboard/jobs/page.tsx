@@ -1,25 +1,38 @@
 'use client'
-import { Card, CardContent } from "@/components/ui/card";
 import { api } from "@/services/api";
-import { PRIORITY_BADGE } from "@/services/constants";
-import { Building2, MapPin, TrendingUp } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 import { HeaderCard } from "../components/HeaderCard";
+import { DataTable } from "@/components/ui/data-table";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Button } from "@/components/ui/button";
+import { Edit, Eye, MoreHorizontal, Trash } from "lucide-react";
+import { Candidate } from "@/types/dashboard";
+import { ColumnDef } from "@tanstack/react-table";
+import { STAGE_BADGE, STAGE_DOT } from "@/services/constants";
+import { Checkbox } from "@/components/ui/checkbox";
+import { toast } from "sonner";
+import Link from "next/link";
 import JobViewModal from "../components/JobViewModel";
-import JobsSkeleton from "../components/skeleton/Jobs";
+// import { useRouter } from "next/navigation";
 
 export default function Jobs() {
     const [jobs, setJobs] = useState([])
     const [loading, setLoading] = useState(true)
-    const [selectedJobId, setSelectedJobId] = useState("");
-    const [jobOpen, setJobOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState<string>('')
+    const [selectedId, setSelectedId] = useState("");
+        const [open, setOpen] = useState(false);
 
     const loadJobs = async () => {
         try {
             setLoading(true);
             const jobs = await api.getJobs();
             setJobs(jobs?.jobs ?? []);
-            console.log(jobs);
+            // console.log(jobs);
         } catch (err) {
             console.error(err);
         } finally {
@@ -33,89 +46,147 @@ export default function Jobs() {
         if (token) loadJobs();
         else setLoading(false);
     }, []);
+
+    const handleSearch = (query: string) => {
+        setSearchQuery(query)
+    }
+
+    const jobDelete = (id: string) => {
+        toast("Delete Candidate?", {
+            description: "This action cannot be undone.",
+            action: {
+                label: "Delete",
+                onClick: async () => {
+                    try {
+                        await api.deleteCandidate(id);
+                        await loadJobs();
+                        toast.success("Candidate deleted successfully");
+                    } catch (error) {
+                        toast.error("Failed to delete candidate");
+                    }
+                },
+            },
+            cancel: {
+                label: "Cancel",
+                onClick: () => { },
+            },
+            duration: 10000, // Optional: keep toast visible for 10 seconds
+        });
+    };
+
+
+    const columns: ColumnDef<Candidate>[] = [
+        {
+            id: "select",
+            header: ({ table }) => (
+                <Checkbox
+                    checked={
+                        table.getIsAllPageRowsSelected() ||
+                        (table.getIsSomePageRowsSelected() && "indeterminate")
+                    }
+                    onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+                    aria-label="Select all"
+                />
+            ),
+            cell: ({ row }) => (
+                <Checkbox
+                    checked={row.getIsSelected()}
+                    onCheckedChange={(value) => row.toggleSelected(!!value)}
+                    aria-label="Select row"
+                />
+            ),
+            enableSorting: true,
+            enableHiding: true,
+        },
+        {
+            accessorKey: 'title',
+            header: "Title",
+        },
+        {
+            accessorKey: 'status',
+            header: "Status",
+        },
+        {
+            accessorKey: 'priority',
+            header: "Priority",
+        },
+        {
+            accessorKey: 'hiringManager',
+            header: "Hiring Manager",
+        },
+        {
+            accessorKey: 'location',
+            header: "Location",
+        },
+        {
+            accessorKey: 'department',
+            header: "Department",
+        },
+        {
+            accessorKey: 'salaryRange',
+            header: "Salary Range",
+        },
+        {
+            id: "actions",
+            header: "Actions",
+            cell: ({ row }) => {
+                const candidate = row.original
+                return (
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" className="h-8 w-8 p-0">
+                                <span className="sr-only">Open menu</span>
+                                <MoreHorizontal className="h-4 w-4" />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            <DropdownMenuItem className="cursor-pointer" onClick={() => {
+                                setSelectedId(candidate.id);
+                                setOpen(true);
+                            }}>
+                                <Eye className="mr-2 h-4 w-4" />
+                                View
+                            </DropdownMenuItem>
+                            <DropdownMenuItem >
+                                <Link href={`/dashboard/jobs/${candidate.id}`} className="flex items-center gap-3">
+                                    <Edit className="mr-2 h-4 w-4" />
+                                    Edit
+                                </Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => { jobDelete(candidate.id) }}>
+                                <Trash className="mr-2 h-4 w-4" />
+                                Delete
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                )
+            },
+        },
+    ]
+
     return (
-        <section className="p-5">
+        <div className="p-5">
             <HeaderCard
-                title="JOBS"
-                description="Manage all jobs and track their hiring pipeline."
-                buttontitle="Create Job"
+                title="Candidates"
+                description="Manage all candidates and track their hiring pipeline."
+                buttontitle="Create Jobs"
                 link="/dashboard/jobs/create"
             />
-            {loading ?
-                (<JobsSkeleton/>)
-                : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {jobs.map((job: any) => (
-                            <Card
-                                key={job.id}
-                                onClick={() => {
-                                    setSelectedJobId(job?.id);
-                                    setJobOpen(true);
-                                }}
-                                className="border-slate-200 shadow-none hover:border-blue-200 hover:shadow-md transition-all cursor-pointer group rounded-sm"
-                            >
-                                <CardContent className="p-5">
-                                    {/* Top row */}
-                                    <div className="flex items-start justify-between gap-2 mb-4">
-                                        <div className="min-w-0">
-                                            <h3 className="font-semibold text-slate-500 text-sm leading-tight mb-0.5 group-hover:text-blue-600 transition-colors">
-                                                {job.title}
-                                            </h3>
-                                            <p className="text-xs text-slate-400">{job.department}</p>
-                                        </div>
-                                        <span
-                                            className={`text-xs px-2 py-0.5 rounded-xs font-medium shrink-0 ${PRIORITY_BADGE[job.priority] ?? "bg-slate-50 text-slate-500 border border-slate-100"
-                                                }`}
-                                        >
-                                            {job.priority}
-                                        </span>
-                                    </div>
-
-                                    {/* Meta */}
-                                    <div className="space-y-2 mb-4">
-                                        <div className="flex items-center gap-1.5 text-slate-500">
-                                            <MapPin className="w-3.5 h-3.5 shrink-0" />
-                                            <span className="text-xs">{job.location}</span>
-                                            <span className="text-slate-200 mx-0.5">·</span>
-                                            <span className="text-xs">{job.employmentType}</span>
-                                        </div>
-                                        <div className="flex items-center gap-1.5 text-slate-500">
-                                            <Building2 className="w-3.5 h-3.5 shrink-0" />
-                                            <span className="text-xs">{job.hiringManager}</span>
-                                        </div>
-                                        <div className="flex items-center gap-1.5">
-                                            <TrendingUp className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-                                            <span className="text-xs font-semibold text-emerald-600">{job.salaryRange}</span>
-                                        </div>
-                                    </div>
-
-                                    {/* Skills */}
-                                    <div className="flex flex-wrap gap-1.5">
-                                        {job.skills.slice(0, 3).map((skill: any) => (
-                                            <span
-                                                key={skill}
-                                                className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-xs font-medium"
-                                            >
-                                                {skill}
-                                            </span>
-                                        ))}
-                                        {job.skills.length > 3 && (
-                                            <span className="text-xs text-slate-400 px-1 py-0.5">
-                                                +{job.skills.length - 3} more
-                                            </span>
-                                        )}
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        ))}
-                    </div>
-                )}
-
             <JobViewModal
-                id={selectedJobId}
-                open={jobOpen}
-                onOpenChange={setJobOpen}
+                id={selectedId}
+                open={open}
+                onOpenChange={setOpen}
             />
-        </section>
+
+            <DataTable
+                columns={columns}
+                data={jobs}
+                pageCount={1}
+                currentPage={1}
+                onPageChange={()=>{()=>{}}}
+                onSearch={handleSearch}
+                isLoading={loading}
+            />
+        </div>
     )
 }

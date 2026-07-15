@@ -59,6 +59,11 @@ async function request<T>(
 }
 
 export const api = {
+    awake: () => 
+        request<LoginResponse>("/api/auth/awake",{
+            method: "POST",
+        }),
+
     login: (body: LoginPayload) =>
         request<LoginResponse>("/api/auth/login", {
             method: "POST",

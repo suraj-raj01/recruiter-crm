@@ -81,10 +81,10 @@ const testimonials = [
 
 export default function Tesitmonials() {
     return (
-        <section className="bg-blue pb-20" id="about">
+        <section className="bg-card py-15">
             <div className="lg:max-w-6xl w-full mx-auto">
-                <div className="max-w-3xl py-25 flex flex-col mx-auto items-center justify-center">
-                    <Badge className="text-xs font-bold rounded-full h-8 py-3 px-4 mb-3 bg-accent-foreground/10 text-orange-500 tracking-[0.2em] uppercase"><Sparkles/> Testimonials</Badge>
+                <div className="max-w-3xl flex flex-col mx-auto items-center justify-center">
+                    <Badge className="text-xs font-bold rounded-full h-8 py-3 px-4 mb-3 bg-orange-500/20 text-orange-500 tracking-[0.2em] uppercase"><Sparkles/> Testimonials</Badge>
                     <h1 className="text-3xl block bg-linear-to-r from-orange-600 to-indigo-600 bg-clip-text text-transparentmt-2 text-center lg:text-5xl font-extrabold">Words from founders and growth leads.</h1>
                     <p className="text-sm text-center text-zinc-600 dark:text-zinc-400 mt-4 font-semibold">Real quotes from ecom + SaaS teams we've shipped conversion wins for.</p>
                 </div>
@@ -96,8 +96,8 @@ export default function Tesitmonials() {
                     ))}
                 </Marquee>
 
-                <div className="from-blue pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r"></div>
-                <div className="from-blue pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l"></div>
+                <div className="from-card pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r"></div>
+                <div className="from-card pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l"></div>
             </div>
 
             <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
@@ -107,8 +107,8 @@ export default function Tesitmonials() {
                     ))}
                 </Marquee>
 
-                <div className="from-blue pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r"></div>
-                <div className="from-blue pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l"></div>
+                <div className="from-card pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r"></div>
+                <div className="from-card pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l"></div>
             </div>
         </section>
     )
