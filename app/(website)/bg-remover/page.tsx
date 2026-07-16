@@ -136,7 +136,7 @@ export default function BgRemover() {
                     <Card className='rounded-lg'>
                         <CardContent className="flex h-105 rounded-lg flex-col items-center justify-center">
 
-                            <div className="flex h-64 w-64 items-center justify-center overflow-hidden rounded-xl border-2 border-dashed">
+                            <div className="flex h-64 w-60 items-center justify-center overflow-hidden rounded-xl border-2 border-dashed">
 
                                 {outputImage ? (
                                     <img

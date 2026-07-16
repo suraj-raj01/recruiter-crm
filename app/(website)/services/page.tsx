@@ -11,6 +11,8 @@ import {
     CheckCircle,
 } from "lucide-react";
 import Link from "next/link";
+import { InteractiveGridPattern } from "@/components/ui/interactive-grid-pattern"
+import { cn } from "@/lib/utils";
 
 const services = [
     {
@@ -64,17 +66,26 @@ export default function Services() {
     return (
         <main className="bg-background">
             {/* Hero */}
-            <section className="border-b -mt-18 h-screen flex items-center">
-                <div className="mx-auto max-w-6xl px-3 py-24 text-center">
+            <section className="flex relative w-full items-center h-screen overflow-hidden">
+                <InteractiveGridPattern 
+                    className={cn(
+                        "absolute inset-0 lg:mask-[radial-gradient(550px_circle_at_center,white,transparent)] mask-[radial-gradient(350px_circle_at_center,white,transparent)]"
+                    )}
+                    width={20}
+                    height={20}
+                    squares={[80, 80]}
+                    squaresClassName="hover:fill-orange-600" 
+                    />
+                <div className="mx-auto relative z-5 max-w-6xl -mt-15 px-3 text-center">
                     <span className="rounded-full bg-orange-600/20 px-4 py-2 text-sm font-medium text-orange-600">
                         🚀 Our Services
                     </span>
 
-                    <h1 className="mt-6 text-3xl font-bold tracking-tight md:text-6xl">
+                    <h1 className="mt-6 text-4xl font-bold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
                         Everything You Need to Manage Recruitment
                     </h1>
 
-                    <p className="mx-auto mt-6 max-w-3xl text-justify lg:text-center text-lg lg:leading-6 text-muted-foreground">
+                    <p className="mx-auto mt-6 max-w-3xl text-center text-lg lg:leading-6 text-muted-foreground">
                         TalentDesk provides a complete recruitment platform that helps HR
                         teams streamline hiring, collaborate efficiently, and make faster
                         hiring decisions.

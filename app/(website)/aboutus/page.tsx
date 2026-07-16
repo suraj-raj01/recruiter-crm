@@ -1,3 +1,4 @@
+'use client'
 import {
     BriefcaseBusiness,
     Users,
@@ -5,6 +6,11 @@ import {
     ShieldCheck,
     CheckCircle2,
 } from "lucide-react";
+
+
+import { cn } from "@/lib/utils"
+import { HexagonPattern } from "@/components/ui/hexagon-pattern";
+import { DotPattern } from "@/components/ui/dot-pattern";
 
 export default function AboutPage() {
     const features = [
@@ -35,19 +41,27 @@ export default function AboutPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-background">
+        <main className="bg-background ">
             {/* Hero */}
-            <section className="h-150 flex items-center">
+            <section className="relative flex h-screen pb-10 w-full flex-col items-center justify-center overflow-hidden">
+                <div className="">
+                    <DotPattern
+                        glow={true}
+                        className={cn(
+                            "mask-[radial-gradient(600px_circle_at_center,white,transparent)] text-orange-600"
+                        )}
+                    />
+                </div>
                 <div className="mx-auto max-w-6xl px-3 py-24 text-center">
                     <span className="rounded-full bg-orange-600/20 px-4 py-2 text-sm font-medium text-orange-600">
                        ✨ About TalentDesk
                     </span>
 
-                    <h1 className="mt-6 text-4xl max-w-2xl lg:text-center text-start font-bold tracking-tight md:text-6xl">
+                    <h1 className="mt-6 text-4xl max-w-2xl text-center font-extrabold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
                         Simplifying Modern Recruitment
                     </h1>
 
-                    <p className="mx-auto mt-6 max-w-3xl text-lg lg:text-center text-justify text-muted-foreground lg:leading-7">
+                    <p className="mx-auto mt-6 max-w-3xl text-lg text-center text-muted-foreground lg:leading-7">
                         TalentDesk is a modern Applicant Tracking System (ATS) built to help
                         recruiters, HR teams, and organizations manage the complete hiring
                         process—from creating job openings to onboarding top talent.
@@ -59,17 +73,17 @@ export default function AboutPage() {
             <section className="mx-auto max-w-6xl px-3 py-20 mb-10">
                 <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
                     <div>
-                        <h2 className="text-4xl font-bold text-start">
+                        <h2 className="text-4xl font-bold text-center lg:text-start">
                             Built for Recruiters, Designed for Teams
                         </h2>
 
-                        <p className="mt-6 text-muted-foreground text-justify lg:text-start lg:leading-6">
+                        <p className="mt-6 text-muted-foreground text-center lg:text-start lg:leading-6 text-lg">
                             Hiring the right talent shouldn't be complicated. Traditional
                             recruitment often involves scattered spreadsheets, endless email
                             threads, and manual candidate tracking.
                         </p>
 
-                        <p className="mt-4 text-muted-foreground text-justify lg:text-start lg:leading-6">
+                        <p className="mt-4 text-muted-foreground text-center lg:text-start lg:leading-6 text-lg">
                             TalentDesk centralizes every stage of recruitment into a single
                             platform, enabling recruiters to collaborate, organize candidates,
                             monitor hiring progress, and make faster, data-driven decisions.
@@ -127,9 +141,9 @@ export default function AboutPage() {
                                         <Icon className="h-6 w-6" />
                                     </div>
 
-                                    <h3 className="font-semibold">{feature.title}</h3>
+                                    <h3 className="font-semibold lg:text-lg">{feature.title}</h3>
 
-                                    <p className="mt-2 text-sm lg:leading-5 text-muted-foreground">
+                                    <p className="mt-2 lg:text-sm text-lg lg:leading-5 text-muted-foreground">
                                         {feature.description}
                                     </p>
                                 </div>

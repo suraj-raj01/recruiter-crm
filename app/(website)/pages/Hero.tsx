@@ -13,11 +13,11 @@ export default function HeroSection() {
 
                 <InteractiveGridPattern
                     className={cn(
-                        " absolute inset-0 mask-[radial-gradient(400px_circle_at_center,white,transparent)]"
+                        "absolute inset-0 mask-[radial-gradient(400px_circle_at_center,white,transparent)]"
                     )}
-                    width={50}
-                    height={50}
-                    squares={[80, 80]}
+                    width={30}
+                    height={30}
+                    squares={[40, 40]}
                     squaresClassName="hover:fill-orange-600"
                 />
 
@@ -34,7 +34,7 @@ export default function HeroSection() {
                     <h1 className="mt-5 md:mb-0 mb-3 max-w-3xl font-extrabold leading-tight text-zinc-900 dark:text-white md:text-4xl text-3xl">
                         Recruiters <span className='text-orange-600'>CRM</span>
                     </h1>
-                    <span className="block bg-linear-to-r from-orange-600 to-indigo-600 bg-clip-text text-transparent md:text-6xl md:leading-17 font-extrabold text-5xl">
+                    <span className="block bg-linear-to-r from-orange-600 via-blue-400 to-indigo-600 bg-clip-text text-transparent md:text-6xl md:leading-17 font-extrabold text-5xl">
                         Manage Talent Smarter
                     </span>
 
@@ -44,7 +44,7 @@ export default function HeroSection() {
                         platform.
                     </p>
 
-                    <div className="mt-10 flex flex-col lg:flex-row w-full gap-3 px-3 items-center lg:justify-center justify-between lg:gap-5">
+                    <div className="mt-10 flex flex-col lg:flex-row w-full gap-3 px-8 lg:px-3 items-center lg:justify-center justify-between lg:gap-5">
                         <Link
                             href="/auth/login"
                             className="flex items-center justify-center gap-2 rounded-full bg-orange-600 md:px-12 px-5 lg:py-3 py-2 text-white font-bold w-full lg:w-fit shadow-lg shadow-orange-600/30 transition-all duration-300 hover:-translate-y-1 hover:bg-orange-700 hover:shadow-xl"
