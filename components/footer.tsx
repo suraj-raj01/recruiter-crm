@@ -8,7 +8,7 @@ export default function Footer() {
     return (
         <footer className="border-t bg-accent">
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-3 py-10">
-                <div className="grid gap-8 md:grid-cols-3 lg:text-start text-center">
+                <div className="grid gap-8 md:grid-cols-2 lg:text-start text-center">
                     {/* Brand */}
                     <div className="space-y-3">
                         <div className="flex items-center gap-2">
@@ -18,7 +18,7 @@ export default function Footer() {
                             </h3>
                         </div>
 
-                        <p className="text-sm leading-6 text-muted-foreground">
+                        <p className="text-sm text-start leading-6 text-muted-foreground">
                             Recruiter CRM & ATS platform built
                             with the Latest tech stack to streamline job postings,
                             candidate management, hiring pipelines, interview
@@ -26,110 +26,107 @@ export default function Footer() {
                         </p>
                     </div>
 
-                    {/* Quick Links */}
-                    <div>
-                        <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide">
-                            Quick Links
-                        </h4>
+                    <section className="flex flex-row w-full items-start justify-between">
+                        {/* Quick Links */}
+                        <div>
+                            <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide">
+                                Quick Links
+                            </h4>
 
-                        <div className="flex flex-col gap-2 text-sm">
-                            <Link
-                                href="/"
-                                className="text-muted-foreground transition hover:text-foreground"
-                            >
-                                Home
-                            </Link>
-                            <Link
-                                href="/about"
-                                className="text-muted-foreground transition hover:text-foreground"
-                            >
-                                About
-                            </Link>
-                            <Link
-                                href="/services"
-                                className="text-muted-foreground transition hover:text-foreground"
-                            >
-                                Services
-                            </Link>
-                            <Link
-                                href="/resume-builder"
-                                className="text-muted-foreground transition hover:text-foreground"
-                            >
-                                Resume Builder
-                            </Link>
-                            <Link
-                                href="/bg-remover"
-                                className="text-muted-foreground transition hover:text-foreground"
-                            >
-                                Background Remover
-                            </Link>
+                            <div className="flex flex-col gap-2 text-sm">
+                                <Link
+                                    href="/"
+                                    className="text-muted-foreground transition hover:text-foreground"
+                                >
+                                    Home
+                                </Link>
+                                <Link
+                                    href="/about"
+                                    className="text-muted-foreground transition hover:text-foreground"
+                                >
+                                    About
+                                </Link>
+                                <Link
+                                    href="/services"
+                                    className="text-muted-foreground transition hover:text-foreground"
+                                >
+                                    Services
+                                </Link>
+                                <Link
+                                    href="/resume-builder"
+                                    className="text-muted-foreground transition hover:text-foreground"
+                                >
+                                    Resume Builder
+                                </Link>
+                                <Link
+                                    href="/bg-remover"
+                                    className="text-muted-foreground transition hover:text-foreground"
+                                >
+                                    Background Remover
+                                </Link>
 
-                            <Link
-                                href="/resume-ats-checker"
-                                className="text-muted-foreground transition hover:text-foreground"
-                            >
-                                Resume ATS Checker
-                            </Link>
+                                <Link
+                                    href="/resume-ats-checker"
+                                    className="text-muted-foreground transition hover:text-foreground"
+                                >
+                                    Resume ATS Checker
+                                </Link>
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Resources */}
-                    <div>
-                        <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide">
-                            Resources
-                        </h4>
+                        {/* Resources */}
+                        <div>
+                            <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide">
+                                Resources
+                            </h4>
 
-                        <div className="flex flex-col gap-3 lg:items-start items-center justify-center lg:justify-start">
-                            <Link
-                                href="https://github.com/suraj-raj01"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
-                            >
-                                <GithubLogoIcon className="h-4 w-4" />
-                                GitHub
-                            </Link>
+                            <div className="flex flex-col gap-3 lg:items-start items-center justify-center lg:justify-start">
+                                <Link
+                                    href="/auth/login"
+                                    className="flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
+                                >
+                                    <Mail className="h-4 w-4" />
+                                    Demo Account
+                                </Link>
 
-                             <Link
-                                href="https://www.linkedin.com/in/suraj-kumar-1965b0296/"
-                                className="flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
-                            >
-                                <LinkedinLogoIcon className="h-4 w-4" />
-                                LinkedIn
-                            </Link>
-
-                            <Link
-                                href="/auth/login"
-                                className="flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
-                            >
-                                <Mail className="h-4 w-4" />
-                                Demo Account
-                            </Link>
-
-                            <Link
-                                href="/"
-                                className="flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
-                            >
-                                <ExternalLink className="h-4 w-4" />
-                                Live Demo
-                            </Link>
-                           
+                                <Link
+                                    href="/"
+                                    className="flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
+                                >
+                                    <ExternalLink className="h-4 w-4" />
+                                    Live Demo
+                                </Link>
+                                <Link
+                                    href="https://www.linkedin.com/in/suraj-kumar-1965b0296/"
+                                    className="flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
+                                >
+                                    <LinkedinLogoIcon className="h-4 w-4" />
+                                    LinkedIn
+                                </Link>
+                                <Link
+                                    href="https://github.com/suraj-raj01"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
+                                >
+                                    <GithubLogoIcon className="h-4 w-4" />
+                                    GitHub
+                                </Link>
+                            </div>
                         </div>
-                    </div>
+                    </section>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 border-t pt-6 text-sm text-muted-foreground md:flex-row">
                     <p className="text-center lg:text-start">
-                        © {new Date().getFullYear()} Recruiter CRM / ATS Platform.
-                        Built with Latest Tech Stacks and secure JWT
-                        Authentication.
+                        Everything is reserved by TalentDesk Copyright © {new Date().getFullYear()} 
                     </p>
 
                     <div className="flex flex-col items-center justify-center">
                         Designed & Developed by{" "}
                         <br />
                         <Link href='https://portfolio-suraj-puce.vercel.app/' className="font-medium text-muted-foreground uppercase flex items-center gap-2 justify-center">
-                            Suraj Kumar <Link2Icon className="4-3 w-4"/>
+                            Suraj Kumar <Link2Icon className="4-3 w-4" />
                         </Link>
                     </div>
                     <div className="flex items-center justify-center lg:justify-end gap-3">

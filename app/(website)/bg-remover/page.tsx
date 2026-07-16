@@ -20,34 +20,29 @@ export default function BgRemover() {
     const [loading, setLoading] = useState(false);
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-
+        const file = e.target.files?.[0] || null;
+        
         if (!file) return;
-
         setSelectedFile(file);
-
+        // console.log(file,'file')
         const url = URL.createObjectURL(file);
         setPreview(url);
-
         setOutputImage("");
     };
 
     const removeBackground = async () => {
         if (!selectedFile) return;
-
         try {
             setLoading(true);
-
             const formData = new FormData();
             formData.append("image", selectedFile);
 
-            const response = await fetch("/api/remove-background", {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/remove-background`, {
                 method: "POST",
                 body: formData,
-            });
-
+            })
             const data = await response.json();
-
+            // console.log(data.image,'image')
             setOutputImage(data.image);
         } catch (err) {
             console.error(err);
@@ -55,6 +50,29 @@ export default function BgRemover() {
             setLoading(false);
         }
     };
+
+    const downloadImage = async () => {
+    if (!outputImage) return;
+
+    try {
+        const response = await fetch(outputImage);
+        const blob = await response.blob();
+
+        const url = window.URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `bg-removed-${Date.now()}.png`;
+
+        document.body.appendChild(link);
+        link.click();
+
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+    } catch (error) {
+        console.error("Download failed:", error);
+    }
+};
 
     useEffect(() => {
         return () => {
@@ -64,10 +82,10 @@ export default function BgRemover() {
 
     return (
         <section className="min-h-screen w-full py-20">
-            <div className="mx-auto max-w-7xl px-4">
+            <div className="mx-auto max-w-6xl px-3">
 
                 {/* Hero */}
-                <div className="text-center">
+                <div className="text-center py-15">
                     <div className="inline-flex items-center gap-2 rounded-full bg-orange-600/20 px-4 py-2 text-sm font-semibold text-orange-600 dark:bg-orange-600/20">
                         <Sparkles size={16} />
                         AI Background Remover
@@ -88,10 +106,10 @@ export default function BgRemover() {
                 </div>
 
                 {/* Main Tool */}
-                <div className="mt-16 grid gap-8 lg:grid-cols-2">
+                <div className="mt-16 grid lg:grid-cols-2">
 
                     {/* Upload */}
-                    <Card className="border-dashed border-2 rounded-lg">
+                    <Card className="border-dashed border-2 rounded-l-lg">
                         <CardContent className="flex h-105 flex-col items-center justify-center p-8">
 
                             <div className="rounded-full bg-orange-100 p-5 dark:bg-orange-500/10">
@@ -120,7 +138,7 @@ export default function BgRemover() {
                                 asChild
                                 className="mt-8 rounded-full bg-orange-600 hover:bg-orange-700"
                             >
-                                <label htmlFor="image-upload" className="px-4 cursor-pointer">
+                                <label htmlFor="image-upload" className="px-4 text-white cursor-pointer">
                                     <Upload className="mr-1 h-4 w-4" />
                                     Choose Image
                                 </label>
@@ -133,7 +151,7 @@ export default function BgRemover() {
                     </Card>
 
                     {/* Preview */}
-                    <Card className='rounded-lg'>
+                    <Card className='rounded-r-lg'>
                         <CardContent className="flex h-105 rounded-lg flex-col items-center justify-center">
 
                             <div className="flex h-64 w-60 items-center justify-center overflow-hidden rounded-xl border-2 border-dashed">
@@ -171,7 +189,7 @@ export default function BgRemover() {
                                 <Button
                                     onClick={removeBackground}
                                     disabled={!selectedFile || loading}
-                                    className="rounded-full bg-orange-600 hover:bg-orange-700"
+                                    className="rounded-full bg-orange-600 text-white hover:bg-orange-700"
                                 >
                                     <Eraser className="mr-2 h-4 w-4" />
                                     {loading ? "Removing..." : "Remove Background"}
@@ -181,6 +199,7 @@ export default function BgRemover() {
                                     variant="outline"
                                     disabled={!selectedFile || loading}
                                     className="rounded-full px-5"
+                                    onClick={downloadImage}
                                 >
                                     <Download className="mr-1 h-4 w-4 px" />
                                     Download
@@ -196,7 +215,6 @@ export default function BgRemover() {
                 {/* Features */}
 
                 <div className="mt-20 grid gap-6 md:grid-cols-3">
-
                     <Card className="rounded-lg">
                         <CardContent className="p-8 text-center">
 

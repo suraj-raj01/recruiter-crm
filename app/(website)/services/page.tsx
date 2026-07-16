@@ -69,19 +69,19 @@ export default function Services() {
             <section className="flex relative w-full items-center h-screen overflow-hidden">
                 <InteractiveGridPattern 
                     className={cn(
-                        "absolute inset-0 lg:mask-[radial-gradient(550px_circle_at_center,white,transparent)] mask-[radial-gradient(350px_circle_at_center,white,transparent)]"
+                        "absolute inset-0 lg:mask-[radial-gradient(450px_circle_at_center,white,transparent)] mask-[radial-gradient(300px_circle_at_center,white,transparent)]"
                     )}
-                    width={20}
-                    height={20}
+                    width={30}
+                    height={30}
                     squares={[80, 80]}
                     squaresClassName="hover:fill-orange-600" 
                     />
-                <div className="mx-auto relative z-5 max-w-6xl -mt-15 px-3 text-center">
+                <div className="mx-auto relative z-5 max-w-6xl -mt-25 px-3 text-center">
                     <span className="rounded-full bg-orange-600/20 px-4 py-2 text-sm font-medium text-orange-600">
                         🚀 Our Services
                     </span>
 
-                    <h1 className="mt-6 text-4xl font-bold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
+                    <h1 className="mt-6 text-4xl font-bold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-indigo-500 to-orange-600 bg-clip-text text-transparent">
                         Everything You Need to Manage Recruitment
                     </h1>
 
