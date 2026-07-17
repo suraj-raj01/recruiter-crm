@@ -5,12 +5,13 @@ import {
     BarChart3,
     ShieldCheck,
     CheckCircle2,
+    ArrowRight,
 } from "lucide-react";
 
-
+import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern"
 import { cn } from "@/lib/utils"
-import { HexagonPattern } from "@/components/ui/hexagon-pattern";
-import { DotPattern } from "@/components/ui/dot-pattern";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function AboutPage() {
     const features = [
@@ -43,25 +44,27 @@ export default function AboutPage() {
     return (
         <main className="bg-background ">
             {/* Hero */}
-            <section className="relative flex h-screen pb-10 w-full flex-col items-center justify-center overflow-hidden">
-                <div className="">
-                    <DotPattern
-                        glow={true}
-                        className={cn(
-                            "mask-[radial-gradient(600px_circle_at_center,white,transparent)] text-orange-600"
-                        )}
-                    />
-                </div>
+            <section className="relative flex min-h-120 pb-10 w-full flex-col items-center justify-center overflow-hidden">
+                <AnimatedGridPattern
+                    numSquares={30}
+                    maxOpacity={0.5}
+                    duration={3}
+                    repeatDelay={0.5}
+                    className={cn(
+                        "mask-[radial-gradient(500px_circle_at_center,white,transparent)]",
+                        "inset-x-0 inset-y-[-20%] h-[200%] skew-y-0 text-orange-600"
+                    )}
+                />
                 <div className="mx-auto max-w-6xl px-3 py-24 text-center">
-                    <span className="rounded-full bg-orange-600/20 px-4 py-2 text-sm font-medium text-orange-600">
-                       ✨ About TalentDesk
+                    <span className="rounded-full bg-background border border-orange-600/80 px-4 py-2 text-sm font-medium text-orange-600">
+                        ✨ About TalentDesk
                     </span>
 
-                    <h1 className="mt-6 text-4xl max-w-2xl text-center font-extrabold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
-                        Simplifying Modern Recruitment
+                    <h1 className="mt-6 text-5xl max-w-2xl text-center font-extrabold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
+                        Simplifying The Modern Recruitment
                     </h1>
 
-                    <p className="mx-auto mt-6 max-w-3xl text-lg text-center text-muted-foreground lg:leading-7">
+                    <p className="mx-auto mt-6 max-w-3xl text-lg text-auto lg:text-center text-muted-foreground lg:leading-7">
                         TalentDesk is a modern Applicant Tracking System (ATS) built to help
                         recruiters, HR teams, and organizations manage the complete hiring
                         process—from creating job openings to onboarding top talent.
@@ -115,7 +118,7 @@ export default function AboutPage() {
             </section>
 
             {/* Features */}
-            <section className="bg-muted/40 py-20">
+            <section className="bg-muted/60 py-20">
                 <div className="mx-auto max-w-6xl px-3">
                     <div className="text-center">
                         <h2 className="text-4xl font-bold">
@@ -154,8 +157,8 @@ export default function AboutPage() {
             </section>
 
             {/* Mission */}
-            <section className="mx-auto max-w-6xl px-3 py-20">
-                <div className="rounded-lg border bg-card px-5 py-8 md:p-16">
+            <section className="bg-muted/60 py-20 px-3">
+                <div className="rounded-lg border bg-card mx-auto max-w-6xl py-10 px-3 flex items-center justify-center flex-col">
                     <h2 className="text-center text-3xl font-bold">Our Mission</h2>
 
                     <p className="mx-auto mt-4 max-w-3xl lg:text-center text-justify lg:leading-6 text-muted-foreground">
@@ -163,6 +166,11 @@ export default function AboutPage() {
                         collaborative by providing recruiters with intuitive tools that
                         reduce administrative work and improve hiring decisions.
                     </p>
+                    <Button className='mx-auto mt-5 font-semibold text-sm rounded-full text-white bg-orange-600 shadow-lg shadow-orange-600/30 transition-all duration-300 hover:-translate-y-1 hover:bg-orange-700 hover:shadow-xl px-6 cursor-pointer' >
+                       <Link href='/services' className="flex items-center justify-center gap-2">
+                        Know More <ArrowRight />
+                        </Link>
+                    </Button>
                 </div>
             </section>
         </main>

@@ -127,7 +127,7 @@ export default function ResumeAtsChecker() {
                                 : "Needs Improvement",
             });
 
-            toast.success("ATS Analysis Completed");
+            toast.success("ATS Analysis Completed Successfully ✅");
         } catch (error) {
             toast.error("Unable to analyze resume.");
             console.error(error);
@@ -153,8 +153,8 @@ export default function ResumeAtsChecker() {
             return;
         }
 
-        if (selected.size > 5 * 1024 * 1024) {
-            toast.error("Maximum file size is 5MB.");
+        if (selected.size > 8 * 1024 * 1024) {
+            toast.error("Maximum file size is 8MB.");
             return;
         }
 
@@ -168,14 +168,15 @@ export default function ResumeAtsChecker() {
         <main className="bg-background">
             {/* Hero */}
 
-            <section className="border-b">
+            <section className="">
                 <div className="mx-auto max-w-6xl px-3 py-20 text-center">
-                    <span className="rounded-full bg-orange-600/10 px-4 py-2 text-sm font-medium text-orange-600">
-                        Free ATS Resume Checker
+                    <span className="rounded-full bg-background border border-orange-600/80 px-4 py-2 text-sm font-medium text-orange-600">
+                        🚀 Check ATS Score Free
                     </span>
 
-                    <h1 className="mt-6 text-4xl font-bold md:text-6xl">
-                        Check Your Resume ATS Score
+                    <h1 className="mt-6 text-5xl font-bold md:text-6xl bg-linear-to-r from-orange-600 via-orange-500 to-blue-600 bg-clip-text text-transparent">
+                        Check Your Resume Score
+
                     </h1>
 
                     <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
@@ -189,9 +190,9 @@ export default function ResumeAtsChecker() {
             {/* Upload + Score */}
 
             <section className="mx-auto max-w-6xl px-3 py-16">
-                <div className="grid gap-8 lg:grid-cols-2">
+                <div className="grid lg:grid-cols-2">
                     {/* Upload Card */}
-                    <Card className="border-2 border-dashed rounded-2xl p-10 flex flex-col items-center justify-center text-center">
+                    <Card className="border-2 border-dashed rounded-t-2xl lg:rounded-t-xs lg:rounded-l-2xl p-10 flex flex-col items-center justify-center text-center">
                         <Upload className="h-14 w-14 text-orange-600" />
 
                         <h2 className="mt-5 text-2xl font-bold">
@@ -212,7 +213,7 @@ export default function ResumeAtsChecker() {
 
                         <Button
                             asChild
-                            className="mt-8"
+                            className="mt-5 bg-orange-600 hover:bg-orange-600/80 text-white px-4 font-bold"
                             disabled={loading}
                         >
                             <label
@@ -221,7 +222,7 @@ export default function ResumeAtsChecker() {
                             >
                                 {loading ? (
                                     <>
-                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                        <Loader2 className="h-4 w-4 animate-spin" />
                                         Checking...
                                     </>
                                 ) : (
@@ -241,16 +242,19 @@ export default function ResumeAtsChecker() {
                     </Card>
 
                     {/* Score Card */}
-                    <Card className="rounded-2xl p-10 flex flex-col items-center justify-center">
-                        <div className="relative flex h-44 w-44 items-center justify-center rounded-full border-[14px] border-orange-500">
-                            <div className="text-center">
-                                <h2 className="text-5xl font-bold">
-                                    {result?.score ?? "--"}
-                                </h2>
+                    <Card className="rounded-b-2xl lg:rounded-r-2xl lg:rounded-bl-xs p-10 flex flex-col items-center justify-center">
+                        <div
+                            className="relative flex h-45 w-45 items-center justify-center rounded-full bg-accent"
+                            style={{
+                                background: `conic-gradient(
+                                #379c09 ${result?.score! * 3.6}deg,
+                                #1524 ${result?.score! * 3.6}deg 360deg
+                            )`,
+                            }}>
+                            <div className="flex h-38 w-38 flex-col items-center justify-center rounded-full bg-card">
+                                <h2 className="text-5xl font-bold">{result?.score || "00"}</h2>
 
-                                <p className="text-muted-foreground">
-                                    ATS Score
-                                </p>
+                                <p className="text-muted-foreground">ATS Score</p>
                             </div>
                         </div>
 
@@ -293,7 +297,7 @@ export default function ResumeAtsChecker() {
                                         setPdfUrl(null);
                                         setFile(null);
                                         setResult(null);
-                                        toast.success("Resume removed");
+                                        toast.success("Resume removed successfully ✅");
                                     }}
                                 >
                                     Remove
@@ -304,7 +308,7 @@ export default function ResumeAtsChecker() {
                         <iframe
                             src={pdfUrl}
                             title="Resume Preview"
-                            className="h-[750px] w-full"
+                            className="min-h-150 w-full"
                         />
                     </Card>
                 )}
@@ -317,7 +321,7 @@ export default function ResumeAtsChecker() {
 
                     <div className="mb-10 text-center">
                         <h2 className="text-3xl font-bold">
-                            ATS Analysis Report
+                            {!result?.score ? (<span>Upload Resume To See </span>) : ""}  ATS Analysis Report
                         </h2>
 
                         <p className="mt-4 text-muted-foreground">
@@ -325,97 +329,169 @@ export default function ResumeAtsChecker() {
                         </p>
                     </div>
 
-                    <div className="grid gap-6 md:grid-cols-2">
-                        {analysis.map((item) => {
-                            const Icon = item.icon;
+                    {result?.score ? (
+                        <div className="grid gap-6 md:grid-cols-2">
+                            {analysis.map((item) => {
+                                const Icon = item.icon;
 
-                            return (
-                                <Card key={item.title} className="p-6 rounded-lg">
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-3">
-                                            <div className="rounded-lg bg-orange-600/10 p-3 text-orange-600">
-                                                <Icon className="h-5 w-5" />
+                                return (
+                                    <Card key={item.title} className="px-5 py-5 rounded-lg">
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex items-center gap-3">
+                                                <div className="rounded-lg bg-orange-600/10 p-3 text-orange-600">
+                                                    <Icon className="h-5 w-5" />
+                                                </div>
+
+                                                <div>
+                                                    <h3 className="font-semibold">{item.title}</h3>
+                                                    <p className="text-sm text-muted-foreground">
+                                                        {item.status}
+                                                    </p>
+                                                </div>
                                             </div>
+                                            <div
+                                                className="relative flex h-18 w-18 items-center justify-center rounded-full"
+                                                style={{
+                                                    background: `conic-gradient(
+                                            #379c09 ${item.progress! * 3.6}deg,
+                                            #1524 ${item.progress! * 3.6}deg 360deg
+                                        )`,
+                                                }}>
+                                                <div className="flex h-15 w-15 flex-col items-center justify-center rounded-full bg-card">
+                                                    <h2 className="text-lg font-bold">{item.progress + " % " || "--"}</h2>
 
-                                            <div>
-                                                <h3 className="font-semibold">{item.title}</h3>
-                                                <p className="text-sm text-muted-foreground">
-                                                    {item.status}
-                                                </p>
+                                                    {/* <p className="text-muted-foreground">ATS Score</p> */}
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <span className="font-bold">
-                                            {item.progress}%
-                                        </span>
-                                    </div>
+                                    </Card>
+                                );
+                            })}
+                        </div>
+                    ) : (
+                        <Card className='rounded-lg blur-xs text-center font-bold text-3xl py-10'>
+                            <div className="grid gap-6 md:grid-cols-2">
+                                {analysis.map((item) => {
+                                    const Icon = item.icon;
 
-                                    <Progress
-                                        value={item.progress}
-                                        className="mt-5"
-                                    />
-                                </Card>
-                            );
-                        })}
-                    </div>
+                                    return (
+                                        <Card key={item.title} className="px-5 py-5 rounded-lg">
+                                            <div className="flex items-center justify-between">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="rounded-lg bg-orange-600/10 p-3 text-orange-600">
+                                                        <Icon className="h-5 w-5" />
+                                                    </div>
+
+                                                    <div>
+                                                        <h3 className="font-semibold">{item.title}</h3>
+                                                        <p className="text-sm text-muted-foreground">
+                                                            {item.status}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    className="relative flex h-18 w-18 items-center justify-center rounded-full"
+                                                    style={{
+                                                        background: `conic-gradient(
+                                            #379c09 ${item.progress! * 3.6}deg,
+                                            #1524 ${item.progress! * 3.6}deg 360deg
+                                        )`,
+                                                    }}>
+                                                    <div className="flex h-15 w-15 flex-col items-center justify-center rounded-full bg-card">
+                                                        <h2 className="text-lg font-bold">{item.progress + " % " || "--"}</h2>
+
+                                                        {/* <p className="text-muted-foreground">ATS Score</p> */}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </Card>
+                                    );
+                                })}
+                            </div>
+                        </Card>
+                    )}
                 </div>
             </section>
 
             {/* Suggestions */}
 
-            <section className="mx-auto max-w-6xl px-3 py-20">
+            {result?.score ? (
+                <section className="mx-auto max-w-6xl px-3 py-20">
+                    <div className="mb-10 text-center">
+                        <h2 className="text-3xl font-bold">
+                            Suggestions to Improve
+                        </h2>
+                    </div>
 
-                <div className="mb-10 text-center">
-                    <h2 className="text-3xl font-bold">
-                        Suggestions to Improve
-                    </h2>
-                </div>
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
 
-                <div className="space-y-4">
+                        {[
+                            "Add more industry-specific keywords from the job description.",
+                            "Quantify your achievements using numbers and metrics.",
+                            "Avoid using tables, images, and text boxes.",
+                            "Keep section headings simple and ATS-friendly.",
+                            "Include technical skills relevant to your target role.",
+                        ].map((tip) => (
+                            <Card key={tip} className="flex p-5 rounded-lg text-sm">
+                                <AlertTriangle className="h-10 w-10 text-orange-600 p-2 rounded-md bg-orange-700/20" />
+                                <p>{tip}</p>
+                            </Card>
+                        ))}
+                    </div>
+                </section>
+            ) : (
+                <section className="mx-auto max-w-6xl px-3 py-20">
+                    <div className="mb-10 text-center">
+                        <h2 className="text-3xl font-bold">
+                            Upload Resume To See Suggestions to Improve
+                        </h2>
+                    </div>
 
-                    {[
-                        "Add more industry-specific keywords from the job description.",
-                        "Quantify your achievements using numbers and metrics.",
-                        "Avoid using tables, images, and text boxes.",
-                        "Keep section headings simple and ATS-friendly.",
-                        "Include technical skills relevant to your target role.",
-                    ].map((tip) => (
-                        <Card key={tip} className="flex gap-4 p-5">
-                            <AlertTriangle className="mt-1 h-5 w-5 text-orange-500" />
-                            <p>{tip}</p>
-                        </Card>
-                    ))}
-                </div>
-            </section>
+                    <div className="grid grid-cols-1 blur-xs lg:grid-cols-3 gap-3">
+
+                        {[
+                            "Add more industry-specific keywords from the job description.",
+                            "Quantify your achievements using numbers and metrics.",
+                            "Avoid using tables, images, and text boxes.",
+                            "Keep section headings simple and ATS-friendly.",
+                            "Include technical skills relevant to your target role.",
+                        ].map((tip) => (
+                            <Card key={tip} className="flex p-5 rounded-lg text-sm">
+                                <AlertTriangle className="h-10 w-10 text-orange-600 p-2 rounded-md bg-orange-700/20" />
+                                <p>{tip}</p>
+                            </Card>
+                        ))}
+                    </div>
+                </section>
+            )}
 
             {/* Features */}
 
             <section className="bg-muted/40 py-20">
-
                 <div className="mx-auto max-w-6xl px-3">
-
                     <div className="grid gap-6 md:grid-cols-3">
-
-                        <Card className="p-8 text-center">
+                        <Card className="p-8 text-center rounded-lg">
                             <FileText className="mx-auto h-10 w-10 text-orange-600" />
-                            <h3 className="mt-4 font-bold">Resume Parsing</h3>
-                            <p className="mt-2 text-sm text-muted-foreground">
+                            <h3 className="mt-4 text-lg font-bold">Resume Parsing</h3>
+                            <p className="text-sm text-muted-foreground">
                                 Extracts and analyzes every section of your resume.
                             </p>
                         </Card>
 
-                        <Card className="p-8 text-center">
+                        <Card className="p-8 text-center rounded-lg">
                             <Search className="mx-auto h-10 w-10 text-orange-600" />
-                            <h3 className="mt-4 font-bold">Keyword Analysis</h3>
-                            <p className="mt-2 text-sm text-muted-foreground">
+                            <h3 className="mt-4 text-lg font-bold">Keyword Analysis</h3>
+                            <p className="text-sm text-muted-foreground">
                                 Finds missing keywords recruiters are looking for.
                             </p>
                         </Card>
 
-                        <Card className="p-8 text-center">
+                        <Card className="p-8 text-center rounded-lg">
                             <BarChart3 className="mx-auto h-10 w-10 text-orange-600" />
-                            <h3 className="mt-4 font-bold">ATS Score</h3>
-                            <p className="mt-2 text-sm text-muted-foreground">
+                            <h3 className="mt-4 text-lg font-bold">ATS Score</h3>
+                            <p className="text-sm text-muted-foreground">
                                 Get a detailed compatibility score instantly.
                             </p>
                         </Card>
@@ -425,7 +501,7 @@ export default function ResumeAtsChecker() {
                 </div>
             </section>
             <Dialog open={dialogOpen}>
-                <DialogContent className="sm:max-w-md">
+                <DialogContent className="sm:max-w-md rounded-lg">
                     <DialogHeader>
                         <DialogTitle>Analyzing Resume</DialogTitle>
 

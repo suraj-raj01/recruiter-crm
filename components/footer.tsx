@@ -6,7 +6,7 @@ import { LinkedinLogoIcon } from "@phosphor-icons/react";
 
 export default function Footer() {
     return (
-        <footer className="border-t bg-accent">
+        <footer className="border-t bg-card">
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-3 py-10">
                 <div className="grid gap-8 md:grid-cols-2 lg:text-start text-center">
                     {/* Brand */}
@@ -26,14 +26,14 @@ export default function Footer() {
                         </p>
                     </div>
 
-                    <section className="flex flex-row w-full items-start justify-between">
+                    <section className="flex flex-row w-full items-start justify-around lg:justify-between">
                         {/* Quick Links */}
                         <div>
-                            <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide">
+                            <h4 className="mb-3 text-sm text-start font-semibold uppercase tracking-wide">
                                 Quick Links
                             </h4>
 
-                            <div className="flex flex-col gap-2 text-sm">
+                            <div className="flex flex-col gap-2 text-sm text-start">
                                 <Link
                                     href="/"
                                     className="text-muted-foreground transition hover:text-foreground"
@@ -76,11 +76,11 @@ export default function Footer() {
 
                         {/* Resources */}
                         <div>
-                            <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide">
+                            <h4 className="mb-3 text-start text-sm font-semibold uppercase tracking-wide">
                                 Resources
                             </h4>
 
-                            <div className="flex flex-col gap-3 lg:items-start items-center justify-center lg:justify-start">
+                            <div className="flex flex-col gap-2 lg:items-start items-start justify-start">
                                 <Link
                                     href="/auth/login"
                                     className="flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"

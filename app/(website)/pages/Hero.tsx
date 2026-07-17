@@ -12,6 +12,7 @@ export default function HeroSection() {
             <section className="relative flex min-h-screen h-screen w-full overflow-hidden items-center justify-center bg-background">
 
                 <InteractiveGridPattern
+                    opacity={0.5}
                     className={cn(
                         "absolute inset-0 mask-[radial-gradient(300px_circle_at_center,white,transparent)] lg:mask-[radial-gradient(400px_circle_at_center,white,transparent)]"
                     )}

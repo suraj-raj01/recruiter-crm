@@ -66,8 +66,9 @@ export default function Services() {
     return (
         <main className="bg-background">
             {/* Hero */}
-            <section className="flex relative w-full items-center h-screen overflow-hidden">
+            <section className="flex relative w-full items-center min-h-120 overflow-hidden">
                 <InteractiveGridPattern 
+                    opacity={0.5}
                     className={cn(
                         "absolute inset-0 lg:mask-[radial-gradient(450px_circle_at_center,white,transparent)] mask-[radial-gradient(300px_circle_at_center,white,transparent)]"
                     )}
@@ -76,13 +77,13 @@ export default function Services() {
                     squares={[80, 80]}
                     squaresClassName="hover:fill-orange-600" 
                     />
-                <div className="mx-auto relative z-5 max-w-6xl -mt-25 px-3 text-center">
-                    <span className="rounded-full bg-orange-600/20 px-4 py-2 text-sm font-medium text-orange-600">
+                <div className="mx-auto relative z-5 max-w-6xl py-24 px-3 text-center">
+                    <span className="rounded-full bg-background border border-orange-600/80 px-4 py-2 text-sm font-medium text-orange-600">
                         🚀 Our Services
                     </span>
 
-                    <h1 className="mt-6 text-4xl font-bold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-indigo-500 to-orange-600 bg-clip-text text-transparent">
-                        Everything You Need to Manage Recruitment
+                    <h1 className="mt-6 text-5xl font-bold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-orange-500 to-blue-600 bg-clip-text text-transparent">
+                        Everything You Need To Manage Recruitment
                     </h1>
 
                     <p className="mx-auto mt-6 max-w-3xl text-center text-lg lg:leading-6 text-muted-foreground">
@@ -94,7 +95,7 @@ export default function Services() {
             </section>
 
             {/* Services */}
-            <section className='bg-accent'>
+            <section className='bg-background'>
                 <div className="mx-auto max-w-6xl px-3 py-20">
                     <div className="flex flex-col items-center justify-center mb-10">
                         <Badge className='uppercase py-3 px-4 font-bold rounded-full bg-orange-500/20 text-orange-500 h-8'><CheckCircle className="fill-accent" /> Why Teams Trust Us</Badge>
@@ -127,29 +128,54 @@ export default function Services() {
             </section>
 
             {/* Recruitment Process */}
-            <section className="bg-accent py-20">
-                <div className="mx-auto max-w-6xl px-3">
-                    <div className="text-center">
-                        <h2 className="lg:text-5xl text-3xl font-bold">
+            <section className="bg-linear-to-b from-background to-accent/30 py-20">
+                <div className="mx-auto max-w-6xl px-4">
+                    <div className="mx-auto max-w-2xl text-center">
+                        <span className="rounded-full border border-orange-500 bg-orange-700 px-4 py-1 text-sm font-medium text-orange-600 dark:border-orange-900 dark:bg-orange-950/40">
+                           ✨ Hiring Process
+                        </span>
+
+                        <h2 className="mt-5 text-3xl font-bold tracking-tight lg:text-5xl">
                             Simple Recruitment Workflow
                         </h2>
 
-                        <p className="mt-3 text-muted-foreground">
+                        <p className="mt-4 text-lg text-muted-foreground">
                             Manage every stage of hiring from one centralized dashboard.
                         </p>
                     </div>
 
-                    <div className="mt-16 grid md:grid-cols-2 rounded-xl overflow-hidden lg:grid-cols-3">
+                    <div className="relative mt-20 grid gap-4 lg:gap-8 md:grid-cols-2 lg:grid-cols-3">
                         {process.map((step, index) => (
                             <div
                                 key={step}
-                                className="border bg-accent-foreground/2 p-6 text-center hover:bg-background/70"
+                                className="group relative rounded-lg border bg-background/70 p-8 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-2 hover:border-orange-500 hover:shadow-xl"
                             >
-                                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-orange-600 text-white font-bold">
+                                {/* Connector */}
+                                {![2, 5].includes(index) && (
+                                    <div className="absolute left-[calc(100%-1rem)] top-10 hidden h-0.5 w-16 bg-linear-to-r from-orange-500 to-orange-200 lg:block" />
+                                )}
+
+                                {/* Number */}
+                                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br from-orange-500 to-orange-600 text-xl font-bold text-white shadow-lg shadow-orange-500/30 transition-transform duration-300 group-hover:scale-110">
                                     {index + 1}
                                 </div>
 
-                                <h3 className="mt-5 text-lg font-semibold">{step}</h3>
+                                <h3 className="mt-6 text-xl font-semibold">
+                                    {step}
+                                </h3>
+
+                                <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                                    Complete this step quickly using our streamlined
+                                    recruitment platform and move candidates smoothly
+                                    through the hiring pipeline.
+                                </p>
+
+                                <div className="mt-6 flex items-center gap-2 text-sm font-medium text-orange-600">
+                                    Step {index + 1}
+                                    <span className="transition-transform duration-300 group-hover:translate-x-1">
+                                        →
+                                    </span>
+                                </div>
                             </div>
                         ))}
                     </div>

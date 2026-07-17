@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
     ChevronDown,
     LogIn,
@@ -46,6 +46,14 @@ const navItems = [
                 title: "Background Remover",
                 href: "/bg-remover",
             },
+            {
+                title: "Adjust Image Pixel",
+                href: "/bg-remover/adjust-pixel",
+            },
+            {
+                title: "Image Resize / Compress",
+                href: "/bg-remover/image-resizer",
+            },
         ],
     },
 ];
@@ -55,6 +63,28 @@ export default function Navbar() {
 
     const [mobileMenu, setMobileMenu] = useState(false);
     const [toolMenu, setToolMenu] = useState(false);
+    const hideTimeout = useRef<NodeJS.Timeout | null>(null);
+
+    const handleMouseEnter = () => {
+        if (hideTimeout.current) {
+            clearTimeout(hideTimeout.current);
+        }
+        setToolMenu(true);
+    };
+
+    const handleMouseLeave = () => {
+        hideTimeout.current = setTimeout(() => {
+            setToolMenu(false);
+        }, 500); // 1 second delay
+    };
+
+    useEffect(() => {
+        return () => {
+            if (hideTimeout.current) {
+                clearTimeout(hideTimeout.current);
+            }
+        };
+    }, []);
 
     const loadCandidates = async () => {
         try {
@@ -98,25 +128,32 @@ export default function Navbar() {
                             return (
                                 <div
                                     key={item.title}
-                                    className="relative"
-                                    onMouseEnter={() => setToolMenu(true)}
-                                    onMouseLeave={() => setToolMenu(false)}>
-                                    <button className="flex items-center gap-1 font-medium hover:text-orange-500 transition">
+                                    className="relative z-20"
+                                    onMouseEnter={handleMouseEnter}
+                                    onMouseLeave={handleMouseLeave}
+                                >
+                                    <button className="flex items-center gap-1 font-medium transition hover:text-orange-500">
                                         {item.title}
                                         <ChevronDown size={16} />
                                     </button>
 
                                     {toolMenu && (
-                                        <div className="absolute top-8 left-0 w-64 rounded-xl border bg-background shadow-xl p-2">
-                                            {item.children.map((tool) => (
-                                                <Link
-                                                    key={tool.title}
-                                                    href={tool.href}
-                                                    className="block rounded-lg px-4 py-3 hover:bg-muted transition"
-                                                >
-                                                    {tool.title}
-                                                </Link>
-                                            ))}
+                                        <div
+                                            className="absolute top-11.5 border-t-0 -left-30 z-10 -ml-20 min-w-120 rounded-b-lg border bg-background p-3 shadow-xl"
+                                            onMouseEnter={handleMouseEnter}
+                                            onMouseLeave={handleMouseLeave}
+                                        >
+                                            <div className="grid grid-cols-2">
+                                                {item.children.map((tool) => (
+                                                    <Link
+                                                        key={tool.title}
+                                                        href={tool.href}
+                                                        className="rounded-lg px-4 py-2 transition hover:bg-muted"
+                                                    >
+                                                        {tool.title}
+                                                    </Link>
+                                                ))}
+                                            </div>
                                         </div>
                                     )}
                                 </div>
@@ -155,7 +192,7 @@ export default function Navbar() {
             {mobileMenu && (
                 <div className="lg:hidden z-10 h-full pt-25 fixed w-full border rounded-b-md bg-background shadow-lg">
                     <section className="flex flex-col items-start h-full justify-between">
-                        <div className="flex flex-col gap-2 px-6 ">
+                        <div className="flex flex-col gap-2 px-6 text-3xl w-full">
                             <Link
                                 href="#about"
                                 className="py-1"
@@ -180,15 +217,15 @@ export default function Navbar() {
                             </Link>
 
                             <details className="group">
-                                <summary className="cursor-pointer w-fit py-1 list-none flex items-center justify-between">
+                                <summary className="cursor-pointer w-full py-1 list-none flex items-center justify-between">
                                     Tools
                                     <ChevronDown
-                                        size={18}
-                                        className="group-open:rotate-180 ml-2 transition"
+                                        size={25}
+                                        className="group-open:rotate-180 rounded-sm px-1 h-8 w-8 mr-50 bg-card transition"
                                     />
                                 </summary>
 
-                                <div className="ml-4 mt-2 flex flex-col">
+                                <div className="ml-4 mt-2 bg-card w-full p-3 rounded-lg flex flex-col text-2xl">
                                     <Link
                                         href="/resume-builder"
                                         className="py-1"
@@ -219,6 +256,20 @@ export default function Navbar() {
                                     >
                                         Background Remover
                                     </Link>
+                                    <Link
+                                        href="/bg-remover/adjust-pixel"
+                                        className="py-1"
+                                        onClick={() => setMobileMenu(false)}
+                                    >
+                                        Adjust Image Pixel
+                                    </Link>
+                                    <Link
+                                        href="/bg-remover/image-resizer"
+                                        className="py-1"
+                                        onClick={() => setMobileMenu(false)}
+                                    >
+                                        Image Resize / Compress
+                                    </Link>
                                 </div>
                             </details>
 
@@ -233,14 +284,14 @@ export default function Navbar() {
                         <div className="bg-accent/20 px-6 py-5 w-full flex items-center justify-between gap-3">
                             <Link
                                 href="/auth/login"
-                                className="flex items-center justify-center gap-2 rounded-md bg-orange-600 md:px-8 px-3 py-2 text-white w-full lg:w-fit shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-orange-700 hover:shadow-xl text-sm"
+                                className="flex items-center justify-center gap-2 rounded-md bg-orange-600 md:px-8 px-3 py-3 text-white w-full lg:w-fit shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-orange-700 hover:shadow-xl text-lg"
                             >
                                 <LogIn size={16} />
                                 Login
                             </Link>
                             <Link
                                 href="/auth/login"
-                                className="flex items-center justify-center gap-2 rounded-md dark:border-zinc-700 bg-accent dark:text-white dark:hover:bg-zinc-800 md:px-8 px-3 py-2 text-accent-foreground border w-full lg:w-fit shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-orange-700 hover:shadow-xl text-sm"
+                                className="flex items-center justify-center gap-2 rounded-md dark:border-zinc-700 bg-accent dark:text-white dark:hover:bg-zinc-800 md:px-8 px-3 py-3 text-accent-foreground border w-full lg:w-fit shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-orange-700 hover:shadow-xl text-lg"
                             >
                                 <UserPlus size={16} />
                                 Get Started
