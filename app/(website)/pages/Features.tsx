@@ -64,7 +64,10 @@ export default function Features() {
     return (
         <section className='mx-auto w-full max-w-6xl px-3 py-10'>
             <div className="flex flex-col items-center justify-center">
-                <Badge className='uppercase py-3 px-4 font-bold rounded-full bg-orange-500/20 text-orange-500 h-8'><CheckCircle className="fill-accent"/> Why Teams Trust Us</Badge>
+                <Badge className='uppercase py-3 px-4 font-bold rounded-full bg-background text-orange-600 h-8 border border-orange-600/80'>
+                <CheckCircle className="fill-accent"/>
+                 Why Teams Trust Us
+                 </Badge>
                 <h1 className="mt-3 font-bold text-center text-3xl lg:text-5xl max-w-3xl">Built for recruiters who need proof, not promises.</h1>
                 <p className="mt-3 text-center text-zinc-600 dark:text-zinc-400 text-semibold">Every engagement ships with measurable lift, transparent process, and handover you actually own.</p>
             </div>

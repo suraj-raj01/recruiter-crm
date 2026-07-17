@@ -82,6 +82,13 @@ export interface Candidate {
     createdAt: string;
 }
 
+export interface EnquiryProps{
+    name:string,
+    email:string,
+    company:string,
+    message:string,
+}
+
 export interface CandidatePayload {
     name: string;
     email: string;

@@ -4,7 +4,6 @@ import {
     Check,
     ArrowRight,
     ChartLine,
-    Upload,
     Loader2,
 } from "lucide-react";
 
@@ -13,15 +12,9 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { api } from "../../../services/api";
 
 const features = [
     {
@@ -38,43 +31,25 @@ const features = [
     },
 ];
 
-
 export default function EnqureSection() {
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         company: "",
-        budget: "",
-        projectType: "",
         message: "",
-        file: null as File | null,
     });
 
     const [step, setStep] = useState(1);
 
-    const submitForm = async (file?: File | null) => {
-        const form = new FormData();
-        form.append("name", formData.name);
-        form.append("email", formData.email);
-        form.append("company", formData.company);
-        form.append("budget", formData.budget);
-        form.append("projectType", formData.projectType);
-        form.append("message", formData.message);
-
-        if (file) {
-            form.append("file", file);
-        }
-
-        const response = await fetch("https://formspree.io/f/xxxxxxx", {
-            method: "POST",
-            body: form,
-            headers: {
-                Accept: "application/json",
-            },
-        });
-
-        return response.ok;
+    const submitForm = async () => {
+       try {
+         const response = await api.createEnquiry(formData)
+         console.log(response,'data')
+         return response;
+       } catch (error) {
+            console.log(error)
+       }
     };
 
     const nextStep = async () => {
@@ -82,7 +57,6 @@ export default function EnqureSection() {
             toast.warning("Please fill all required fields.");
             return;
         }
-
         try {
             setLoading(true);
             const success = await submitForm();
@@ -92,6 +66,9 @@ export default function EnqureSection() {
             }
             toast.success("Details submitted.");
             setStep(2);
+        } catch(error:any){
+            console.log(error);
+            toast.error(error?.response.message)
         } finally {
             setLoading(false);
         }
@@ -99,45 +76,23 @@ export default function EnqureSection() {
 
     const handleChange = async (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const target = e.target as HTMLInputElement;
-
-        if (target.files) {
-            const file = target.files[0];
-            setFormData((prev) => ({
-                ...prev,
-                file,
-            }));
-            if (file) {
-                try {
-                    setLoading(true);
-                    const success = await submitForm(file);
-                    if (success) {
-                        toast.success("File uploaded successfully.");
-                        navigate.push("/message-success");
-                    } else {
-                        toast.error("Failed to upload file.");
-                    }
-                } finally {
-                    setLoading(false);
-                }
-            }
-            return;
-        } else {
-            setFormData((prev) => ({
-                ...prev,
-                [target.name]: target.value,
-            }));
-        }
+        setFormData((prev) => ({
+            ...prev,
+            [target.name]: target.value,
+        }));
     };
 
     const navigate = useRouter();
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             setLoading(true)
             toast.success("Form Submitted Successfully ✅")
+            navigate.push("/")
         } catch (error) {
             console.error(error);
-            alert("Failed to send message.");
+            toast.error("Failed to send message.");
         } finally {
             setLoading(false);
         }
@@ -274,31 +229,6 @@ export default function EnqureSection() {
 
                             {step === 2 && (
                                 <>
-                                    <div>
-                                        <label className="mb-3 block text-sm font-bold uppercase">
-                                            Attach a Doc (Optional)
-                                        </label>
-
-                                        <label className="flex h-12 cursor-pointer items-center gap-4 rounded-lg border bg-muted/40 px-5">
-                                            <div className="flex items-center gap-2 rounded-lg bg-orange-600/40 px-4 py-2">
-                                                <Upload className="h-4 w-4" />
-                                                Choose file
-                                            </div>
-
-                                            <span className="truncate text-slate-500">
-                                                {formData.file
-                                                    ? formData.file.name
-                                                    : "PDF, DOC, DOCX"}
-                                            </span>
-
-                                            <input
-                                                type="file"
-                                                className="hidden py-5"
-                                                onChange={handleChange}
-                                            />
-                                        </label>
-                                    </div>
-
                                     <Card className="bg-muted/30 p-4">
                                         <h4 className="font-semibold mb-3">
                                             Review Your Details

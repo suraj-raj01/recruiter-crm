@@ -118,7 +118,7 @@ export default function AboutPage() {
             </section>
 
             {/* Features */}
-            <section className="bg-muted/60 py-20">
+            <section className="bg-card py-20">
                 <div className="mx-auto max-w-6xl px-3">
                     <div className="text-center">
                         <h2 className="text-4xl font-bold">
@@ -157,8 +157,8 @@ export default function AboutPage() {
             </section>
 
             {/* Mission */}
-            <section className="bg-muted/60 py-20 px-3">
-                <div className="rounded-lg border bg-card mx-auto max-w-6xl py-10 px-3 flex items-center justify-center flex-col">
+            <section className="bg-card pb-20">
+                <div className="bg-card rounded-lg border mx-auto max-w-6xl py-10 px-3 flex items-center justify-center flex-col">
                     <h2 className="text-center text-3xl font-bold">Our Mission</h2>
 
                     <p className="mx-auto mt-4 max-w-3xl lg:text-center text-justify lg:leading-6 text-muted-foreground">

@@ -1,4 +1,5 @@
 import { Candidate, CandidatePayload, Job, JobPayload, LoginPayload, LoginResponse, MetricsResponse, User } from "@/types/api";
+import { EnquiryProps } from "../types/api";
 
 let token = typeof window !== "undefined" ? localStorage.getItem("ats_token") || "" : "";
 
@@ -128,4 +129,10 @@ export const api = {
 
     getMetrics: () =>
         request<any>("/api/metrics"),
+
+    createEnquiry: (body: EnquiryProps) =>
+        request<EnquiryProps>("/api/enquiry", {
+            method: "POST",
+            body,
+        }),
 };

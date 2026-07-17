@@ -42,7 +42,7 @@ export default function JobDescriptionAnalyzer() {
     }   
 
     return (
-        <section className="bg-muted/30 py-20">
+        <section className="bg-background -mt-20 py-40">
             <div className="mx-auto max-w-6xl px-3">
                 {/* Hero */}
                 <div className="mx-auto max-w-3xl text-center">

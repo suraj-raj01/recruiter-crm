@@ -50,7 +50,7 @@ export default function FaqSection() {
                     {/* Left */}
 
                     <div>
-                        <span className="inline-flex rounded-full border border-orange-600/30 px-4 py-1 text-xs font-extrabold bg-orange-700/20 uppercase tracking-[2px] text-orange-500">
+                        <span className="inline-flex rounded-full border border-orange-600/80 px-4 py-2 text-xs font-extrabold bg-background uppercase tracking-[1px] text-orange-500">
                            🚀 Frequently Asked Questions
                         </span>
 

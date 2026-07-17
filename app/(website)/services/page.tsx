@@ -82,7 +82,7 @@ export default function Services() {
                         🚀 Our Services
                     </span>
 
-                    <h1 className="mt-6 text-5xl font-bold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-orange-500 to-blue-600 bg-clip-text text-transparent">
+                    <h1 className="mt-6 text-5xl font-bold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-blue-500 to-blue-600 bg-clip-text text-transparent">
                         Everything You Need To Manage Recruitment
                     </h1>
 
