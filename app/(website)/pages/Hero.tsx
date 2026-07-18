@@ -23,7 +23,7 @@ export default function HeroSection() {
                 />
 
                 <div className="relative z-5 flex flex-col items-center text-center">
-                    <Badge className="mt-10 rounded-full h-8 lg:px-6 px-4 shadow-sm border-orange-600/30 text-orange-500 bg-background/80">
+                    <Badge className="mt-10 rounded-full h-8 lg:px-6 px-4 shadow-sm border-orange-600/80 text-sm text-orange-500 bg-background/90">
                         <span className="relative mr-2 flex h-2.5 w-2.5">
                             {/* Ping animation */}
                             <span className="absolute z-2 inline-flex h-full w-full animate-ping rounded-full bg-linear-to-l from-orange-600 via-indigo-500 to-orange-600 opacity-75" />

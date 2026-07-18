@@ -120,7 +120,7 @@ export default function BgRemover() {
                         </span>
                     </h1>
 
-                    <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
+                    <p className="mx-auto mt-6 max-w-3xl text-lg text-muted-foreground">
                         Upload any image and remove its background in seconds.
                         Perfect for product photos, profile pictures, logos,
                         resumes, and social media.

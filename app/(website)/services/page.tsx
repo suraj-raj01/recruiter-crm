@@ -82,11 +82,11 @@ export default function Services() {
                         🚀 Our Services
                     </span>
 
-                    <h1 className="mt-6 text-5xl font-bold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-blue-500 to-blue-600 bg-clip-text text-transparent">
+                    <h1 className="mt-6 text-5xl text-center font-extrabold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-blue-500 to-blue-600 bg-clip-text text-transparent">
                         Everything You Need To Manage Recruitment
                     </h1>
 
-                    <p className="mx-auto mt-6 max-w-3xl text-center text-lg lg:leading-6 text-muted-foreground">
+                    <p className="mx-auto mt-6 max-w-3xl text-justify lg:text-center text-lg lg:leading-6 text-muted-foreground">
                         TalentDesk provides a complete recruitment platform that helps HR
                         teams streamline hiring, collaborate efficiently, and make faster
                         hiring decisions.
@@ -98,7 +98,7 @@ export default function Services() {
             <section className='bg-background'>
                 <div className="mx-auto max-w-6xl px-3 py-20">
                     <div className="flex flex-col items-center justify-center mb-10">
-                        <Badge className='uppercase py-3 px-4 font-bold rounded-full bg-orange-500/20 text-orange-500 h-8'><CheckCircle className="fill-accent" /> Why Teams Trust Us</Badge>
+                        <Badge className='uppercase py-3 px-4 font-bold rounded-full bg-background text-orange-600 border border-orange-600/70 h-8'><CheckCircle className="fill-background" /> Why Teams Trust Us</Badge>
                         <h1 className="mt-3 font-bold text-center text-3xl lg:text-5xl max-w-3xl">Built for recruiters who need proof, not promises.</h1>
                         <p className="mt-3 text-center text-zinc-600 dark:text-zinc-400 text-semibold">Every engagement ships with measurable lift, transparent process, and handover you actually own.</p>
                     </div>
@@ -131,7 +131,7 @@ export default function Services() {
             <section className="bg-linear-to-b from-background to-accent/30 py-20">
                 <div className="mx-auto max-w-6xl px-4">
                     <div className="mx-auto max-w-2xl text-center">
-                        <span className="rounded-full border border-orange-500 bg-orange-700 px-4 py-1 text-sm font-medium text-orange-600 dark:border-orange-900 dark:bg-orange-950/40">
+                        <span className="rounded-full border border-orange-500 bg-background px-5 py-2 text-sm font-medium text-orange-600 dark:border-orange-900 ">
                            ✨ Hiring Process
                         </span>
 

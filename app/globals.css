@@ -152,3 +152,36 @@
     animation: none;
     mix-blend-mode: normal;
 }
+
+@media print {
+
+  body {
+    background: white;
+  }
+
+  nav,
+  aside,
+  button {
+    display: none !important;
+  }
+
+  #resume-preview {
+
+    width: 100%;
+
+    max-width: none;
+
+    min-height: auto;
+
+    padding: 30px;
+
+    box-shadow: none;
+
+    border: none;
+
+    margin: 0;
+
+    background: white;
+  }
+
+}

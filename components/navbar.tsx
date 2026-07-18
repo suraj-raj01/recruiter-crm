@@ -190,7 +190,7 @@ export default function Navbar() {
 
             {/* Mobile Menu */}
             {mobileMenu && (
-                <div className="lg:hidden z-10 h-full pt-25 fixed w-full border rounded-b-md bg-background shadow-lg">
+                <div className="lg:hidden z-10 h-full pt-25 fixed w-full border-b rounded-b-md bg-background shadow-lg">
                     <section className="flex flex-col items-start h-full justify-between">
                         <div className="flex flex-col gap-2 px-6 text-3xl w-full">
                             <Link
