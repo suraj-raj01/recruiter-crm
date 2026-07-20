@@ -60,7 +60,7 @@ export default function AboutPage() {
                         ✨ About TalentDesk
                     </span>
 
-                    <h1 className="mt-6 text-5xl mx-auto max-w-2xl text-center font-extrabold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
+                    <h1 className="mt-6 text-4xl mx-auto max-w-3xl text-center font-extrabold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-orange-500 to-indigo-600 bg-clip-text text-transparent">
                         Simplifying the process of Recruitment
                     </h1>
 

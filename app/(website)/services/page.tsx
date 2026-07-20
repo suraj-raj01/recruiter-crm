@@ -77,16 +77,16 @@ export default function Services() {
                     squares={[80, 80]}
                     squaresClassName="hover:fill-orange-600" 
                     />
-                <div className="mx-auto relative z-5 max-w-6xl py-24 px-3 text-center">
+                <div className="mx-auto relative z-5 max-w-6xl px-3 text-center">
                     <span className="rounded-full bg-background border border-orange-600/80 px-4 py-2 text-sm font-medium text-orange-600">
                         🚀 Our Services
                     </span>
 
-                    <h1 className="mt-6 text-5xl text-center font-extrabold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-blue-500 to-blue-600 bg-clip-text text-transparent">
+                    <h1 className="mt-6 text-4xl text-center font-extrabold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-blue-500 to-blue-600 bg-clip-text text-transparent">
                         Everything You Need To Manage Recruitment
                     </h1>
 
-                    <p className="mx-auto mt-6 max-w-3xl text-justify lg:text-center text-lg lg:leading-6 text-muted-foreground">
+                    <p className="mx-auto mt-6 max-w-3xl text-justify lg:text-center text-xl lg:leading-6 text-muted-foreground">
                         TalentDesk provides a complete recruitment platform that helps HR
                         teams streamline hiring, collaborate efficiently, and make faster
                         hiring decisions.

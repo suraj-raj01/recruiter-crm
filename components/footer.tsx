@@ -6,16 +6,13 @@ import { LinkedinLogoIcon } from "@phosphor-icons/react";
 
 export default function Footer() {
     return (
-        <footer className="border-t bg-card">
+        <footer className="border-t bg-muted/80">
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-3 py-10">
                 <div className="grid gap-8 md:grid-cols-2 lg:text-start text-center">
                     {/* Brand */}
                     <div className="space-y-3">
                         <div className="flex items-center gap-2">
-                            <BriefcaseBusiness className="h-6 w-6 text-primary" />
-                            <h3 className="text-lg font-semibold">
-                                Talent Desk
-                            </h3>
+                            <img src='/logo.png' alt="logo" className="h-12 w-auto" />
                         </div>
 
                         <p className="text-sm text-start leading-6 text-muted-foreground">

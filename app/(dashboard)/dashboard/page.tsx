@@ -190,7 +190,7 @@ export default function Dashboard() {
 
         {/* ── Metric Cards ── */}
         {metrics && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-2 lg:gap-4">
             <MetricCard
               icon={Users}
               iconBg="bg-blue-50"
@@ -432,23 +432,23 @@ export default function Dashboard() {
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="bg-slate-50 border-y border-slate-100">
-                      <th className="text-left text-[11px] font-semibold text-slate-400 px-6 py-3 uppercase tracking-wider">
+                    <tr className="bg-muted border-y border-accent">
+                      <th className="text-left text-[11px] font-semibold text-accent-foreground px-6 py-3 uppercase tracking-wider">
                         Candidate
                       </th>
-                      <th className="text-left text-[11px] font-semibold text-slate-400 px-4 py-3 uppercase tracking-wider">
+                      <th className="text-left text-[11px] font-semibold text-accent-foreground px-4 py-3 uppercase tracking-wider">
                         Stage
                       </th>
-                      <th className="text-left text-[11px] font-semibold text-slate-400 px-4 py-3 uppercase tracking-wider hidden md:table-cell">
+                      <th className="text-left text-[11px] font-semibold text-accent-foreground px-4 py-3 uppercase tracking-wider hidden md:table-cell">
                         Role
                       </th>
-                      <th className="text-left text-[11px] font-semibold text-slate-400 px-4 py-3 uppercase tracking-wider hidden lg:table-cell">
+                      <th className="text-left text-[11px] font-semibold text-accent-foreground px-4 py-3 uppercase tracking-wider hidden lg:table-cell">
                         Location
                       </th>
-                      <th className="text-left text-[11px] font-semibold text-slate-400 px-4 py-3 uppercase tracking-wider hidden lg:table-cell">
+                      <th className="text-left text-[11px] font-semibold text-accent-foreground px-4 py-3 uppercase tracking-wider hidden lg:table-cell">
                         Rating
                       </th>
-                      <th className="text-left text-[11px] font-semibold text-slate-400 px-4 py-3 uppercase tracking-wider hidden xl:table-cell">
+                      <th className="text-left text-[11px] font-semibold text-accent-foreground px-4 py-3 uppercase tracking-wider hidden xl:table-cell">
                         Source
                       </th>
                     </tr>
@@ -461,7 +461,7 @@ export default function Dashboard() {
                           setSelectedId(c?.id);
                           setOpen(true);
                         }}
-                        className="hover:bg-accent-foreground transition-colors cursor-pointer group"
+                        className="hover:bg-muted transition-colors cursor-pointer group"
                       >
                         {/* Candidate */}
                         <td className="px-6 py-3.5">
@@ -548,7 +548,7 @@ export default function Dashboard() {
                   setSelectedJobId(job?.id);
                   setJobOpen(true);
                 }}
-                className="border-slate-200 shadow-none hover:border-blue-200 hover:shadow-md transition-all hover:bg-slate-50 cursor-pointer group rounded-sm"
+                className="border-slate-200 shadow-none hover:border-blue-200 hover:shadow-md transition-all hover:bg-muted cursor-pointer group rounded-sm"
               >
                 <CardContent className="p-5">
                   {/* Top row */}

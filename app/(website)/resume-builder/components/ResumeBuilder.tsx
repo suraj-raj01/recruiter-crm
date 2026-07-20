@@ -7,6 +7,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
     Download,
     Eye,
+    Fullscreen,
+    Printer,
     Save,
 } from "lucide-react";
 
@@ -15,7 +17,7 @@ import { Card } from "@/components/ui/card";
 
 import { ResumeFormData, resumeSchema } from "../lib/schema";
 import { defaultValues } from "../lib/defaultValue";
-import {ResumeTemplate } from "../types";
+import { ResumeTemplate } from "../types";
 import { steps } from "../constants/steps";
 
 import ResumeStepper from "./ResumeStepper";
@@ -32,17 +34,21 @@ import { toast } from "sonner";
 import useAutoSave from "@/hooks/useAutoSave";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import usePrintResume from "@/hooks/usePrintResume";
+import { Badge } from "@/components/ui/badge";
+import TemplateRenderer from "./TemplateRender";
+import ResumePreviewDialog from "../dialogs/ResumePreviewDialog";
 
 export default function ResumeBuilder() {
     const [currentStep, setCurrentStep] = useState(0);
     const { componentRef, printResume } = usePrintResume();
-    
+    const [openPreview, setOpenPreview] = useState(false);
+
     const form = useForm<ResumeFormData>({
         resolver: zodResolver(resumeSchema),
         defaultValues: defaultValues,
         mode: "onChange",
     });
-    
+
     const {
         handleSubmit,
         reset,
@@ -55,7 +61,7 @@ export default function ResumeBuilder() {
         watch,
     });
     const template = watch("template");
-    
+
     const onSubmit = async (values: ResumeFormData) => {
         try {
             const response = await fetch("/api/resume", {
@@ -111,6 +117,7 @@ export default function ResumeBuilder() {
             toast.error("Invalid draft");
         }
     };
+
 
     useEffect(() => {
         const draft = localStorage.getItem(
@@ -201,19 +208,11 @@ export default function ResumeBuilder() {
 
                         <Button
                             type="button"
-                            variant="outline"
-                        >
-                            <Eye className="mr-2 h-4 w-4" />
-                            Preview
-                        </Button>
-
-                        <Button
-                            type="button"
                             onClick={() => printResume()}
-                            className="bg-orange-600 text-white hover:bg-orange-700"
+                            className="bg-orange-600 text-white cursor-pointer hover:bg-orange-700"
                         >
-                            <Download className="mr-2 h-4 w-4" />
-                            Download PDF
+                            <Printer className="h-4 w-4" />
+                            Print Resume
                         </Button>
                     </div>
                 </div>
@@ -249,33 +248,53 @@ export default function ResumeBuilder() {
 
                     {/* Preview */}
                     <Card className="p-2 rounded-lg rounded-l-xs">
-                        <Tabs
-                            className="rounded-lg flex items-end justify-center"
-                            value={template}
-                            onValueChange={(value) =>
-                                setValue("template", value as ResumeTemplate)
-                            }
-                        >
-                            <TabsList className='px-2 bg-transparent w-fit rounded-sm'>
-                                <TabsTrigger value="modern">
-                                    Modern
-                                </TabsTrigger>
+                        <div className='flex items-center justify-between'>
+                            <Badge onClick={() => setOpenPreview(true)} className="border border-orange-600/80 text-orange-600 py-3 rounded-sm cursor-pointer bg-card">
+                                <Fullscreen size='lg' className="" />
+                                Preview
+                            </Badge>
+                            <Tabs
+                                className="rounded-lg flex items-end justify-center"
+                                value={template}
+                                onValueChange={(value) =>
+                                    setValue("template", value as ResumeTemplate)
+                                }
+                            >
+                                <TabsList className='px-2 bg-card w-fit rounded-sm'>
+                                    <TabsTrigger value="modern">
+                                        Modern
+                                    </TabsTrigger>
 
-                                <TabsTrigger value="minimal">
-                                    Minimal
-                                </TabsTrigger>
+                                    <TabsTrigger value="minimal">
+                                        Minimal
+                                    </TabsTrigger>
 
-                                <TabsTrigger value="professional">
-                                    Professional
-                                </TabsTrigger>
-                            </TabsList>
-                        </Tabs>
-                        <ResumePreview
-                            previewRef={componentRef}
-                        />
+                                    <TabsTrigger value="professional">
+                                        Professional
+                                    </TabsTrigger>
+                                </TabsList>
+                            </Tabs>
+                        </div>
+                        <div className="grid grid-cols-1 gap-1">
+                            <div className="px-2">
+                                <h2 className="text-lg font-semibold">
+                                    Live Resume Preview
+                                </h2>
+
+                                <p className="text-sm text-muted-foreground">
+                                    Changes appear instantly while you edit.
+                                </p>
+                            </div>
+                            <TemplateRenderer previewRef={componentRef}/>
+                        </div>
                     </Card>
                 </div>
             </form>
+            <ResumePreviewDialog
+                open={openPreview}
+                onOpenChange={setOpenPreview}
+                previewRef={componentRef}
+            />
         </FormProvider>
     );
 }

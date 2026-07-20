@@ -174,7 +174,7 @@ export default function ResumeAtsChecker() {
                         🚀 Check ATS Score Free
                     </span>
 
-                    <h1 className="mt-6 text-5xl font-bold md:text-6xl bg-linear-to-r from-orange-600 via-orange-500 to-blue-600 bg-clip-text text-transparent">
+                    <h1 className="mt-6 text-4xl font-bold md:text-6xl bg-linear-to-r from-orange-600 via-orange-500 to-blue-600 bg-clip-text text-transparent">
                         Check Your Resume Score
 
                     </h1>

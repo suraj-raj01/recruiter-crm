@@ -56,6 +56,10 @@ const navItems = [
             },
         ],
     },
+    {
+        title: "Careers",
+        href: "/careers",
+    },
 ];
 
 export default function Navbar() {
@@ -100,13 +104,13 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="sticky top-2 z-50 max-w-7xl mx-auto w-full h-17 bg-background/50 backdrop-blur-md border shadow-md md:rounded-full md:px-15 px-5 flex items-center justify-between">
+            <nav className="sticky top-2 z-50 max-w-7xl mx-auto w-full h-17 bg-background/50 backdrop-blur-md lg:border border-b shadow-md md:rounded-full md:px-15 px-3 flex items-center justify-between">
                 {/* Logo */}
                 <div
                     onClick={() => router.push("/")}
                     className="flex items-center gap-3 cursor-pointer"
                 >
-                    <span className="h-10 w-10 rounded-full bg-orange-600 text-white font-bold flex items-center justify-center">
+                    {/* <span className="h-10 w-10 rounded-full bg-orange-600 text-white font-bold flex items-center justify-center">
                         TD
                     </span>
 
@@ -118,11 +122,12 @@ export default function Navbar() {
                         <p className="text-xs -mt-1 lg:hidden block text-muted-foreground">
                             Recruiter CRM Management
                         </p>
-                    </div>
+                    </div> */}
+                    <img src='/logo.png' alt="logo" className="lg:h-12 h-10 w-full"/>
                 </div>
 
                 {/* Desktop Menu */}
-                <div className="hidden lg:flex items-center gap-8">
+                <div className="hidden lg:flex items-center gap-6">
                     {navItems.map((item) => {
                         if (item.children) {
                             return (
@@ -225,7 +230,7 @@ export default function Navbar() {
                                     />
                                 </summary>
 
-                                <div className="ml-4 mt-2 bg-card w-full p-3 rounded-lg flex flex-col text-2xl">
+                                <div className="ml-4 mt-2 w-full flex flex-col text-xl">
                                     <Link
                                         href="/resume-builder"
                                         className="py-1"
@@ -273,6 +278,13 @@ export default function Navbar() {
                                 </div>
                             </details>
 
+                            <Link
+                                href="/careers"
+                                className="py-1"
+                                onClick={() => setMobileMenu(false)}
+                            >
+                                Careers
+                            </Link>
                             <Link
                                 href="/contact"
                                 className="py-1"

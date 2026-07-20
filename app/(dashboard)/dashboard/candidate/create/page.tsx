@@ -1,5 +1,5 @@
 'use client'
-import { Loader2, Save, X } from "lucide-react";
+import { File, Loader2, Save, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { SOURCES, STAGES } from "@/services/constants";
 import { Label } from "@/components/ui/label";
@@ -95,6 +95,12 @@ export default function CreateCandidate() {
                 buttontitle="See Candidates"
                 link="/dashboard/candidate"
             />
+
+            <div className="pb-4 mx-auto flex items-center justify-end gap-2">
+                <Button variant='outline' className="font-bold flex items-center justify-center gap-2"><File /> Import file</Button>
+                <Button variant='default' className="font-bold flex items-center justify-center gap-2"> <File />Demo file</Button>
+            </div>
+
             <Card className="w-full md:px-10 md:py-8 p-3">
                 <form className="grid grid-cols-1 md:grid-cols-2 gap-5" onSubmit={submit}>
                     <div>

@@ -12,7 +12,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { Save, Loader2 } from "lucide-react";
+import { Save, Loader2, File } from "lucide-react";
 import { useState } from "react";
 import { HeaderCard } from "../../components/HeaderCard";
 import { api } from "@/services/api";
@@ -98,10 +98,13 @@ export default function CreateJobs() {
                 <HeaderCard
                     title="JOBS"
                     description="Manage all jobs and track their hiring pipeline."
-                    buttontitle="See Jobs"
+                    buttontitle="All Jobs"
                     link="/dashboard/jobs"
                 />
-
+                <div className="pb-4 mx-auto flex items-center justify-end gap-2">
+                    <Button variant='outline' className="font-bold flex items-center justify-center gap-2"><File/> Import file</Button>
+                    <Button variant='default' className="font-bold flex items-center justify-center gap-2"> <File />Demo file</Button>
+                </div>
                 <form onSubmit={submit}>
                     <Card className="max-w-full mx-auto rounded-sm md:px-10 md:py-10 py-5 px-0">
                         <CardContent className="space-y-6">

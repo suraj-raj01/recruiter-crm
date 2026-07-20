@@ -171,7 +171,7 @@ export default function CandidateViewModal({
                                     onValueChange={handleStageChange}
                                     disabled={updatingStage}
                                 >
-                                    <SelectTrigger className="md:max-w-30 rounded-sm">
+                                    <SelectTrigger className="md:max-w-30 py-2 rounded-sm">
                                         <SelectValue placeholder="Select Stage" />
                                     </SelectTrigger>
 

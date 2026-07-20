@@ -8,19 +8,17 @@ import {
 } from "lucide-react";
 
 import { useFormContext } from "react-hook-form";
-import { formatMonthYear } from "../constants/formatData";
-
-import { ResumeFormData } from "../types";
 
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { GithubLogoIcon, LinkedinLogoIcon } from "@phosphor-icons/react";
+import { ResumeFormData } from "../../lib/schema";
 
 interface ResumePreviewProps {
     previewRef: React.RefObject<HTMLDivElement | null>;
 }
 
-export default function ResumePreview({
+export default function ModernTemplate({
     previewRef,
 }: ResumePreviewProps) {
     const { watch } = useFormContext<ResumeFormData>();
@@ -51,7 +49,7 @@ export default function ResumePreview({
 
                     {/* Contact */}
 
-                    <div className="mt-2 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-gray-700">
+                    <div className="mt-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm text-gray-700">
                         {personal.email && (
                             <div className="flex items-center gap-2">
                                 <Mail size={16} />
@@ -123,7 +121,7 @@ export default function ResumePreview({
 
                     {/* Summary */}
                     <section>
-                        <h2 className="border-b border-gray-300 pb-2 text-sm font-bold uppercase text-black">
+                        <h2 className="border-b border-gray-300 text-sm font-bold uppercase text-black">
                             Professional Summary
                         </h2>
 
@@ -135,7 +133,7 @@ export default function ResumePreview({
 
                     {/* Experience */}
                     <section className="mt-3">
-                        <h2 className="border-b border-gray-300 pb-2 text-sm font-bold uppercase tracking-wide text-black">
+                        <h2 className="border-b border-gray-300 text-sm font-bold uppercase tracking-wide text-black">
                             Professional Experience
                         </h2>
 
@@ -205,7 +203,7 @@ export default function ResumePreview({
 
                     {/* Education */}
                     <section className="mt-3">
-                        <h2 className="border-b border-gray-300 pb-2 text-sm font-bold uppercase tracking-wide text-black  ">
+                        <h2 className="border-b border-gray-300 text-sm font-bold uppercase tracking-wide text-black  ">
                             Education
                         </h2>
 
@@ -266,7 +264,7 @@ export default function ResumePreview({
 
                     {/* Skills */}
                     <section className="mt-3">
-                        <h2 className="border-b border-gray-300 pb-2 text-sm font-bold uppercase tracking-wide text-black">
+                        <h2 className="border-b border-gray-300 text-sm font-bold uppercase tracking-wide text-black">
                             Technical Skills
                         </h2>
 
@@ -290,7 +288,7 @@ export default function ResumePreview({
 
                     {/* Projects */}
                     <section className="mt-3">
-                        <h2 className="border-b border-gray-300 pb-2 text-sm font-bold uppercase tracking-wide text-black">
+                        <h2 className="border-b border-gray-300 text-sm font-bold uppercase tracking-wide text-black">
                             Projects
                         </h2>
 
@@ -311,9 +309,9 @@ export default function ResumePreview({
                                                 </h3>
 
                                                 {project.techStack && (
-                                                    <p className="mt-1 text-sm text-gray-600">
+                                                    <p className="text-xs text-gray-600">
                                                         <span className="font-medium">
-                                                            Tech:
+                                                            Tech Stack:
                                                         </span>{" "}
                                                         {project.techStack}
                                                     </p>

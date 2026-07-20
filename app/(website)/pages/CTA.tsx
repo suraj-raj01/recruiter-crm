@@ -13,8 +13,8 @@ export default function CTA() {
                     {/* Grid Pattern */}
                     <div className="absolute inset-0 opacity-10 [background-image:linear-linear(to_right,#fff_1px,transparent_1px),linear-linear(to_bottom,#fff_1px,transparent_1px)] bg-size-[40px_40px]" />
 
-                    <div className="relative z-10">
-                        <span className="inline-flex items-center rounded-full border border-orange-600/80 bg-card px-4 py-1 text-sm font-medium text-orange-600 backdrop-blur">
+                    <div className="relative z-5">
+                        <span className="inline-flex items-center rounded-full border border-orange-600/80 bg-card px-4 py-2 text-sm font-bold text-orange-600 backdrop-blur">
                             🚀 Recruit Smarter
                         </span>
 
