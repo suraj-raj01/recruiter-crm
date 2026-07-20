@@ -110,7 +110,7 @@ export default function EnqureSection() {
                             Enquiry
                         </div>
 
-                        <h2 className="text-3xl font-black lg:leading-12 text-blue lg:text-5xl">
+                        <h2 className="text-3xl font-black lg:leading-12 text-green lg:text-5xl">
                             Tell me what you're
                             <br />
                             Looking for.
@@ -128,7 +128,7 @@ export default function EnqureSection() {
                                     </div>
 
                                     <div>
-                                        <h4 className="font-bold text-blue">
+                                        <h4 className="font-bold text-green">
                                             {item.title}
                                         </h4>
 

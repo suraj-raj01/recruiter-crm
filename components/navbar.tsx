@@ -62,6 +62,9 @@ const navItems = [
     },
 ];
 
+import Image from "next/image";
+import logo from "@/public/logo.png";
+
 export default function Navbar() {
     const router = useRouter();
 
@@ -110,20 +113,13 @@ export default function Navbar() {
                     onClick={() => router.push("/")}
                     className="flex items-center gap-3 cursor-pointer"
                 >
-                    {/* <span className="h-10 w-10 rounded-full bg-orange-600 text-white font-bold flex items-center justify-center">
-                        TD
-                    </span>
-
-                    <div>
-                        <h1 className="font-bold text-lg">TalentDesk</h1>
-                        <p className="text-xs -mt-1 hidden lg:block text-muted-foreground">
-                            Recruiter CRM Management System
-                        </p>
-                        <p className="text-xs -mt-1 lg:hidden block text-muted-foreground">
-                            Recruiter CRM Management
-                        </p>
-                    </div> */}
-                    <img src='/logo.png' alt="logo" className="lg:h-12 h-10 w-full"/>
+                    <Image
+                        src={logo}
+                        alt="Logo"
+                        width={120}
+                        height={40}
+                        priority 
+                        className="lg:h-12 h-10 w-auto"/>
                 </div>
 
                 {/* Desktop Menu */}

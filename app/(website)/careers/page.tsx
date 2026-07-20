@@ -107,7 +107,7 @@ export default function CareerPage() {
                         We're Hiring
                     </Badge>
 
-                    <h1 className="mt-5 text-4xl max-w-3xl font-extrabold md:text-6xl bg-linear-to-r from-orange-600 via-indigo-500 to-blue-600 bg-clip-text text-transparent">
+                    <h1 className="mt-5 text-4xl max-w-3xl font-extrabold md:text-6xl bg-linear-to-r from-orange-600 via-green-500 to-green-600 bg-clip-text text-transparent">
                         Build Your Future With Our Teams
                     </h1>
 
@@ -250,7 +250,7 @@ export default function CareerPage() {
                     </p>
 
                     <Link
-                        href="/contact"
+                        href="mailto:surajkumarbgu26@gmail.com"
                         className="flex mt-5 items-center justify-center gap-2 rounded-full bg-orange-600 md:px-12 px-5 lg:py-3 py-2 text-white font-bold w-full lg:w-fit shadow-lg shadow-orange-600/30 transition-all duration-300 hover:-translate-y-1 hover:bg-orange-700 hover:shadow-xl"
                     >
                         Send Your Resume

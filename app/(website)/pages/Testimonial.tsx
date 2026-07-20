@@ -88,7 +88,7 @@ export default function Tesitmonials() {
                         <Sparkles />
                         Testimonials
                     </Badge>
-                    <h1 className="text-3xl block bg-linear-to-r from-orange-600 to-indigo-600 bg-clip-text text-transparentmt-2 text-center lg:text-5xl font-extrabold">Words from founders and growth leads.</h1>
+                    <h1 className="text-3xl block bg-linear-to-r from-orange-600 to-green-600 bg-clip-text text-transparentmt-2 text-center lg:text-5xl font-extrabold">Words from founders and growth leads.</h1>
                     <p className="text-sm text-center text-zinc-600 dark:text-zinc-400 mt-4 font-semibold">Real quotes from ecom + SaaS teams we've shipped conversion wins for.</p>
                 </div>
             </div>

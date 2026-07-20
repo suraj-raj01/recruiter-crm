@@ -1,13 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import {
-    Download,
-    Eye,
-    Fullscreen,
+    Maximize,
     Printer,
     Save,
 } from "lucide-react";
@@ -21,7 +19,6 @@ import { ResumeTemplate } from "../types";
 import { steps } from "../constants/steps";
 
 import ResumeStepper from "./ResumeStepper";
-import ResumePreview from "./ResumePreview";
 import NavigationButtons from "./NavigationButtons";
 
 import PersonalStep from "./steps/PersonalStep";
@@ -250,7 +247,7 @@ export default function ResumeBuilder() {
                     <Card className="p-2 rounded-lg rounded-l-xs">
                         <div className='flex items-center justify-between'>
                             <Badge onClick={() => setOpenPreview(true)} className="border border-orange-600/80 text-orange-600 py-3 rounded-sm cursor-pointer bg-card">
-                                <Fullscreen size='lg' className="" />
+                                <Maximize size='lg' className="" />
                                 Preview
                             </Badge>
                             <Tabs

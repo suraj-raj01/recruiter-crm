@@ -35,7 +35,7 @@ const data = {
     },
     {
       name: "COMPANY CRM",
-      logo: <BuildingsIcon fill="blue"/>,
+      logo: <BuildingsIcon fill="green"/>,
       plan: "Enterprise",
     },
     {

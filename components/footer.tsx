@@ -1,9 +1,10 @@
 'use client'
 import Link from "next/link";
-import { BriefcaseBusiness, Mail, ExternalLink, Link2Icon } from "lucide-react";
+import { Mail, ExternalLink, Link2Icon } from "lucide-react";
 import { GithubLogoIcon } from "@phosphor-icons/react/dist/ssr";
 import { LinkedinLogoIcon } from "@phosphor-icons/react";
-
+import Image from "next/image";
+import logo from "@/public/logo.png";
 export default function Footer() {
     return (
         <footer className="border-t bg-muted/80">
@@ -12,7 +13,14 @@ export default function Footer() {
                     {/* Brand */}
                     <div className="space-y-3">
                         <div className="flex items-center gap-2">
-                            <img src='/logo.png' alt="logo" className="h-12 w-auto" />
+                            <Image
+                                src={logo}
+                                alt="Logo"
+                                width={120}
+                                height={40}
+                                priority
+                                className="lg:h-12 h-10 w-auto" 
+                            />
                         </div>
 
                         <p className="text-sm text-start leading-6 text-muted-foreground">

@@ -6,7 +6,7 @@ import {
     BarChart3,
     BellRing,
     FileText,
-    CheckCircle,
+    Handshake,
 } from "lucide-react";
 
 const features = [
@@ -39,8 +39,8 @@ const features = [
         description:
             "Gain insights into hiring performance with real-time reports and analytics.",
         icon: BarChart3,
-        iconColor: "text-blue-600",
-        iconBg: "bg-blue-100 dark:bg-blue-900/40",
+        iconColor: "text-green-600",
+        iconBg: "bg-green-100 dark:bg-green-900/40",
     },
     {
         title: "Smart Notifications",
@@ -64,11 +64,11 @@ export default function Features() {
     return (
         <section className='mx-auto w-full max-w-6xl px-3 py-10'>
             <div className="flex flex-col items-center justify-center">
-                <Badge className='uppercase py-3 px-4 font-bold rounded-full bg-background text-orange-600 h-8 border border-orange-600/80'>
-                <CheckCircle className="fill-accent"/>
+                <Badge className='uppercase py-4 px-6 font-bold rounded-full bg-background text-orange-600 h-8 border border-orange-600/80'>
+                <Handshake className="fill-background"/>
                  Why Teams Trust Us
                  </Badge>
-                <h1 className="mt-3 font-bold text-center text-3xl lg:text-5xl max-w-3xl">Built for recruiters who need proof, not promises.</h1>
+                <h1 className="mt-3 font-extrabold text-center text-3xl lg:text-5xl max-w-3xl">Built for recruiters who need proof, not promises.</h1>
                 <p className="mt-3 text-center text-zinc-600 dark:text-zinc-400 text-semibold">Every engagement ships with measurable lift, transparent process, and handover you actually own.</p>
             </div>
             <section className="grid lg:gap-6 gap-4 md:grid-cols-2 pt-10 lg:grid-cols-3">

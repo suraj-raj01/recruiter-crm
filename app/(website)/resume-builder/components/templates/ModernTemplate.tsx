@@ -78,7 +78,7 @@ export default function ModernTemplate({
                                 <a
                                     href={personal.website}
                                     target="_blank"
-                                    className="text-blue-600 underline"
+                                    className="text-green-600 underline"
                                     rel="noreferrer"
                                 >
                                     Portfolio
@@ -93,7 +93,7 @@ export default function ModernTemplate({
                                 <a
                                     href={personal.github}
                                     target="_blank"
-                                    className="text-blue-600 underline"
+                                    className="text-green-600 underline"
                                     rel="noreferrer"
                                 >
                                     GitHub
@@ -108,7 +108,7 @@ export default function ModernTemplate({
                                 <a
                                     href={personal.linkedin}
                                     target="_blank"
-                                    className="text-blue-600 underline"
+                                    className="text-green-600 underline"
                                     rel="noreferrer"
                                 >
                                     LinkedIn
@@ -324,7 +324,7 @@ export default function ModernTemplate({
                                                         href={project.github}
                                                         target="_blank"
                                                         rel="noreferrer"
-                                                        className="text-blue-600 underline"
+                                                        className="text-green-600 underline"
                                                     >
                                                         GitHub
                                                     </a>
@@ -335,7 +335,7 @@ export default function ModernTemplate({
                                                         href={project.live}
                                                         target="_blank"
                                                         rel="noreferrer"
-                                                        className="text-blue-600 underline"
+                                                        className="text-green-600 underline"
                                                     >
                                                         Live
                                                     </a>

@@ -23,19 +23,19 @@ export default function HeroSection() {
                 />
 
                 <div className="relative z-5 flex flex-col items-center text-center">
-                    <Badge className="mt-10 rounded-full h-8 lg:px-6 px-4 shadow-sm border-orange-600/80 text-sm text-orange-500 bg-background/90">
+                    <Badge className="mt-10 rounded-full h-8 lg:px-6 px-4 shadow-sm border-orange-600/80 text-sm font-bold text-orange-500 bg-background/90">
                         <span className="relative mr-2 flex h-2.5 w-2.5">
                             {/* Ping animation */}
-                            <span className="absolute z-2 inline-flex h-full w-full animate-ping rounded-full bg-linear-to-l from-orange-600 via-indigo-500 to-orange-600 opacity-75" />
+                            <span className="absolute z-2 inline-flex h-full w-full animate-ping rounded-full bg-orange-600" />
 
                             {/* Solid dot */}
-                            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-orange-600" />
+                            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-orange-500" />
                         </span>
                         Best for recruiters to mange candidates</Badge>
                     <h1 className="mt-5 md:mb-0 mb-3 max-w-3xl font-extrabold leading-tight text-zinc-900 dark:text-white md:text-4xl text-3xl">
                         Recruiters <span className='text-orange-600'>CRM</span>
                     </h1>
-                    <span className="block bg-linear-to-r from-orange-600 via-indigo-500 to-orange-600 bg-clip-text text-transparent md:text-6xl md:leading-17 font-extrabold text-5xl">
+                    <span className="block bg-linear-to-r from-orange-600 via-orange-500 to-green-600 bg-clip-text text-transparent md:text-6xl md:leading-17 font-extrabold text-5xl">
                         Manage Talent Smarter
                     </span>
 

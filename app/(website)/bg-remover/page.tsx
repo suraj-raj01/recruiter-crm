@@ -1,8 +1,8 @@
 "use client";
 
 import {
+    BrushCleaning,
     Download,
-    Eraser,
     ImageIcon,
     Loader2,
     Sparkles,
@@ -93,11 +93,11 @@ export default function BgRemover() {
     }, [preview]);
 
     return (
-        <section className="min-h-screen w-full py-20">
+        <section className="min-h-screen w-full lg:py-20">
             <div className="w-full">
 
                 {/* Hero */}
-                <div className="text-center py-15 mx-auto max-w-6xl px-3 flex flex-col relative w-full items-center min-h-110 overflow-hidden">
+                <div className="lg:text-center py-15 mx-auto max-w-6xl px-3 flex flex-col relative w-full items-center min-h-110 overflow-hidden">
                     <InteractiveGridPattern
                         opacity={0.5}
                         className={cn(
@@ -108,12 +108,14 @@ export default function BgRemover() {
                         squares={[80, 80]}
                         squaresClassName="hover:fill-orange-600"
                     />
-                    <div className="inline-flex relative border border-orange-600/80 items-center gap-2 rounded-full bg-background px-4 py-2 text-sm font-semibold text-orange-600 ">
+                    <div className='flex w-full items-center lg:justify-center'>
+                        <div className="flex relative border border-orange-600/80 items-center gap-2 rounded-full bg-background px-4 py-2 text-sm font-semibold text-orange-600">
                         <Sparkles size={16} />
                         AI Background Remover
                     </div>
+                    </div>
 
-                    <h1 className="mt-6 relative text-4xl font-extrabold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-indigo-500 to-orange-600 bg-clip-text text-transparent">
+                    <h1 className="mt-6 relative text-4xl font-extrabold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-green-500 to-orange-600 bg-clip-text text-transparent">
                         Remove Instantly Background
                         <span className="block text-orange-600">
                             Image with AI
@@ -132,7 +134,7 @@ export default function BgRemover() {
 
                     {/* Upload */}
                     <Card className="border-dashed border-2 lg:rounded-l-lg rounded-t-lg lg:rounded-tr-xs">
-                        <CardContent className="flex h-105 flex-col items-center justify-center p-8">
+                        <CardContent className="flex lg:h-105 flex-col items-center justify-center p-8">
 
                             <div className="rounded-full bg-orange-100 p-5 dark:bg-orange-500/10">
                                 <Upload className="h-10 w-10 text-orange-600" />
@@ -224,7 +226,7 @@ export default function BgRemover() {
                                         disabled={!selectedFile || loading || !!outputImage}
                                         className="rounded-full bg-orange-600 text-white hover:bg-orange-700 cursor-pointer"
                                     >
-                                        <Eraser className="mr-2 h-4 w-4" />
+                                        <BrushCleaning className="mr-2 h-4 w-4" />
                                         {loading ? "Removing..." : "Remove Background"}
                                     </Button>
                                 )}

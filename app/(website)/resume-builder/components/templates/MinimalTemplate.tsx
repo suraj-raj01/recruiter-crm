@@ -230,7 +230,7 @@ export default function MinimalTemplate({
                                                         href={project.github}
                                                         target="_blank"
                                                         rel="noreferrer"
-                                                        className="text-blue-600 hover:underline"
+                                                        className="text-green-600 hover:underline"
                                                     >
                                                         GitHub
                                                     </a>
@@ -241,7 +241,7 @@ export default function MinimalTemplate({
                                                         href={project.live}
                                                         target="_blank"
                                                         rel="noreferrer"
-                                                        className="text-blue-600 hover:underline"
+                                                        className="text-green-600 hover:underline"
                                                     >
                                                         Live
                                                     </a>

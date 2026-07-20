@@ -54,7 +54,7 @@ export default function FaqSection() {
                            🚀 Frequently Asked Questions
                         </span>
 
-                        <h2 className="lg:mt-8 mt-4 text-3xl lg:font-extrabold font-bold lg:leading-12 text-blue lg:text-5xl">
+                        <h2 className="lg:mt-8 mt-4 text-3xl lg:font-extrabold font-bold lg:leading-12 text-green lg:text-5xl">
                             Answers before your Queries.
                         </h2>
 
@@ -86,7 +86,7 @@ export default function FaqSection() {
                                     value={`item-${index}`}
                                     className="border-b last:border-none"
                                 >
-                                    <AccordionTrigger className="py-4 text-left text-md font-bold text-blue hover:no-underline">
+                                    <AccordionTrigger className="py-4 text-left text-md font-bold text-green hover:no-underline">
                                         {faq.question}
                                     </AccordionTrigger>
 

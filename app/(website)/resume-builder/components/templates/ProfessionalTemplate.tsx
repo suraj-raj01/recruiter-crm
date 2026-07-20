@@ -225,7 +225,7 @@ export default function ProfessionalTemplate({
                                                 {project.github && (
                                                     <a
                                                         href={project.github}
-                                                        className="text-blue-600 underline"
+                                                        className="text-green-600 underline"
                                                         target="_blank"
                                                         rel="noreferrer"
                                                     >
@@ -236,7 +236,7 @@ export default function ProfessionalTemplate({
                                                 {project.live && (
                                                     <a
                                                         href={project.live}
-                                                        className="text-blue-600 underline"
+                                                        className="text-green-600 underline"
                                                         target="_blank"
                                                         rel="noreferrer"
                                                     >

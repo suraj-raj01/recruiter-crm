@@ -164,7 +164,7 @@ export default function Dashboard() {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="flex flex-col items-center gap-3">
-          <div className="w-8 h-8 border-[3px] border-blue-500 border-t-transparent rounded-full animate-spin" />
+          <div className="w-8 h-8 border-[3px] border-green-500 border-t-transparent rounded-full animate-spin" />
           <p className="text-sm text-slate-400">Loading dashboard…</p>
         </div>
       </div>
@@ -193,8 +193,8 @@ export default function Dashboard() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-2 lg:gap-4">
             <MetricCard
               icon={Users}
-              iconBg="bg-blue-50"
-              iconColor="text-blue-600"
+              iconBg="bg-green-50"
+              iconColor="text-green-600"
               label="Total"
               value={metrics.totalCandidates}
               sub="All candidates"
@@ -242,7 +242,7 @@ export default function Dashboard() {
           <Card className="border-slate-200 shadow-none rounded-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-semibold text-slate-500 flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-blue-500" />
+                <TrendingUp className="w-4 h-4 text-green-500" />
                 Hiring Pipeline
               </CardTitle>
             </CardHeader>
@@ -368,7 +368,7 @@ export default function Dashboard() {
           <Card className="border-slate-200 shadow-none rounded-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-semibold text-slate-500 flex items-center gap-2">
-                <Activity className="w-4 h-4 text-blue-500" />
+                <Activity className="w-4 h-4 text-green-500" />
                 Recent Activity
               </CardTitle>
             </CardHeader>
@@ -376,7 +376,7 @@ export default function Dashboard() {
               <ul className="space-y-0 divide-y divide-slate-200 dark:divide-slate-700">
                 {(metrics?.dueSoon.length ?? 0) === 0 ? (
                   <div className="text-center py-8 flex flex-col items-center justify-center">
-                    <Activity className="w-4 h-4 text-blue-500" />
+                    <Activity className="w-4 h-4 text-green-500" />
                     <p className="text-sm text-slate-400">Nothing Activity — you're on top of it.</p>
                   </div>
                 ) : (metrics?.recentActivity.map((item) => (
@@ -384,12 +384,12 @@ export default function Dashboard() {
                     {/* icon bubble */}
                     <div
                       className={`mt-0.5 w-7 h-7 rounded-full flex items-center justify-center shrink-0 ${item.type === "stage"
-                        ? "bg-blue-50"
+                        ? "bg-green-50"
                         : "bg-violet-50"
                         }`}
                     >
                       {item.type === "stage" ? (
-                        <TrendingUp className="w-3.5 h-3.5 text-blue-500" />
+                        <TrendingUp className="w-3.5 h-3.5 text-green-500" />
                       ) : (
                         <Users className="w-3.5 h-3.5 text-violet-500" />
                       )}
@@ -415,7 +415,7 @@ export default function Dashboard() {
           <CardHeader className="pb-2">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-semibold text-slate-500 flex items-center justify-center gap-2">
-                <Users className="w-4 h-4 text-blue-500" />
+                <Users className="w-4 h-4 text-green-500" />
                 Recently Added Candidates
                 <span className="text-xs bg-orange-100/50 text-accent-foreground rounded-full h-5 w-5 flex items-center justify-center font-bold">{candidates.length}</span>
               </CardTitle>
@@ -548,13 +548,13 @@ export default function Dashboard() {
                   setSelectedJobId(job?.id);
                   setJobOpen(true);
                 }}
-                className="border-slate-200 shadow-none hover:border-blue-200 hover:shadow-md transition-all hover:bg-muted cursor-pointer group rounded-sm"
+                className="border-slate-200 shadow-none hover:border-green-200 hover:shadow-md transition-all hover:bg-muted cursor-pointer group rounded-sm"
               >
                 <CardContent className="p-5">
                   {/* Top row */}
                   <div className="flex items-start justify-between gap-2 mb-4">
                     <div className="min-w-0">
-                      <h3 className="font-semibold text-slate-500 text-sm leading-tight mb-0.5 group-hover:text-blue-600 transition-colors">
+                      <h3 className="font-semibold text-slate-500 text-sm leading-tight mb-0.5 group-hover:text-green-600 transition-colors">
                         {job.title}
                       </h3>
                       <p className="text-xs text-slate-400">{job.department}</p>

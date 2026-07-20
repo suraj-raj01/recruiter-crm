@@ -1,5 +1,5 @@
 export const STAGE_BADGE: Record<string, string> = {
-    Applied: "bg-blue-50   text-blue-700   border border-blue-100",
+    Applied: "bg-green-50   text-green-700   border border-green-100",
     Screen: "bg-amber-50  text-amber-700  border border-amber-100",
     Interview: "bg-violet-50 text-violet-700 border border-violet-100",
     Offer: "bg-orange-50 text-orange-700 border border-orange-100",
@@ -21,7 +21,7 @@ export const SOURCES = ["LinkedIn", "Referral", "Naukri", "Indeed", "Portfolio",
 export type Stage = (typeof STAGES)[number];
 
 export const STAGE_BAR: Record<string, string> = {
-    Applied: "bg-blue-500",
+    Applied: "bg-green-500",
     Screen: "bg-amber-500",
     Interview: "bg-violet-500",
     Offer: "bg-orange-500",
@@ -30,7 +30,7 @@ export const STAGE_BAR: Record<string, string> = {
 };
 
 export const STAGE_DOT: Record<string, string> = {
-    Applied: "bg-blue-500",
+    Applied: "bg-green-500",
     Screen: "bg-amber-500",
     Interview: "bg-violet-500",
     Offer: "bg-orange-500",
@@ -45,7 +45,7 @@ export const PRIORITY_BADGE: Record<string, string> = {
 };
 
 export const SOURCE_COLOR: Record<string, string> = {
-    LinkedIn: "bg-blue-500",
+    LinkedIn: "bg-green-500",
     Naukri: "bg-orange-500",
     Indeed: "bg-violet-500",
     Referral: "bg-emerald-500",

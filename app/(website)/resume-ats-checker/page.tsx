@@ -169,12 +169,12 @@ export default function ResumeAtsChecker() {
             {/* Hero */}
 
             <section className="">
-                <div className="mx-auto max-w-6xl px-3 py-20 text-center">
+                <div className="mx-auto max-w-6xl px-3 py-20 lg:text-center">
                     <span className="rounded-full bg-background border border-orange-600/80 px-4 py-2 text-sm font-medium text-orange-600">
                         🚀 Check ATS Score Free
                     </span>
 
-                    <h1 className="mt-6 text-4xl font-bold md:text-6xl bg-linear-to-r from-orange-600 via-orange-500 to-blue-600 bg-clip-text text-transparent">
+                    <h1 className="mt-6 text-4xl font-bold md:text-6xl bg-linear-to-r from-orange-600 via-orange-500 to-green-600 bg-clip-text text-transparent">
                         Check Your Resume Score
 
                     </h1>

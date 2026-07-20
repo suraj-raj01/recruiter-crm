@@ -48,12 +48,12 @@ export default function AdjustPixel() {
                 <Card className="mt-12 p-0 overflow-hidden rounded-2xl border-0 shadow-xl">
                     <div className="grid lg:grid-cols-2">
                         {/* Upload Section */}
-                        <div className="border-b bg-card p-8 lg:border-b-0 lg:border-r">
+                        <div className="border-b bg-card lg:p-8 p-5 lg:border-b-0 lg:border-r">
                             <h2 className="mb-6 text-xl font-semibold">
                                 Upload Image
                             </h2>
                             <Card className="border-dashed border-2 rounded-lg">
-                                <CardContent className="flex h-105 flex-col items-center justify-center p-8">
+                                <CardContent className="flex lg:h-105 flex-col items-center justify-center p-8">
 
                                     <div className="rounded-full bg-orange-100 p-5 dark:bg-orange-500/10">
                                         <Upload className="h-10 w-10 text-orange-600" />
@@ -95,7 +95,7 @@ export default function AdjustPixel() {
                         </div>
 
                         {/* Controls */}
-                        <div className="bg-card p-8">
+                        <div className="bg-card p-5 lg:p-8">
                             <h2 className="mb-6 text-xl font-semibold">
                                 Resize Settings
                             </h2>

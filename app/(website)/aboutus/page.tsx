@@ -55,16 +55,16 @@ export default function AboutPage() {
                         "inset-x-0 inset-y-[-20%] h-[200%] skew-y-0 text-orange-600"
                     )}
                 />
-                <div className="mx-auto max-w-6xl px-3 py-24 text-center">
+                <div className="mx-auto max-w-6xl px-3 py-24 lg:text-center">
                     <span className="rounded-full bg-background border border-orange-600/80 px-4 py-2 text-sm font-medium text-orange-600">
                         ✨ About TalentDesk
                     </span>
 
-                    <h1 className="mt-6 text-4xl mx-auto max-w-3xl text-center font-extrabold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-orange-500 to-indigo-600 bg-clip-text text-transparent">
-                        Simplifying the process of Recruitment
+                    <h1 className="mt-6 text-4xl mx-auto max-w-3xl lg:text-center font-extrabold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-orange-500 to-green-600 bg-clip-text text-transparent">
+                        Simplify the process for Recruitment
                     </h1>
 
-                    <p className="mx-auto mt-6 text-zinc-600 dark:text-zinc-400 max-w-4xl text-lg text-justify lg:text-center lg:leading-7">
+                    <p className="mx-auto mt-6 text-zinc-600 dark:text-muted-foreground max-w-4xl text-lg lg:text-center lg:leading-6">
                         TalentDesk is a modern Applicant Tracking System (ATS) built to help recruiters, HR teams, and organizations manage the complete hiring
                         process—from creating job openings to onboarding top talent.
                     </p>
@@ -75,7 +75,7 @@ export default function AboutPage() {
             <section className="mx-auto max-w-6xl px-3 py-20 mb-10">
                 <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
                     <div>
-                        <h2 className="text-4xl font-bold text-center text-start">
+                        <h2 className="text-4xl font-bold text-start">
                             Built for Recruiters, Designed for Teams
                         </h2>
 

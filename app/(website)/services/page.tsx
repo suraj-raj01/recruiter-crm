@@ -66,27 +66,27 @@ export default function Services() {
     return (
         <main className="bg-background">
             {/* Hero */}
-            <section className="flex relative w-full items-center min-h-120 overflow-hidden">
+            <section className="flex relative w-full items-center lg:min-h-150 min-h-120 overflow-hidden">
                 <InteractiveGridPattern 
                     opacity={0.5}
                     className={cn(
-                        "absolute inset-0 lg:mask-[radial-gradient(450px_circle_at_center,white,transparent)] mask-[radial-gradient(300px_circle_at_center,white,transparent)]"
+                        "absolute inset-0 lg:mask-[radial-gradient(400px_circle_at_center,white,transparent)] mask-[radial-gradient(300px_circle_at_center,white,transparent)]"
                     )}
                     width={30}
                     height={30}
                     squares={[80, 80]}
                     squaresClassName="hover:fill-orange-600" 
                     />
-                <div className="mx-auto relative z-5 max-w-6xl px-3 text-center">
+                <div className="mx-auto lg:-mt-20 relative z-5 max-w-6xl px-3 lg:text-center">
                     <span className="rounded-full bg-background border border-orange-600/80 px-4 py-2 text-sm font-medium text-orange-600">
                         🚀 Our Services
                     </span>
 
-                    <h1 className="mt-6 text-4xl text-center font-extrabold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-blue-500 to-blue-600 bg-clip-text text-transparent">
+                    <h1 className="mt-6 text-4xl lg:text-center font-extrabold tracking-tight md:text-6xl bg-linear-to-r from-orange-600 via-orange-500 to-green-600 bg-clip-text text-transparent">
                         Everything You Need To Manage Recruitment
                     </h1>
 
-                    <p className="mx-auto mt-6 max-w-3xl text-justify lg:text-center text-xl lg:leading-6 text-muted-foreground">
+                    <p className="mx-auto mt-6 max-w-4xl lg:text-center text-xl lg:leading-6 text-muted-foreground">
                         TalentDesk provides a complete recruitment platform that helps HR
                         teams streamline hiring, collaborate efficiently, and make faster
                         hiring decisions.
@@ -220,7 +220,7 @@ export default function Services() {
 
             {/* CTA */}
             <section className="px-3 pb-20">
-                <div className="mx-auto max-w-6xl rounded-2xl bg-linear-to-r from-orange-600 to-indigo-600 px-3 py-16 text-center text-white shadow-2xl">
+                <div className="mx-auto max-w-6xl rounded-2xl bg-linear-to-r from-orange-600 to-green-600 px-3 py-16 text-center text-white shadow-2xl">
                     <h2 className="text-3xl font-bold md:text-5xl">
                         Ready to Transform Your Hiring Process?
                     </h2>
