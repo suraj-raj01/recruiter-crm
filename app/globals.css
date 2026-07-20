@@ -166,21 +166,13 @@
   }
 
   #resume-preview {
-
     width: 100%;
-
     max-width: none;
-
     min-height: auto;
-
-    padding: 30px;
-
+    padding: 10px;
     box-shadow: none;
-
     border: none;
-
     margin: 0;
-
     background: white;
   }
 

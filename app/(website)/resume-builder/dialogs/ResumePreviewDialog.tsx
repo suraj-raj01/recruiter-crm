@@ -26,8 +26,8 @@ export default function ResumePreviewDialog({
     const { componentRef, printResume } = usePrintResume();
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="lg:min-w-4xl h-[90vh] overflow-y-auto p-3">
-                <div className='py-3 px-7'>
+            <DialogContent className="lg:min-w-4xl h-[90vh] rounded-lg overflow-y-auto p-3">
+                <div className='py-3 px-7 mb-5'>
                     <Button
                         type="button"
                         onClick={() => printResume()}
@@ -37,7 +37,7 @@ export default function ResumePreviewDialog({
                         Print Resume
                     </Button>
                 </div>
-                <div className="bg-muted/40">
+                <div className="">
                     <TemplateRenderer previewRef={componentRef} />
                 </div>
             </DialogContent>

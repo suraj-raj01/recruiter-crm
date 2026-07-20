@@ -9,7 +9,7 @@ export default function usePrintResume() {
     const printResume = useReactToPrint({
         contentRef: componentRef,
         documentTitle: "Resume",
-        pageStyle: `@page{size:A4; margin:10mm;}
+        pageStyle: `@page{size:A4; margin:8mm;}
         body{
         -webkit-print-color-adjust:exact;
         print-color-adjust:exact;
